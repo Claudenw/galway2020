@@ -15,17 +15,17 @@ import twitter4j.conf.ConfigurationBuilder;
 public class Parser {
 
 	public static void main(String[] args) throws TwitterException {
-	    ConfigurationBuilder cb = new ConfigurationBuilder();
-	    cb.setJSONStoreEnabled(true);
+		ConfigurationBuilder cb = new ConfigurationBuilder();
+		cb.setJSONStoreEnabled(true);
 
-	    	Model model = ModelFactory.createDefaultModel();
-	    	StatusToRDF statusWriter = new StatusToRDF( model );
-	    Twitter twitter = new TwitterFactory(cb.build()).getInstance();
-	    Query query = new Query("galway2020");
-	    QueryResult result = twitter.search(query);
-	    for (Status status : result.getTweets()) {
-	    	statusWriter.write(status);
-	    }
-	    model.write( System.out );
+		Model model = ModelFactory.createDefaultModel();
+		StatusToRDF statusWriter = new StatusToRDF(model);
+		Twitter twitter = new TwitterFactory(cb.build()).getInstance();
+		Query query = new Query("galway2020");
+		QueryResult result = twitter.search(query);
+		for (Status status : result.getTweets()) {
+			statusWriter.write(status);
+		}
+		model.write(System.out);
 	}
 }

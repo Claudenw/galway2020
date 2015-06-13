@@ -1,9 +1,6 @@
 package org.xenei.galway2020.twitter.writer;
 
 import java.io.InputStream;
-import java.net.URL;
-
-import org.apache.commons.io.IOUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.junit.Before;
@@ -19,29 +16,38 @@ import twitter4j.TwitterObjectFactory;
 
 public class StatusToRDFTest {
 
-	private TwitterObjectFactory factory;
 	private JSONArray statuses;
 	private Model model;
 	private StatusToRDF writer;
-	
+
 	@Before
-	public void setup() throws JSONException {	
+	public void setup() throws JSONException {
 		model = ModelFactory.createDefaultModel();
-		writer = new StatusToRDF( model );
+		writer = new StatusToRDF(model);
 
-		InputStream is = StatusToRDFTest.class.getResourceAsStream( "/status.json");
-		JSONTokener tokener = new JSONTokener( is );
-		JSONObject obj = new JSONObject( tokener );
-		statuses = obj.getJSONArray( "statuses");
+		InputStream is = StatusToRDFTest.class
+				.getResourceAsStream("/status.json");
+		JSONTokener tokener = new JSONTokener(is);
+		JSONObject obj = new JSONObject(tokener);
+		statuses = obj.getJSONArray("statuses");
 
 	}
-	
+
 	@Test
-	public void testSimpleParse() throws TwitterException, JSONException
-	{
-		Status status = TwitterObjectFactory.createStatus( statuses.get(0).toString());
+	public void testSimpleParse() throws TwitterException, JSONException {
+		Status status = TwitterObjectFactory.createStatus(statuses.get(0)
+				.toString());
 		writer.write(status);
-		model.write( System.out, "TURTLE" );
+		model.write(System.out, "TURTLE");
 	}
-	
+
+	@Test
+	public void testCompleteParse() throws TwitterException, JSONException {
+		for (int i = 0; i < statuses.length(); i++) {
+			Status status = TwitterObjectFactory.createStatus(statuses.get(i)
+					.toString());
+			writer.write(status);
+		}
+		model.write(System.out, "TURTLE");
+	}
 }

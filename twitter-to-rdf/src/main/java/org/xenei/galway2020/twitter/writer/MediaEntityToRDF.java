@@ -1,14 +1,9 @@
 package org.xenei.galway2020.twitter.writer;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.sparql.vocabulary.FOAF;
-import org.apache.jena.vocabulary.DC;
-import org.apache.jena.vocabulary.OWL;
-
+import org.apache.jena.vocabulary.DC_11;
 import twitter4j.MediaEntity;
 import twitter4j.MediaEntity.Size;
 
@@ -17,42 +12,61 @@ public class MediaEntityToRDF {
 	private final Model model;
 	private final UrlEntityToRDF urlWriter;
 	private final static String[] sizes = { "thumb", "small", "medium", "large" };
-	
-	public Resource getId( long id )
-	{	
-			String url = String.format("http://galway2020.xenei.net/twitter/media/%s", id );
-			return model.createResource( url );
+
+	public Resource getId(long id) {
+		String url = String.format(
+				"http://galway2020.xenei.net/twitter/media/%s", id);
+		return model.createResource(url);
 	}
-	
-	public MediaEntityToRDF(Model model)
-	{
+
+	public MediaEntityToRDF(Model model) {
 		this.model = model;
-		this.urlWriter = new UrlEntityToRDF( model );
+		this.urlWriter = new UrlEntityToRDF(model);
 	}
-	
-	private Resource writeSize( long id, Entry<Integer,Size> size )
-	{
-		String url = String.format("http://galway2020.xenei.net/twitter/media/%s/size/%s", id, sizes[size.getKey()] );
-		Resource retval = model.createResource( url, RDFWriter.Size );
-		Size s = size.getValue();
-		retval.addLiteral( RDFWriter.width, s.getWidth());
-		retval.addLiteral( RDFWriter.height, s.getHeight());
-		retval.addLiteral( RDFWriter.resize, (s.getResize()==Size.FIT? "Fit": "Crop") );
+
+	public Resource writeURL(String url, int sizeType, Size size) {
+		if (StringUtils.isBlank(url)) {
+			throw new IllegalArgumentException("URL may not be null");
+		}
+		Resource retval = model.createResource(url);
+		if (size != null) {
+			retval.addLiteral(RDFWriter.width, size.getWidth());
+			retval.addLiteral(RDFWriter.height, size.getHeight());
+			if (size.getResize() == Size.FIT) {
+				retval.addLiteral(RDFWriter.resize, "Fit");
+			}
+			if (size.getResize() == Size.CROP) {
+				retval.addLiteral(RDFWriter.resize, "Crop");
+			}
+			if (sizeType >= 0 && sizeType < sizes.length) {
+				retval.addLiteral(RDFWriter.size, sizes[sizeType]);
+			}
+		}
 		return retval;
 	}
-	
-	public Resource write( MediaEntity mediaObj )
-	{
-		Resource media = getId( mediaObj.getId() );
-		media.addProperty( OWL.sameAs, urlWriter.write( mediaObj ));
-		media.addProperty( OWL.sameAs, model.createResource(mediaObj.getMediaURL()));
-		media.addProperty( OWL.sameAs, model.createResource(mediaObj.getMediaURLHttps()));
-		
-		for (Entry<Integer,Size> size : mediaObj.getSizes().entrySet())
-		{
-			media.addProperty( RDFWriter.size, writeSize(mediaObj.getId(), size) );
+
+	public Resource writeURL(String url, int sizeType) {
+		return writeURL(url, sizeType, null);
+	}
+
+	public Resource writeURL(String url) {
+		return writeURL(url, -1, null);
+	}
+
+	public Resource write(MediaEntity mediaObj) {
+		Resource media = getId(mediaObj.getId());
+
+		if (StringUtils.isNotBlank(mediaObj.getURL())) {
+			RDFWriter.Util.markSameAs(media, urlWriter.write(mediaObj));
 		}
-	    media.addProperty( DC.type, mediaObj.getType());
-	    return media;
+		if (StringUtils.isNotBlank(mediaObj.getMediaURL())) {
+			RDFWriter.Util.markSameAs(media, writeURL(mediaObj.getMediaURL()));
+		}
+		if (StringUtils.isNotBlank(mediaObj.getMediaURLHttps())) {
+			RDFWriter.Util.markSameAs(media,
+					writeURL(mediaObj.getMediaURLHttps()));
+		}
+		media.addProperty(DC_11.type, mediaObj.getType());
+		return media;
 	}
 }

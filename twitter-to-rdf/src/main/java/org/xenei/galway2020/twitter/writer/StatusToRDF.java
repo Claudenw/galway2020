@@ -1,9 +1,10 @@
 package org.xenei.galway2020.twitter.writer;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.vocabulary.FOAF;
-import org.apache.jena.vocabulary.DC;
+import org.apache.jena.vocabulary.DC_11;
 
 import twitter4j.HashtagEntity;
 import twitter4j.MediaEntity;
@@ -22,113 +23,105 @@ public class StatusToRDF {
 	private final PlaceToRDF placeWriter;
 	private final SymbolToRDF symbolWriter;
 	private final UrlEntityToRDF urlWriter;
-	
-	public Resource getId( long id )
-	{
-		String url = String.format("http://galway2020.xenei.net/twitter/status#%s", id );
-		return model.createResource( url, FOAF.Document );
+
+	public Resource getId(long id) {
+		String url = String.format(
+				"http://galway2020.xenei.net/twitter/status#%s", id);
+		return model.createResource(url, FOAF.Document);
 	}
-	
-	public StatusToRDF(Model model)
-	{
+
+	public StatusToRDF(Model model) {
 		this.model = model;
-		this.mediaEntityWriter = new MediaEntityToRDF( model );
-		this.geoLocationWriter = new GeoLocationToRDF( model );
-		this.hashtagWriter = new HashtagToRDF( model );
-		this.userWriter = new UserToRDF( model );
-		this.placeWriter = new PlaceToRDF( model );
-		this.symbolWriter = new SymbolToRDF( model );
-		this.urlWriter = new UrlEntityToRDF( model );
-		}
-	
-	public Resource write( Status status ) {
-		
-		Resource main = getId( status.getId() );
-		main.addLiteral( RDFWriter.accessLevel, status.getAccessLevel());
-		if (status.getContributors()!=null)
-		{
-			for (long l : status.getContributors())
-			{
-				main.addLiteral( RDFWriter.contributorId, l );
+		this.mediaEntityWriter = new MediaEntityToRDF(model);
+		this.geoLocationWriter = new GeoLocationToRDF(model);
+		this.hashtagWriter = new HashtagToRDF(model);
+		this.userWriter = new UserToRDF(model, this);
+		this.placeWriter = new PlaceToRDF(model);
+		this.symbolWriter = new SymbolToRDF(model);
+		this.urlWriter = new UrlEntityToRDF(model);
+	}
+
+	public Resource write(Status status) {
+
+		Resource main = getId(status.getId());
+		main.addLiteral(RDFWriter.accessLevel, status.getAccessLevel());
+		if (status.getContributors() != null) {
+			for (long l : status.getContributors()) {
+				main.addLiteral(RDFWriter.contributorId, getId(l));
 			}
 		}
-		main.addLiteral( DC.date,  status.getCreatedAt() );
-		//Not in the graph
-		//main.addLiteral( RDFWriter.retweetId, status.getCurrentUserRetweetId());
-		
-		for ( MediaEntity media : status.getExtendedMediaEntities())
-		{
-			main.addLiteral( RDFWriter.media, mediaEntityWriter.write( media ));
-		}
-		
-		main.addLiteral( RDFWriter.favoriteCount, status.getFavoriteCount() );
-		if (status.getGeoLocation() != null)
-		{
-			geoLocationWriter.write( status.getGeoLocation() );
-		}
-		
-		for (HashtagEntity hashtag : status.getHashtagEntities())
-		{
-			main.addProperty( DC.subject, hashtagWriter.write( hashtag ));
-		}
-		
-		if (status.getInReplyToStatusId() >= 0)
-		{
-			main.addProperty( RDFWriter.replyTo, getId(status.getInReplyToStatusId()));
+		main.addLiteral(DC_11.date, status.getCreatedAt());
+		// Not in the graph
+		// main.addLiteral( RDFWriter.retweetId,
+		// status.getCurrentUserRetweetId());
+
+		for (MediaEntity media : status.getExtendedMediaEntities()) {
+			main.addProperty(RDFWriter.media, mediaEntityWriter.write(media));
 		}
 
-		userWriter.setUserScreenName(status.getInReplyToUserId(), status.getInReplyToScreenName());
-		
-		main.addProperty( DC.language, status.getLang());
-		
-		for (MediaEntity media : status.getMediaEntities())
-		{
-			main.addProperty( RDFWriter.media, mediaEntityWriter.write(media));
+		main.addLiteral(RDFWriter.favoriteCount, status.getFavoriteCount());
+		if (status.getGeoLocation() != null) {
+			geoLocationWriter.write(status.getGeoLocation());
 		}
-		
-		if (status.getPlace() != null)
-		{
-			main.addProperty( RDFWriter.place, placeWriter.write( status.getPlace() ));
+
+		for (HashtagEntity hashtag : status.getHashtagEntities()) {
+			main.addProperty(DC_11.subject, hashtagWriter.write(hashtag));
 		}
-		
-		main.addLiteral( RDFWriter.retweetCount, status.getRetweetCount());
-		
-		if (status.getRetweetedStatus() != null)
-		{
-			write( status.getRetweetedStatus() );
+
+		if (status.getInReplyToStatusId() >= 0) {
+			main.addProperty(RDFWriter.replyTo,
+					getId(status.getInReplyToStatusId()));
 		}
-		
-		if (status.getScopes() != null)
-		{
-			for (String placeId : status.getScopes().getPlaceIds())
-			{
-				main.addLiteral( RDFWriter.scope, placeWriter.getId( placeId ) );
+
+		userWriter.setUserScreenName(status.getInReplyToUserId(),
+				status.getInReplyToScreenName());
+
+		main.addProperty(DC_11.language, status.getLang());
+
+		for (MediaEntity media : status.getMediaEntities()) {
+			main.addProperty(RDFWriter.media, mediaEntityWriter.write(media));
+		}
+
+		if (status.getPlace() != null) {
+			main.addProperty(RDFWriter.place,
+					placeWriter.write(status.getPlace()));
+		}
+
+		main.addLiteral(RDFWriter.retweetCount, status.getRetweetCount());
+
+		if (status.getRetweetedStatus() != null) {
+			main.addProperty(RDFWriter.retweet,
+					write(status.getRetweetedStatus()));
+		}
+
+		if (status.getScopes() != null) {
+			for (String placeId : status.getScopes().getPlaceIds()) {
+				main.addProperty(RDFWriter.scope, placeWriter.getId(placeId));
 			}
 		}
-		
-		
-		main.addLiteral( RDFWriter.source, status.getSource());
-		
-		for(SymbolEntity symbol : status.getSymbolEntities())
-		{
-			symbolWriter.write( symbol );
-		}
-		
-		main.addLiteral( RDFWriter.text, status.getText());
 
-		for(URLEntity url : status.getURLEntities())
-		{
-			main.addLiteral( FOAF.topic, urlWriter.write( url ));
+		main.addLiteral(RDFWriter.source, status.getSource());
+
+		for (SymbolEntity symbol : status.getSymbolEntities()) {
+			symbolWriter.write(symbol);
 		}
-		
-		if (status.getUser() != null)
-		{
-			userWriter.write( status.getUser() ).addProperty( RDFWriter.tweet, main );
+
+		main.addLiteral(RDFWriter.text, status.getText());
+
+		for (URLEntity url : status.getURLEntities()) {
+			if (StringUtils.isNotBlank(url.getURL())) {
+				main.addProperty(FOAF.topic, urlWriter.write(url));
+			}
 		}
-		
-		for (UserMentionEntity userMention : status.getUserMentionEntities())
-		{
-			main.addLiteral( RDFWriter.mentions, userWriter.write( status.getUser(), userMention ));
+
+		if (status.getUser() != null) {
+			userWriter.write(status.getUser()).addProperty(RDFWriter.tweet,
+					main);
+		}
+
+		for (UserMentionEntity userMention : status.getUserMentionEntities()) {
+			main.addProperty(RDFWriter.mentions,
+					userWriter.write(status.getUser(), userMention));
 		}
 		return main;
 	}
