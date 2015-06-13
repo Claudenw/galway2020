@@ -22,7 +22,7 @@ public interface RDFWriter {
 	public static Property replyTo  = ResourceFactory.createProperty( NS, "replyTo" );
 	public static Property source  = ResourceFactory.createProperty( NS, "source" );
 	public static Property scope  = ResourceFactory.createProperty( NS, "scope" );
-	public static Property mentions  = ResourceFactory.createProperty( NS, "source" );
+	public static Property mentions  = ResourceFactory.createProperty( NS, "mentions" );
 	public static Property timeZone = ResourceFactory.createProperty( NS, "timeZone" );
 	public static Property timeZoneOffset =  ResourceFactory.createProperty( NS, "timeZoneOffset" );
 	

@@ -31,7 +31,7 @@ public class UrlEntityToRDF {
 		}
 		if (url.getExpandedURL() != null)
 		{
-			r.addLiteral( OWL.sameAs, model.createResource( url.getExpandedURL() ) );	
+			r.addProperty( OWL.sameAs, model.createResource( url.getExpandedURL() ) );	
 		}
 		
 		return r;
