@@ -1,0 +1,3090 @@
+{
+  "statuses":  [
+     {
+      "metadata":  {
+        "iso_language_code": "en",
+        "result_type": "recent"
+      },
+      "created_at": "Thu Jun 11 23:55:08 +0000 2015",
+      "id": 609146880640090100,
+      "id_str": "609146880640090112",
+      "text": "Warm spell draws herd of dinosaurs to Eyre Square @galway2020 #IBackGalway #Galway2020 http://t.co/kC2rXzuKtO",
+      "source": '<a href="http://twitter.com/#!/download/ipad" rel="nofollow">Twitter for iPad</a>',
+      "truncated": false,
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user":  {
+        "id": 167540949,
+        "id_str": "167540949",
+        "name": "Morgan O'Brien",
+        "screen_name": "morganobrienart",
+        "location": "Galway, Ireland",
+        "description": "Husband...Father...Artist...Dreamer...Pet Lover... Animation Designer... New Daily Family Vlogs EVERY DAY: http://t.co/fAnodUceF4�",
+        "url": "http://t.co/L2n29IaPUW",
+        "entities":  {
+          "url":  {
+            "urls":  [
+               {
+                "url": "http://t.co/L2n29IaPUW",
+                "expanded_url": "http://www.morganobrienart.blogspot.ie/",
+                "display_url": "morganobrienart.blogspot.ie",
+                "indices":  [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description":  {
+            "urls":  [
+               {
+                "url": "http://t.co/fAnodUceF4",
+                "expanded_url": "http://youtube.com/user/neencroch",
+                "display_url": "youtube.com/user/neencroch",
+                "indices":  [
+                  107,
+                  129
+                ]
+              }
+            ]
+          }
+        },
+        "protected": false,
+        "followers_count": 348,
+        "friends_count": 259,
+        "listed_count": 12,
+        "created_at": "Fri Jul 16 21:20:52 +0000 2010",
+        "favourites_count": 4316,
+        "utc_offset": 3600,
+        "time_zone": "Dublin",
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 4891,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "131516",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme14/bg.gif",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme14/bg.gif",
+        "profile_background_tile": true,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/607886298855014402/a9CrHr6n_normal.png",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/607886298855014402/a9CrHr6n_normal.png",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/167540949/1423229633",
+        "profile_link_color": "DD2E44",
+        "profile_sidebar_border_color": "000000",
+        "profile_sidebar_fill_color": "EFEFEF",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 0,
+      "favorite_count": 0,
+      "entities":  {
+        "hashtags":  [
+           {
+            "text": "IBackGalway",
+            "indices":  [
+              62,
+              74
+            ]
+          },
+           {
+            "text": "Galway2020",
+            "indices":  [
+              75,
+              86
+            ]
+          }
+        ],
+        "symbols":  [],
+        "user_mentions":  [
+           {
+            "screen_name": "galway2020",
+            "name": "Galway 2020",
+            "id": 2353144260,
+            "id_str": "2353144260",
+            "indices":  [
+              50,
+              61
+            ]
+          }
+        ],
+        "urls":  [],
+        "media":  [
+           {
+            "id": 609146876437352400,
+            "id_str": "609146876437352448",
+            "indices":  [
+              87,
+              109
+            ],
+            "media_url": "http://pbs.twimg.com/media/CHQf21IWUAAzcKX.jpg",
+            "media_url_https": "https://pbs.twimg.com/media/CHQf21IWUAAzcKX.jpg",
+            "url": "http://t.co/kC2rXzuKtO",
+            "display_url": "pic.twitter.com/kC2rXzuKtO",
+            "expanded_url": "http://twitter.com/morganobrienart/status/609146880640090112/photo/1",
+            "type": "photo",
+            "sizes":  {
+              "small":  {
+                "w": 340,
+                "h": 340,
+                "resize": "fit"
+              },
+              "thumb":  {
+                "w": 150,
+                "h": 150,
+                "resize": "crop"
+              },
+              "large":  {
+                "w": 640,
+                "h": 640,
+                "resize": "fit"
+              },
+              "medium":  {
+                "w": 600,
+                "h": 600,
+                "resize": "fit"
+              }
+            }
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "en"
+    },
+     {
+      "metadata":  {
+        "iso_language_code": "en",
+        "result_type": "recent"
+      },
+      "created_at": "Thu Jun 11 23:49:59 +0000 2015",
+      "id": 609145584210051100,
+      "id_str": "609145584210051072",
+      "text": "Velociraptor outbreak not enough to thwart Galway's campaign @galway2020 #IBackGalway #Galway2020 http://t.co/Rst1xNB8H6",
+      "source": '<a href="http://twitter.com/#!/download/ipad" rel="nofollow">Twitter for iPad</a>',
+      "truncated": false,
+      "in_reply_to_status_id": 608936481483292700,
+      "in_reply_to_status_id_str": "608936481483292672",
+      "in_reply_to_user_id": 2353144260,
+      "in_reply_to_user_id_str": "2353144260",
+      "in_reply_to_screen_name": "galway2020",
+      "user":  {
+        "id": 167540949,
+        "id_str": "167540949",
+        "name": "Morgan O'Brien",
+        "screen_name": "morganobrienart",
+        "location": "Galway, Ireland",
+        "description": "Husband...Father...Artist...Dreamer...Pet Lover... Animation Designer... New Daily Family Vlogs EVERY DAY: http://t.co/fAnodUceF4�",
+        "url": "http://t.co/L2n29IaPUW",
+        "entities":  {
+          "url":  {
+            "urls":  [
+               {
+                "url": "http://t.co/L2n29IaPUW",
+                "expanded_url": "http://www.morganobrienart.blogspot.ie/",
+                "display_url": "morganobrienart.blogspot.ie",
+                "indices":  [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description":  {
+            "urls":  [
+               {
+                "url": "http://t.co/fAnodUceF4",
+                "expanded_url": "http://youtube.com/user/neencroch",
+                "display_url": "youtube.com/user/neencroch",
+                "indices":  [
+                  107,
+                  129
+                ]
+              }
+            ]
+          }
+        },
+        "protected": false,
+        "followers_count": 348,
+        "friends_count": 259,
+        "listed_count": 12,
+        "created_at": "Fri Jul 16 21:20:52 +0000 2010",
+        "favourites_count": 4316,
+        "utc_offset": 3600,
+        "time_zone": "Dublin",
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 4891,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "131516",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme14/bg.gif",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme14/bg.gif",
+        "profile_background_tile": true,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/607886298855014402/a9CrHr6n_normal.png",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/607886298855014402/a9CrHr6n_normal.png",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/167540949/1423229633",
+        "profile_link_color": "DD2E44",
+        "profile_sidebar_border_color": "000000",
+        "profile_sidebar_fill_color": "EFEFEF",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 0,
+      "favorite_count": 0,
+      "entities":  {
+        "hashtags":  [
+           {
+            "text": "IBackGalway",
+            "indices":  [
+              73,
+              85
+            ]
+          },
+           {
+            "text": "Galway2020",
+            "indices":  [
+              86,
+              97
+            ]
+          }
+        ],
+        "symbols":  [],
+        "user_mentions":  [
+           {
+            "screen_name": "galway2020",
+            "name": "Galway 2020",
+            "id": 2353144260,
+            "id_str": "2353144260",
+            "indices":  [
+              61,
+              72
+            ]
+          }
+        ],
+        "urls":  [],
+        "media":  [
+           {
+            "id": 609145578308661200,
+            "id_str": "609145578308661248",
+            "indices":  [
+              98,
+              120
+            ],
+            "media_url": "http://pbs.twimg.com/media/CHQerROWcAAJfDr.jpg",
+            "media_url_https": "https://pbs.twimg.com/media/CHQerROWcAAJfDr.jpg",
+            "url": "http://t.co/Rst1xNB8H6",
+            "display_url": "pic.twitter.com/Rst1xNB8H6",
+            "expanded_url": "http://twitter.com/morganobrienart/status/609145584210051072/photo/1",
+            "type": "photo",
+            "sizes":  {
+              "small":  {
+                "w": 340,
+                "h": 340,
+                "resize": "fit"
+              },
+              "thumb":  {
+                "w": 150,
+                "h": 150,
+                "resize": "crop"
+              },
+              "large":  {
+                "w": 640,
+                "h": 640,
+                "resize": "fit"
+              },
+              "medium":  {
+                "w": 600,
+                "h": 600,
+                "resize": "fit"
+              }
+            }
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "en"
+    },
+     {
+      "metadata":  {
+        "iso_language_code": "en",
+        "result_type": "recent"
+      },
+      "created_at": "Thu Jun 11 22:28:24 +0000 2015",
+      "id": 609125055906336800,
+      "id_str": "609125055906336768",
+      "text": "RT @clemshevlin40: Even baby godfather is backing galway for #Galway2020 @HelenK17 @GaryTraynor1 @KieranJoyce6 @moloneyrobert http://t.co/f�",
+      "source": '<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>',
+      "truncated": false,
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user":  {
+        "id": 287245942,
+        "id_str": "287245942",
+        "name": "? GaryTraynor ?",
+        "screen_name": "GaryTraynor1",
+        "location": "|Galway|Ireland|Lamontagne|",
+        "description": "Full time Soccer Coach (3-13) �PE �Board Game Inventor �Pioneer �Dad �Friend ? [All Ireland Winner] ALL THINGkS GALWAY ??Despise the words 'Maybes' & 'Busy'",
+        "url": "http://t.co/i12Ap3YR9g",
+        "entities":  {
+          "url":  {
+            "urls":  [
+               {
+                "url": "http://t.co/i12Ap3YR9g",
+                "expanded_url": "http://garytraynor.wordpress.com",
+                "display_url": "garytraynor.wordpress.com",
+                "indices":  [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description":  {
+            "urls":  []
+          }
+        },
+        "protected": false,
+        "followers_count": 3211,
+        "friends_count": 1007,
+        "listed_count": 66,
+        "created_at": "Sun Apr 24 16:18:25 +0000 2011",
+        "favourites_count": 14728,
+        "utc_offset": 3600,
+        "time_zone": "Dublin",
+        "geo_enabled": true,
+        "verified": false,
+        "statuses_count": 51496,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "C0DEED",
+        "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/378051209/tanzania_team.jpg",
+        "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/378051209/tanzania_team.jpg",
+        "profile_background_tile": false,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/607808173001441280/epBNGD3D_normal.png",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/607808173001441280/epBNGD3D_normal.png",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/287245942/1434060990",
+        "profile_link_color": "0084B4",
+        "profile_sidebar_border_color": "C0DEED",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "retweeted_status":  {
+        "metadata":  {
+          "iso_language_code": "en",
+          "result_type": "recent"
+        },
+        "created_at": "Thu Jun 11 22:25:37 +0000 2015",
+        "id": 609124353951854600,
+        "id_str": "609124353951854592",
+        "text": "Even baby godfather is backing galway for #Galway2020 @HelenK17 @GaryTraynor1 @KieranJoyce6 @moloneyrobert http://t.co/fOqib9o6Ok",
+        "source": '<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>',
+        "truncated": false,
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": null,
+        "in_reply_to_user_id_str": null,
+        "in_reply_to_screen_name": null,
+        "user":  {
+          "id": 3318055815,
+          "id_str": "3318055815",
+          "name": "clement shevlin ",
+          "screen_name": "clemshevlin40",
+          "location": "",
+          "description": "",
+          "url": null,
+          "entities":  {
+            "description":  {
+              "urls":  []
+            }
+          },
+          "protected": false,
+          "followers_count": 17,
+          "friends_count": 94,
+          "listed_count": 4,
+          "created_at": "Wed Jun 10 23:18:06 +0000 2015",
+          "favourites_count": 20,
+          "utc_offset": null,
+          "time_zone": null,
+          "geo_enabled": false,
+          "verified": false,
+          "statuses_count": 20,
+          "lang": "en",
+          "contributors_enabled": false,
+          "is_translator": false,
+          "is_translation_enabled": false,
+          "profile_background_color": "C0DEED",
+          "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+          "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+          "profile_background_tile": false,
+          "profile_image_url": "http://pbs.twimg.com/profile_images/608778008804102145/sM92R8mN_normal.jpg",
+          "profile_image_url_https": "https://pbs.twimg.com/profile_images/608778008804102145/sM92R8mN_normal.jpg",
+          "profile_link_color": "0084B4",
+          "profile_sidebar_border_color": "C0DEED",
+          "profile_sidebar_fill_color": "DDEEF6",
+          "profile_text_color": "333333",
+          "profile_use_background_image": true,
+          "default_profile": true,
+          "default_profile_image": false,
+          "following": false,
+          "follow_request_sent": false,
+          "notifications": false
+        },
+        "geo": null,
+        "coordinates": null,
+        "place": null,
+        "contributors": null,
+        "is_quote_status": false,
+        "retweet_count": 1,
+        "favorite_count": 6,
+        "entities":  {
+          "hashtags":  [
+             {
+              "text": "Galway2020",
+              "indices":  [
+                42,
+                53
+              ]
+            }
+          ],
+          "symbols":  [],
+          "user_mentions":  [
+             {
+              "screen_name": "HelenK17",
+              "name": "Helen N� Chiar�in",
+              "id": 505140516,
+              "id_str": "505140516",
+              "indices":  [
+                54,
+                63
+              ]
+            },
+             {
+              "screen_name": "GaryTraynor1",
+              "name": "? GaryTraynor ?",
+              "id": 287245942,
+              "id_str": "287245942",
+              "indices":  [
+                64,
+                77
+              ]
+            },
+             {
+              "screen_name": "KieranJoyce6",
+              "name": "Kieran Joyce",
+              "id": 261213844,
+              "id_str": "261213844",
+              "indices":  [
+                78,
+                91
+              ]
+            },
+             {
+              "screen_name": "moloneyrobert",
+              "name": "Robert Moloney",
+              "id": 326436406,
+              "id_str": "326436406",
+              "indices":  [
+                92,
+                106
+              ]
+            }
+          ],
+          "urls":  [],
+          "media":  [
+             {
+              "id": 609124342107127800,
+              "id_str": "609124342107127808",
+              "indices":  [
+                107,
+                129
+              ],
+              "media_url": "http://pbs.twimg.com/media/CHQLXKNWwAA7LIf.jpg",
+              "media_url_https": "https://pbs.twimg.com/media/CHQLXKNWwAA7LIf.jpg",
+              "url": "http://t.co/fOqib9o6Ok",
+              "display_url": "pic.twitter.com/fOqib9o6Ok",
+              "expanded_url": "http://twitter.com/clemshevlin40/status/609124353951854592/photo/1",
+              "type": "photo",
+              "sizes":  {
+                "medium":  {
+                  "w": 448,
+                  "h": 599,
+                  "resize": "fit"
+                },
+                "small":  {
+                  "w": 340,
+                  "h": 454,
+                  "resize": "fit"
+                },
+                "large":  {
+                  "w": 448,
+                  "h": 599,
+                  "resize": "fit"
+                },
+                "thumb":  {
+                  "w": 150,
+                  "h": 150,
+                  "resize": "crop"
+                }
+              }
+            }
+          ]
+        },
+        "favorited": false,
+        "retweeted": false,
+        "possibly_sensitive": false,
+        "lang": "en"
+      },
+      "is_quote_status": false,
+      "retweet_count": 1,
+      "favorite_count": 0,
+      "entities":  {
+        "hashtags":  [
+           {
+            "text": "Galway2020",
+            "indices":  [
+              61,
+              72
+            ]
+          }
+        ],
+        "symbols":  [],
+        "user_mentions":  [
+           {
+            "screen_name": "clemshevlin40",
+            "name": "clement shevlin ",
+            "id": 3318055815,
+            "id_str": "3318055815",
+            "indices":  [
+              3,
+              17
+            ]
+          },
+           {
+            "screen_name": "HelenK17",
+            "name": "Helen N� Chiar�in",
+            "id": 505140516,
+            "id_str": "505140516",
+            "indices":  [
+              73,
+              82
+            ]
+          },
+           {
+            "screen_name": "GaryTraynor1",
+            "name": "? GaryTraynor ?",
+            "id": 287245942,
+            "id_str": "287245942",
+            "indices":  [
+              83,
+              96
+            ]
+          },
+           {
+            "screen_name": "KieranJoyce6",
+            "name": "Kieran Joyce",
+            "id": 261213844,
+            "id_str": "261213844",
+            "indices":  [
+              97,
+              110
+            ]
+          },
+           {
+            "screen_name": "moloneyrobert",
+            "name": "Robert Moloney",
+            "id": 326436406,
+            "id_str": "326436406",
+            "indices":  [
+              111,
+              125
+            ]
+          }
+        ],
+        "urls":  [],
+        "media":  [
+           {
+            "id": 609124342107127800,
+            "id_str": "609124342107127808",
+            "indices":  [
+              126,
+              140
+            ],
+            "media_url": "http://pbs.twimg.com/media/CHQLXKNWwAA7LIf.jpg",
+            "media_url_https": "https://pbs.twimg.com/media/CHQLXKNWwAA7LIf.jpg",
+            "url": "http://t.co/fOqib9o6Ok",
+            "display_url": "pic.twitter.com/fOqib9o6Ok",
+            "expanded_url": "http://twitter.com/clemshevlin40/status/609124353951854592/photo/1",
+            "type": "photo",
+            "sizes":  {
+              "medium":  {
+                "w": 448,
+                "h": 599,
+                "resize": "fit"
+              },
+              "small":  {
+                "w": 340,
+                "h": 454,
+                "resize": "fit"
+              },
+              "large":  {
+                "w": 448,
+                "h": 599,
+                "resize": "fit"
+              },
+              "thumb":  {
+                "w": 150,
+                "h": 150,
+                "resize": "crop"
+              }
+            },
+            "source_status_id": 609124353951854600,
+            "source_status_id_str": "609124353951854592",
+            "source_user_id": 3318055815,
+            "source_user_id_str": "3318055815"
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "en"
+    },
+     {
+      "metadata":  {
+        "iso_language_code": "en",
+        "result_type": "recent"
+      },
+      "created_at": "Thu Jun 11 22:25:37 +0000 2015",
+      "id": 609124353951854600,
+      "id_str": "609124353951854592",
+      "text": "Even baby godfather is backing galway for #Galway2020 @HelenK17 @GaryTraynor1 @KieranJoyce6 @moloneyrobert http://t.co/fOqib9o6Ok",
+      "source": '<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>',
+      "truncated": false,
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user":  {
+        "id": 3318055815,
+        "id_str": "3318055815",
+        "name": "clement shevlin ",
+        "screen_name": "clemshevlin40",
+        "location": "",
+        "description": "",
+        "url": null,
+        "entities":  {
+          "description":  {
+            "urls":  []
+          }
+        },
+        "protected": false,
+        "followers_count": 17,
+        "friends_count": 94,
+        "listed_count": 4,
+        "created_at": "Wed Jun 10 23:18:06 +0000 2015",
+        "favourites_count": 20,
+        "utc_offset": null,
+        "time_zone": null,
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 20,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "C0DEED",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/608778008804102145/sM92R8mN_normal.jpg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/608778008804102145/sM92R8mN_normal.jpg",
+        "profile_link_color": "0084B4",
+        "profile_sidebar_border_color": "C0DEED",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "default_profile": true,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 1,
+      "favorite_count": 6,
+      "entities":  {
+        "hashtags":  [
+           {
+            "text": "Galway2020",
+            "indices":  [
+              42,
+              53
+            ]
+          }
+        ],
+        "symbols":  [],
+        "user_mentions":  [
+           {
+            "screen_name": "HelenK17",
+            "name": "Helen N� Chiar�in",
+            "id": 505140516,
+            "id_str": "505140516",
+            "indices":  [
+              54,
+              63
+            ]
+          },
+           {
+            "screen_name": "GaryTraynor1",
+            "name": "? GaryTraynor ?",
+            "id": 287245942,
+            "id_str": "287245942",
+            "indices":  [
+              64,
+              77
+            ]
+          },
+           {
+            "screen_name": "KieranJoyce6",
+            "name": "Kieran Joyce",
+            "id": 261213844,
+            "id_str": "261213844",
+            "indices":  [
+              78,
+              91
+            ]
+          },
+           {
+            "screen_name": "moloneyrobert",
+            "name": "Robert Moloney",
+            "id": 326436406,
+            "id_str": "326436406",
+            "indices":  [
+              92,
+              106
+            ]
+          }
+        ],
+        "urls":  [],
+        "media":  [
+           {
+            "id": 609124342107127800,
+            "id_str": "609124342107127808",
+            "indices":  [
+              107,
+              129
+            ],
+            "media_url": "http://pbs.twimg.com/media/CHQLXKNWwAA7LIf.jpg",
+            "media_url_https": "https://pbs.twimg.com/media/CHQLXKNWwAA7LIf.jpg",
+            "url": "http://t.co/fOqib9o6Ok",
+            "display_url": "pic.twitter.com/fOqib9o6Ok",
+            "expanded_url": "http://twitter.com/clemshevlin40/status/609124353951854592/photo/1",
+            "type": "photo",
+            "sizes":  {
+              "medium":  {
+                "w": 448,
+                "h": 599,
+                "resize": "fit"
+              },
+              "small":  {
+                "w": 340,
+                "h": 454,
+                "resize": "fit"
+              },
+              "large":  {
+                "w": 448,
+                "h": 599,
+                "resize": "fit"
+              },
+              "thumb":  {
+                "w": 150,
+                "h": 150,
+                "resize": "crop"
+              }
+            }
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "en"
+    },
+     {
+      "metadata":  {
+        "iso_language_code": "und",
+        "result_type": "recent"
+      },
+      "created_at": "Thu Jun 11 22:08:09 +0000 2015",
+      "id": 609119958421917700,
+      "id_str": "609119958421917696",
+      "text": "#Galway2020 http://t.co/Wi6ufthOOU",
+      "source": '<a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>',
+      "truncated": false,
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user":  {
+        "id": 260301472,
+        "id_str": "260301472",
+        "name": "Oceanworld Aquarium ",
+        "screen_name": "dingleaquarium",
+        "location": "Dingle, Co Kerry, Ireland",
+        "description": "Oceanworld Aquarium is Ireland premier aquarium with over 1,000 species of marine life for you to explore. Sharks, Penguins, Tropical Species, Touch Tank.",
+        "url": "http://t.co/pKxkx5iYym",
+        "entities":  {
+          "url":  {
+            "urls":  [
+               {
+                "url": "http://t.co/pKxkx5iYym",
+                "expanded_url": "http://www.dingle-oceanworld.ie",
+                "display_url": "dingle-oceanworld.ie",
+                "indices":  [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description":  {
+            "urls":  []
+          }
+        },
+        "protected": false,
+        "followers_count": 961,
+        "friends_count": 1517,
+        "listed_count": 19,
+        "created_at": "Thu Mar 03 16:21:06 +0000 2011",
+        "favourites_count": 79,
+        "utc_offset": null,
+        "time_zone": null,
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 193,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "9AE4E8",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme16/bg.gif",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme16/bg.gif",
+        "profile_background_tile": false,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/1260721219/logo2_normal.jpg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/1260721219/logo2_normal.jpg",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/260301472/1423181697",
+        "profile_link_color": "0084B4",
+        "profile_sidebar_border_color": "BDDCAD",
+        "profile_sidebar_fill_color": "DDFFCC",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 0,
+      "favorite_count": 0,
+      "entities":  {
+        "hashtags":  [
+           {
+            "text": "Galway2020",
+            "indices":  [
+              0,
+              11
+            ]
+          }
+        ],
+        "symbols":  [],
+        "user_mentions":  [],
+        "urls":  [
+           {
+            "url": "http://t.co/Wi6ufthOOU",
+            "expanded_url": "http://bit.ly/Galway2020LaunchDM",
+            "display_url": "bit.ly/Galway2020Laun�",
+            "indices":  [
+              12,
+              34
+            ]
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "und"
+    },
+     {
+      "metadata":  {
+        "iso_language_code": "und",
+        "result_type": "recent"
+      },
+      "created_at": "Thu Jun 11 21:52:22 +0000 2015",
+      "id": 609115985124180000,
+      "id_str": "609115985124179969",
+      "text": "#onlyInIreland #Galway2020 #Nerdy #graffiti http://t.co/zFXvmAqecm",
+      "source": '<a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>',
+      "truncated": false,
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user":  {
+        "id": 487691859,
+        "id_str": "487691859",
+        "name": "Edward Corless",
+        "screen_name": "CorlessEdward",
+        "location": "Galway",
+        "description": "One day at a time",
+        "url": null,
+        "entities":  {
+          "description":  {
+            "urls":  []
+          }
+        },
+        "protected": false,
+        "followers_count": 165,
+        "friends_count": 199,
+        "listed_count": 2,
+        "created_at": "Thu Feb 09 16:53:52 +0000 2012",
+        "favourites_count": 163,
+        "utc_offset": null,
+        "time_zone": null,
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 381,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "C0DEED",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/378800000807904516/40c222d7d07af4f3b7e9b6621e48939e_normal.jpeg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/378800000807904516/40c222d7d07af4f3b7e9b6621e48939e_normal.jpeg",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/487691859/1409955875",
+        "profile_link_color": "0084B4",
+        "profile_sidebar_border_color": "C0DEED",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "default_profile": true,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 0,
+      "favorite_count": 0,
+      "entities":  {
+        "hashtags":  [
+           {
+            "text": "onlyInIreland",
+            "indices":  [
+              0,
+              14
+            ]
+          },
+           {
+            "text": "Galway2020",
+            "indices":  [
+              15,
+              26
+            ]
+          },
+           {
+            "text": "Nerdy",
+            "indices":  [
+              27,
+              33
+            ]
+          },
+           {
+            "text": "graffiti",
+            "indices":  [
+              34,
+              43
+            ]
+          }
+        ],
+        "symbols":  [],
+        "user_mentions":  [],
+        "urls":  [],
+        "media":  [
+           {
+            "id": 609115967776522200,
+            "id_str": "609115967776522240",
+            "indices":  [
+              44,
+              66
+            ],
+            "media_url": "http://pbs.twimg.com/media/CHQDvtZWgAAu8K3.jpg",
+            "media_url_https": "https://pbs.twimg.com/media/CHQDvtZWgAAu8K3.jpg",
+            "url": "http://t.co/zFXvmAqecm",
+            "display_url": "pic.twitter.com/zFXvmAqecm",
+            "expanded_url": "http://twitter.com/CorlessEdward/status/609115985124179969/photo/1",
+            "type": "photo",
+            "sizes":  {
+              "large":  {
+                "w": 1024,
+                "h": 824,
+                "resize": "fit"
+              },
+              "thumb":  {
+                "w": 150,
+                "h": 150,
+                "resize": "crop"
+              },
+              "medium":  {
+                "w": 600,
+                "h": 482,
+                "resize": "fit"
+              },
+              "small":  {
+                "w": 340,
+                "h": 273,
+                "resize": "fit"
+              }
+            }
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "und"
+    },
+     {
+      "metadata":  {
+        "iso_language_code": "en",
+        "result_type": "recent"
+      },
+      "created_at": "Thu Jun 11 20:56:59 +0000 2015",
+      "id": 609102048592863200,
+      "id_str": "609102048592863232",
+      "text": "RT @GalwayFilm: What could make a summers day by the Spanish Arch any better? How about a symphony orchestra? #FilmFleadh #Galway2020\nhttp:�",
+      "source": '<a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>',
+      "truncated": false,
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user":  {
+        "id": 505140516,
+        "id_str": "505140516",
+        "name": "Helen N� Chiar�in",
+        "screen_name": "HelenK17",
+        "location": "Cathair na dTreabh",
+        "description": "Is bre� liom pr�ta�.",
+        "url": null,
+        "entities":  {
+          "description":  {
+            "urls":  []
+          }
+        },
+        "protected": false,
+        "followers_count": 233,
+        "friends_count": 484,
+        "listed_count": 8,
+        "created_at": "Sun Feb 26 23:46:04 +0000 2012",
+        "favourites_count": 850,
+        "utc_offset": null,
+        "time_zone": null,
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 475,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "C0DEED",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/607667702891606017/Rp3wdrGJ_normal.png",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/607667702891606017/Rp3wdrGJ_normal.png",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/505140516/1434054867",
+        "profile_link_color": "0084B4",
+        "profile_sidebar_border_color": "C0DEED",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "default_profile": true,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "retweeted_status":  {
+        "metadata":  {
+          "iso_language_code": "en",
+          "result_type": "recent"
+        },
+        "created_at": "Thu Jun 11 12:06:57 +0000 2015",
+        "id": 608968660049383400,
+        "id_str": "608968660049383424",
+        "text": "What could make a summers day by the Spanish Arch any better? How about a symphony orchestra? #FilmFleadh #Galway2020\nhttp://t.co/en5JuNsUTA",
+        "source": '<a href="http://twitter.com" rel="nofollow">Twitter Web Client</a>',
+        "truncated": false,
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": null,
+        "in_reply_to_user_id_str": null,
+        "in_reply_to_screen_name": null,
+        "user":  {
+          "id": 237301916,
+          "id_str": "237301916",
+          "name": "Galway Film Fleadh",
+          "screen_name": "GalwayFilm",
+          "location": "Galway, Ireland",
+          "description": "The Galway Film Fleadh is a six day international film event held every July and welcomes a mad diversity of filmmaking from around the world. #FilmFleadh",
+          "url": "http://t.co/peS6R4qJcx",
+          "entities":  {
+            "url":  {
+              "urls":  [
+                 {
+                  "url": "http://t.co/peS6R4qJcx",
+                  "expanded_url": "http://www.galwayfilmfleadh.com",
+                  "display_url": "galwayfilmfleadh.com",
+                  "indices":  [
+                    0,
+                    22
+                  ]
+                }
+              ]
+            },
+            "description":  {
+              "urls":  []
+            }
+          },
+          "protected": false,
+          "followers_count": 8309,
+          "friends_count": 1609,
+          "listed_count": 105,
+          "created_at": "Wed Jan 12 14:51:38 +0000 2011",
+          "favourites_count": 512,
+          "utc_offset": 3600,
+          "time_zone": "Dublin",
+          "geo_enabled": true,
+          "verified": false,
+          "statuses_count": 1473,
+          "lang": "en",
+          "contributors_enabled": false,
+          "is_translator": false,
+          "is_translation_enabled": false,
+          "profile_background_color": "C40F0F",
+          "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/567550431/786zzgxk2knlv8a0yu0q.jpeg",
+          "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/567550431/786zzgxk2knlv8a0yu0q.jpeg",
+          "profile_background_tile": true,
+          "profile_image_url": "http://pbs.twimg.com/profile_images/603216917105614848/gMGz6vwu_normal.jpg",
+          "profile_image_url_https": "https://pbs.twimg.com/profile_images/603216917105614848/gMGz6vwu_normal.jpg",
+          "profile_banner_url": "https://pbs.twimg.com/profile_banners/237301916/1428762991",
+          "profile_link_color": "C40F0F",
+          "profile_sidebar_border_color": "000000",
+          "profile_sidebar_fill_color": "252429",
+          "profile_text_color": "666666",
+          "profile_use_background_image": false,
+          "default_profile": false,
+          "default_profile_image": false,
+          "following": true,
+          "follow_request_sent": false,
+          "notifications": false
+        },
+        "geo": null,
+        "coordinates": null,
+        "place": null,
+        "contributors": null,
+        "is_quote_status": false,
+        "retweet_count": 9,
+        "favorite_count": 9,
+        "entities":  {
+          "hashtags":  [
+             {
+              "text": "FilmFleadh",
+              "indices":  [
+                94,
+                105
+              ]
+            },
+             {
+              "text": "Galway2020",
+              "indices":  [
+                106,
+                117
+              ]
+            }
+          ],
+          "symbols":  [],
+          "user_mentions":  [],
+          "urls":  [
+             {
+              "url": "http://t.co/en5JuNsUTA",
+              "expanded_url": "http://www.galwayfilmfleadh.com/news.php?t=free-open-air-concert-of-music-from-the-movies&id=92",
+              "display_url": "galwayfilmfleadh.com/news.php?t=fre�",
+              "indices":  [
+                118,
+                140
+              ]
+            }
+          ]
+        },
+        "favorited": false,
+        "retweeted": false,
+        "possibly_sensitive": false,
+        "lang": "en"
+      },
+      "is_quote_status": false,
+      "retweet_count": 9,
+      "favorite_count": 0,
+      "entities":  {
+        "hashtags":  [
+           {
+            "text": "FilmFleadh",
+            "indices":  [
+              110,
+              121
+            ]
+          },
+           {
+            "text": "Galway2020",
+            "indices":  [
+              122,
+              133
+            ]
+          }
+        ],
+        "symbols":  [],
+        "user_mentions":  [
+           {
+            "screen_name": "GalwayFilm",
+            "name": "Galway Film Fleadh",
+            "id": 237301916,
+            "id_str": "237301916",
+            "indices":  [
+              3,
+              14
+            ]
+          }
+        ],
+        "urls":  [
+           {
+            "url": "http://t.co/en5JuNsUTA",
+            "expanded_url": "http://www.galwayfilmfleadh.com/news.php?t=free-open-air-concert-of-music-from-the-movies&id=92",
+            "display_url": "galwayfilmfleadh.com/news.php?t=fre�",
+            "indices":  [
+              139,
+              140
+            ]
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "en"
+    },
+     {
+      "metadata":  {
+        "iso_language_code": "en",
+        "result_type": "recent"
+      },
+      "created_at": "Thu Jun 11 20:39:38 +0000 2015",
+      "id": 609097682238492700,
+      "id_str": "609097682238492672",
+      "text": "RT @tomjoycechef: @NOB_Galway @OBriensWine #Galway2020 fantastic Spanish tasting well done guys 20% off spanish wine this weekend ???????? htt�",
+      "source": '<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>',
+      "truncated": false,
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user":  {
+        "id": 3027916919,
+        "id_str": "3027916919",
+        "name": "OBriensGalway",
+        "screen_name": "NOB_Galway",
+        "location": "",
+        "description": "Wine enthusiast, student of life, lover of nature. Store Manager at O'Briens Wines Galway.",
+        "url": null,
+        "entities":  {
+          "description":  {
+            "urls":  []
+          }
+        },
+        "protected": false,
+        "followers_count": 198,
+        "friends_count": 149,
+        "listed_count": 10,
+        "created_at": "Tue Feb 10 10:04:51 +0000 2015",
+        "favourites_count": 272,
+        "utc_offset": null,
+        "time_zone": null,
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 605,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "C0DEED",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/608007279229550592/S9rgsVvM_normal.png",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/608007279229550592/S9rgsVvM_normal.png",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/3027916919/1423581138",
+        "profile_link_color": "0084B4",
+        "profile_sidebar_border_color": "C0DEED",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "default_profile": true,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "retweeted_status":  {
+        "metadata":  {
+          "iso_language_code": "en",
+          "result_type": "recent"
+        },
+        "created_at": "Thu Jun 11 19:25:16 +0000 2015",
+        "id": 609078967459586000,
+        "id_str": "609078967459586048",
+        "text": "@NOB_Galway @OBriensWine #Galway2020 fantastic Spanish tasting well done guys 20% off spanish wine this weekend ???????? http://t.co/Oq5QUqXR4M",
+        "source": '<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>',
+        "truncated": false,
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": 3027916919,
+        "in_reply_to_user_id_str": "3027916919",
+        "in_reply_to_screen_name": "NOB_Galway",
+        "user":  {
+          "id": 2990391707,
+          "id_str": "2990391707",
+          "name": "Tom Joyce",
+          "screen_name": "tomjoycechef",
+          "location": "",
+          "description": "",
+          "url": null,
+          "entities":  {
+            "description":  {
+              "urls":  []
+            }
+          },
+          "protected": false,
+          "followers_count": 134,
+          "friends_count": 207,
+          "listed_count": 4,
+          "created_at": "Wed Jan 21 18:58:00 +0000 2015",
+          "favourites_count": 74,
+          "utc_offset": null,
+          "time_zone": null,
+          "geo_enabled": true,
+          "verified": false,
+          "statuses_count": 173,
+          "lang": "en",
+          "contributors_enabled": false,
+          "is_translator": false,
+          "is_translation_enabled": false,
+          "profile_background_color": "C0DEED",
+          "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+          "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+          "profile_background_tile": false,
+          "profile_image_url": "http://pbs.twimg.com/profile_images/557976217492525057/2-fCsSy0_normal.jpeg",
+          "profile_image_url_https": "https://pbs.twimg.com/profile_images/557976217492525057/2-fCsSy0_normal.jpeg",
+          "profile_link_color": "0084B4",
+          "profile_sidebar_border_color": "C0DEED",
+          "profile_sidebar_fill_color": "DDEEF6",
+          "profile_text_color": "333333",
+          "profile_use_background_image": true,
+          "default_profile": true,
+          "default_profile_image": false,
+          "following": false,
+          "follow_request_sent": false,
+          "notifications": false
+        },
+        "geo": null,
+        "coordinates": null,
+        "place": null,
+        "contributors": null,
+        "is_quote_status": false,
+        "retweet_count": 1,
+        "favorite_count": 1,
+        "entities":  {
+          "hashtags":  [
+             {
+              "text": "Galway2020",
+              "indices":  [
+                25,
+                36
+              ]
+            }
+          ],
+          "symbols":  [],
+          "user_mentions":  [
+             {
+              "screen_name": "NOB_Galway",
+              "name": "OBriensGalway",
+              "id": 3027916919,
+              "id_str": "3027916919",
+              "indices":  [
+                0,
+                11
+              ]
+            },
+             {
+              "screen_name": "OBriensWine",
+              "name": "O'Briens Wine",
+              "id": 101809686,
+              "id_str": "101809686",
+              "indices":  [
+                12,
+                24
+              ]
+            }
+          ],
+          "urls":  [],
+          "media":  [
+             {
+              "id": 609078951403745300,
+              "id_str": "609078951403745280",
+              "indices":  [
+                118,
+                140
+              ],
+              "media_url": "http://pbs.twimg.com/media/CHPiFEqWcAAq1Go.jpg",
+              "media_url_https": "https://pbs.twimg.com/media/CHPiFEqWcAAq1Go.jpg",
+              "url": "http://t.co/Oq5QUqXR4M",
+              "display_url": "pic.twitter.com/Oq5QUqXR4M",
+              "expanded_url": "http://twitter.com/tomjoycechef/status/609078967459586048/photo/1",
+              "type": "photo",
+              "sizes":  {
+                "small":  {
+                  "w": 340,
+                  "h": 453,
+                  "resize": "fit"
+                },
+                "thumb":  {
+                  "w": 150,
+                  "h": 150,
+                  "resize": "crop"
+                },
+                "medium":  {
+                  "w": 480,
+                  "h": 640,
+                  "resize": "fit"
+                },
+                "large":  {
+                  "w": 480,
+                  "h": 640,
+                  "resize": "fit"
+                }
+              }
+            }
+          ]
+        },
+        "favorited": false,
+        "retweeted": false,
+        "possibly_sensitive": false,
+        "lang": "en"
+      },
+      "is_quote_status": false,
+      "retweet_count": 1,
+      "favorite_count": 0,
+      "entities":  {
+        "hashtags":  [
+           {
+            "text": "Galway2020",
+            "indices":  [
+              43,
+              54
+            ]
+          }
+        ],
+        "symbols":  [],
+        "user_mentions":  [
+           {
+            "screen_name": "tomjoycechef",
+            "name": "Tom Joyce",
+            "id": 2990391707,
+            "id_str": "2990391707",
+            "indices":  [
+              3,
+              16
+            ]
+          },
+           {
+            "screen_name": "NOB_Galway",
+            "name": "OBriensGalway",
+            "id": 3027916919,
+            "id_str": "3027916919",
+            "indices":  [
+              18,
+              29
+            ]
+          },
+           {
+            "screen_name": "OBriensWine",
+            "name": "O'Briens Wine",
+            "id": 101809686,
+            "id_str": "101809686",
+            "indices":  [
+              30,
+              42
+            ]
+          }
+        ],
+        "urls":  [],
+        "media":  [
+           {
+            "id": 609078951403745300,
+            "id_str": "609078951403745280",
+            "indices":  [
+              139,
+              140
+            ],
+            "media_url": "http://pbs.twimg.com/media/CHPiFEqWcAAq1Go.jpg",
+            "media_url_https": "https://pbs.twimg.com/media/CHPiFEqWcAAq1Go.jpg",
+            "url": "http://t.co/Oq5QUqXR4M",
+            "display_url": "pic.twitter.com/Oq5QUqXR4M",
+            "expanded_url": "http://twitter.com/tomjoycechef/status/609078967459586048/photo/1",
+            "type": "photo",
+            "sizes":  {
+              "small":  {
+                "w": 340,
+                "h": 453,
+                "resize": "fit"
+              },
+              "thumb":  {
+                "w": 150,
+                "h": 150,
+                "resize": "crop"
+              },
+              "medium":  {
+                "w": 480,
+                "h": 640,
+                "resize": "fit"
+              },
+              "large":  {
+                "w": 480,
+                "h": 640,
+                "resize": "fit"
+              }
+            },
+            "source_status_id": 609078967459586000,
+            "source_status_id_str": "609078967459586048",
+            "source_user_id": 2990391707,
+            "source_user_id_str": "2990391707"
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "en"
+    },
+     {
+      "metadata":  {
+        "iso_language_code": "en",
+        "result_type": "recent"
+      },
+      "created_at": "Thu Jun 11 19:25:16 +0000 2015",
+      "id": 609078967459586000,
+      "id_str": "609078967459586048",
+      "text": "@NOB_Galway @OBriensWine #Galway2020 fantastic Spanish tasting well done guys 20% off spanish wine this weekend ???????? http://t.co/Oq5QUqXR4M",
+      "source": '<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>',
+      "truncated": false,
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": 3027916919,
+      "in_reply_to_user_id_str": "3027916919",
+      "in_reply_to_screen_name": "NOB_Galway",
+      "user":  {
+        "id": 2990391707,
+        "id_str": "2990391707",
+        "name": "Tom Joyce",
+        "screen_name": "tomjoycechef",
+        "location": "",
+        "description": "",
+        "url": null,
+        "entities":  {
+          "description":  {
+            "urls":  []
+          }
+        },
+        "protected": false,
+        "followers_count": 134,
+        "friends_count": 207,
+        "listed_count": 4,
+        "created_at": "Wed Jan 21 18:58:00 +0000 2015",
+        "favourites_count": 74,
+        "utc_offset": null,
+        "time_zone": null,
+        "geo_enabled": true,
+        "verified": false,
+        "statuses_count": 173,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "C0DEED",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/557976217492525057/2-fCsSy0_normal.jpeg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/557976217492525057/2-fCsSy0_normal.jpeg",
+        "profile_link_color": "0084B4",
+        "profile_sidebar_border_color": "C0DEED",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "default_profile": true,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 1,
+      "favorite_count": 1,
+      "entities":  {
+        "hashtags":  [
+           {
+            "text": "Galway2020",
+            "indices":  [
+              25,
+              36
+            ]
+          }
+        ],
+        "symbols":  [],
+        "user_mentions":  [
+           {
+            "screen_name": "NOB_Galway",
+            "name": "OBriensGalway",
+            "id": 3027916919,
+            "id_str": "3027916919",
+            "indices":  [
+              0,
+              11
+            ]
+          },
+           {
+            "screen_name": "OBriensWine",
+            "name": "O'Briens Wine",
+            "id": 101809686,
+            "id_str": "101809686",
+            "indices":  [
+              12,
+              24
+            ]
+          }
+        ],
+        "urls":  [],
+        "media":  [
+           {
+            "id": 609078951403745300,
+            "id_str": "609078951403745280",
+            "indices":  [
+              118,
+              140
+            ],
+            "media_url": "http://pbs.twimg.com/media/CHPiFEqWcAAq1Go.jpg",
+            "media_url_https": "https://pbs.twimg.com/media/CHPiFEqWcAAq1Go.jpg",
+            "url": "http://t.co/Oq5QUqXR4M",
+            "display_url": "pic.twitter.com/Oq5QUqXR4M",
+            "expanded_url": "http://twitter.com/tomjoycechef/status/609078967459586048/photo/1",
+            "type": "photo",
+            "sizes":  {
+              "small":  {
+                "w": 340,
+                "h": 453,
+                "resize": "fit"
+              },
+              "thumb":  {
+                "w": 150,
+                "h": 150,
+                "resize": "crop"
+              },
+              "medium":  {
+                "w": 480,
+                "h": 640,
+                "resize": "fit"
+              },
+              "large":  {
+                "w": 480,
+                "h": 640,
+                "resize": "fit"
+              }
+            }
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "en"
+    },
+     {
+      "metadata":  {
+        "iso_language_code": "en",
+        "result_type": "recent"
+      },
+      "created_at": "Thu Jun 11 18:57:56 +0000 2015",
+      "id": 609072089409142800,
+      "id_str": "609072089409142784",
+      "text": '"Our vision for #Galway2020 is to make Impressions Biennial international"- Siobhan Percy at tonight\'s Labhair Amach in Athenry #IBackGalway',
+      "source": '<a href="http://twitter.com" rel="nofollow">Twitter Web Client</a>',
+      "truncated": false,
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user":  {
+        "id": 2353144260,
+        "id_str": "2353144260",
+        "name": "Galway 2020",
+        "screen_name": "galway2020",
+        "location": "Galway / Gaillimh",
+        "description": "The official account of the Galway European Capital of Culture 2020 - Candidate bid.-----\nAdd a Galway 2020 badge to your profile at http://t.co/ogJDNDJ0kz",
+        "url": "http://t.co/YOSw8f39jQ",
+        "entities":  {
+          "url":  {
+            "urls":  [
+               {
+                "url": "http://t.co/YOSw8f39jQ",
+                "expanded_url": "http://www.galway2020.ie",
+                "display_url": "galway2020.ie",
+                "indices":  [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description":  {
+            "urls":  [
+               {
+                "url": "http://t.co/ogJDNDJ0kz",
+                "expanded_url": "http://twibbon.com/Support/galway2020",
+                "display_url": "twibbon.com/Support/galway�",
+                "indices":  [
+                  133,
+                  155
+                ]
+              }
+            ]
+          }
+        },
+        "protected": false,
+        "followers_count": 5299,
+        "friends_count": 5786,
+        "listed_count": 33,
+        "created_at": "Thu Feb 20 12:11:38 +0000 2014",
+        "favourites_count": 3395,
+        "utc_offset": 3600,
+        "time_zone": "London",
+        "geo_enabled": true,
+        "verified": false,
+        "statuses_count": 2983,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "B3B2B2",
+        "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/436476583419719680/cSym3q4H.jpeg",
+        "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/436476583419719680/cSym3q4H.jpeg",
+        "profile_background_tile": false,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/596647010880626688/cFxKpeyT_normal.png",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/596647010880626688/cFxKpeyT_normal.png",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/2353144260/1431101832",
+        "profile_link_color": "55C5CF",
+        "profile_sidebar_border_color": "FFFFFF",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": false,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": true,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 0,
+      "favorite_count": 2,
+      "entities":  {
+        "hashtags":  [
+           {
+            "text": "Galway2020",
+            "indices":  [
+              16,
+              27
+            ]
+          },
+           {
+            "text": "IBackGalway",
+            "indices":  [
+              128,
+              140
+            ]
+          }
+        ],
+        "symbols":  [],
+        "user_mentions":  [],
+        "urls":  []
+      },
+      "favorited": false,
+      "retweeted": false,
+      "lang": "en"
+    },
+     {
+      "metadata":  {
+        "iso_language_code": "en",
+        "result_type": "recent"
+      },
+      "created_at": "Thu Jun 11 18:53:57 +0000 2015",
+      "id": 609071086546919400,
+      "id_str": "609071086546919425",
+      "text": "RT @catcoy11: Who else is attending ChangeX Meetup? #Galway http://t.co/CjZc4C0Uql #galway2020",
+      "source": '<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>',
+      "truncated": false,
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user":  {
+        "id": 1898251915,
+        "id_str": "1898251915",
+        "name": "Gabe Cronnelly",
+        "screen_name": "GabeCronnelly",
+        "location": "",
+        "description": "",
+        "url": null,
+        "entities":  {
+          "description":  {
+            "urls":  []
+          }
+        },
+        "protected": false,
+        "followers_count": 98,
+        "friends_count": 138,
+        "listed_count": 13,
+        "created_at": "Mon Sep 23 19:37:59 +0000 2013",
+        "favourites_count": 355,
+        "utc_offset": null,
+        "time_zone": null,
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 2109,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "C0DEED",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/378800000499002744/0fd1d11bd1fbdf0fc3001f52b43d9efb_normal.jpeg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/378800000499002744/0fd1d11bd1fbdf0fc3001f52b43d9efb_normal.jpeg",
+        "profile_link_color": "0084B4",
+        "profile_sidebar_border_color": "C0DEED",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "default_profile": true,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "retweeted_status":  {
+        "metadata":  {
+          "iso_language_code": "en",
+          "result_type": "recent"
+        },
+        "created_at": "Thu Jun 11 15:35:16 +0000 2015",
+        "id": 609021087452684300,
+        "id_str": "609021087452684288",
+        "text": "Who else is attending ChangeX Meetup? #Galway http://t.co/CjZc4C0Uql #galway2020",
+        "source": '<a href="http://twitter.com" rel="nofollow">Twitter Web Client</a>',
+        "truncated": false,
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": null,
+        "in_reply_to_user_id_str": null,
+        "in_reply_to_screen_name": null,
+        "user":  {
+          "id": 174250540,
+          "id_str": "174250540",
+          "name": "Caitr�ona Coyne",
+          "screen_name": "catcoy11",
+          "location": "Oakland, CA",
+          "description": "Journalist & life-enthusiast! Contae na Gaillimhe. Associate Producer @CorridorDoc . Gaeilgeoir.",
+          "url": "http://t.co/60WFnrxuEe",
+          "entities":  {
+            "url":  {
+              "urls":  [
+                 {
+                  "url": "http://t.co/60WFnrxuEe",
+                  "expanded_url": "http://www.linkedin.com/in/caitrionanichadhain",
+                  "display_url": "linkedin.com/in/caitrionani�",
+                  "indices":  [
+                    0,
+                    22
+                  ]
+                }
+              ]
+            },
+            "description":  {
+              "urls":  []
+            }
+          },
+          "protected": false,
+          "followers_count": 292,
+          "friends_count": 790,
+          "listed_count": 8,
+          "created_at": "Tue Aug 03 13:34:46 +0000 2010",
+          "favourites_count": 207,
+          "utc_offset": -25200,
+          "time_zone": "Pacific Time (US & Canada)",
+          "geo_enabled": false,
+          "verified": false,
+          "statuses_count": 459,
+          "lang": "ga",
+          "contributors_enabled": false,
+          "is_translator": false,
+          "is_translation_enabled": false,
+          "profile_background_color": "89C9FA",
+          "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/511781740671537152/Mx7DeSeP.jpeg",
+          "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/511781740671537152/Mx7DeSeP.jpeg",
+          "profile_background_tile": false,
+          "profile_image_url": "http://pbs.twimg.com/profile_images/1667564170/164313_10150094537703211_707898210_6003205_2111714_n_normal.jpg",
+          "profile_image_url_https": "https://pbs.twimg.com/profile_images/1667564170/164313_10150094537703211_707898210_6003205_2111714_n_normal.jpg",
+          "profile_banner_url": "https://pbs.twimg.com/profile_banners/174250540/1410853493",
+          "profile_link_color": "038543",
+          "profile_sidebar_border_color": "FFFFFF",
+          "profile_sidebar_fill_color": "F6F6F6",
+          "profile_text_color": "333333",
+          "profile_use_background_image": true,
+          "default_profile": false,
+          "default_profile_image": false,
+          "following": false,
+          "follow_request_sent": false,
+          "notifications": false
+        },
+        "geo": null,
+        "coordinates": null,
+        "place": null,
+        "contributors": null,
+        "is_quote_status": false,
+        "retweet_count": 3,
+        "favorite_count": 2,
+        "entities":  {
+          "hashtags":  [
+             {
+              "text": "Galway",
+              "indices":  [
+                38,
+                45
+              ]
+            },
+             {
+              "text": "galway2020",
+              "indices":  [
+                69,
+                80
+              ]
+            }
+          ],
+          "symbols":  [],
+          "user_mentions":  [],
+          "urls":  [
+             {
+              "url": "http://t.co/CjZc4C0Uql",
+              "expanded_url": "http://galway2020.ie/en/event/changex-meetup/",
+              "display_url": "galway2020.ie/en/event/chang�",
+              "indices":  [
+                46,
+                68
+              ]
+            }
+          ]
+        },
+        "favorited": false,
+        "retweeted": false,
+        "possibly_sensitive": false,
+        "lang": "en"
+      },
+      "is_quote_status": false,
+      "retweet_count": 3,
+      "favorite_count": 0,
+      "entities":  {
+        "hashtags":  [
+           {
+            "text": "Galway",
+            "indices":  [
+              52,
+              59
+            ]
+          },
+           {
+            "text": "galway2020",
+            "indices":  [
+              83,
+              94
+            ]
+          }
+        ],
+        "symbols":  [],
+        "user_mentions":  [
+           {
+            "screen_name": "catcoy11",
+            "name": "Caitr�ona Coyne",
+            "id": 174250540,
+            "id_str": "174250540",
+            "indices":  [
+              3,
+              12
+            ]
+          }
+        ],
+        "urls":  [
+           {
+            "url": "http://t.co/CjZc4C0Uql",
+            "expanded_url": "http://galway2020.ie/en/event/changex-meetup/",
+            "display_url": "galway2020.ie/en/event/chang�",
+            "indices":  [
+              60,
+              82
+            ]
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "en"
+    },
+     {
+      "metadata":  {
+        "iso_language_code": "en",
+        "result_type": "recent"
+      },
+      "created_at": "Thu Jun 11 18:53:44 +0000 2015",
+      "id": 609071032947871700,
+      "id_str": "609071032947871745",
+      "text": "RT @GalwayFilm: What could make a summers day by the Spanish Arch any better? How about a symphony orchestra? #FilmFleadh #Galway2020\nhttp:�",
+      "source": '<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>',
+      "truncated": false,
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user":  {
+        "id": 1898251915,
+        "id_str": "1898251915",
+        "name": "Gabe Cronnelly",
+        "screen_name": "GabeCronnelly",
+        "location": "",
+        "description": "",
+        "url": null,
+        "entities":  {
+          "description":  {
+            "urls":  []
+          }
+        },
+        "protected": false,
+        "followers_count": 98,
+        "friends_count": 138,
+        "listed_count": 13,
+        "created_at": "Mon Sep 23 19:37:59 +0000 2013",
+        "favourites_count": 355,
+        "utc_offset": null,
+        "time_zone": null,
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 2109,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "C0DEED",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/378800000499002744/0fd1d11bd1fbdf0fc3001f52b43d9efb_normal.jpeg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/378800000499002744/0fd1d11bd1fbdf0fc3001f52b43d9efb_normal.jpeg",
+        "profile_link_color": "0084B4",
+        "profile_sidebar_border_color": "C0DEED",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "default_profile": true,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "retweeted_status":  {
+        "metadata":  {
+          "iso_language_code": "en",
+          "result_type": "recent"
+        },
+        "created_at": "Thu Jun 11 12:06:57 +0000 2015",
+        "id": 608968660049383400,
+        "id_str": "608968660049383424",
+        "text": "What could make a summers day by the Spanish Arch any better? How about a symphony orchestra? #FilmFleadh #Galway2020\nhttp://t.co/en5JuNsUTA",
+        "source": '<a href="http://twitter.com" rel="nofollow">Twitter Web Client</a>',
+        "truncated": false,
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": null,
+        "in_reply_to_user_id_str": null,
+        "in_reply_to_screen_name": null,
+        "user":  {
+          "id": 237301916,
+          "id_str": "237301916",
+          "name": "Galway Film Fleadh",
+          "screen_name": "GalwayFilm",
+          "location": "Galway, Ireland",
+          "description": "The Galway Film Fleadh is a six day international film event held every July and welcomes a mad diversity of filmmaking from around the world. #FilmFleadh",
+          "url": "http://t.co/peS6R4qJcx",
+          "entities":  {
+            "url":  {
+              "urls":  [
+                 {
+                  "url": "http://t.co/peS6R4qJcx",
+                  "expanded_url": "http://www.galwayfilmfleadh.com",
+                  "display_url": "galwayfilmfleadh.com",
+                  "indices":  [
+                    0,
+                    22
+                  ]
+                }
+              ]
+            },
+            "description":  {
+              "urls":  []
+            }
+          },
+          "protected": false,
+          "followers_count": 8309,
+          "friends_count": 1609,
+          "listed_count": 105,
+          "created_at": "Wed Jan 12 14:51:38 +0000 2011",
+          "favourites_count": 512,
+          "utc_offset": 3600,
+          "time_zone": "Dublin",
+          "geo_enabled": true,
+          "verified": false,
+          "statuses_count": 1473,
+          "lang": "en",
+          "contributors_enabled": false,
+          "is_translator": false,
+          "is_translation_enabled": false,
+          "profile_background_color": "C40F0F",
+          "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/567550431/786zzgxk2knlv8a0yu0q.jpeg",
+          "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/567550431/786zzgxk2knlv8a0yu0q.jpeg",
+          "profile_background_tile": true,
+          "profile_image_url": "http://pbs.twimg.com/profile_images/603216917105614848/gMGz6vwu_normal.jpg",
+          "profile_image_url_https": "https://pbs.twimg.com/profile_images/603216917105614848/gMGz6vwu_normal.jpg",
+          "profile_banner_url": "https://pbs.twimg.com/profile_banners/237301916/1428762991",
+          "profile_link_color": "C40F0F",
+          "profile_sidebar_border_color": "000000",
+          "profile_sidebar_fill_color": "252429",
+          "profile_text_color": "666666",
+          "profile_use_background_image": false,
+          "default_profile": false,
+          "default_profile_image": false,
+          "following": true,
+          "follow_request_sent": false,
+          "notifications": false
+        },
+        "geo": null,
+        "coordinates": null,
+        "place": null,
+        "contributors": null,
+        "is_quote_status": false,
+        "retweet_count": 9,
+        "favorite_count": 9,
+        "entities":  {
+          "hashtags":  [
+             {
+              "text": "FilmFleadh",
+              "indices":  [
+                94,
+                105
+              ]
+            },
+             {
+              "text": "Galway2020",
+              "indices":  [
+                106,
+                117
+              ]
+            }
+          ],
+          "symbols":  [],
+          "user_mentions":  [],
+          "urls":  [
+             {
+              "url": "http://t.co/en5JuNsUTA",
+              "expanded_url": "http://www.galwayfilmfleadh.com/news.php?t=free-open-air-concert-of-music-from-the-movies&id=92",
+              "display_url": "galwayfilmfleadh.com/news.php?t=fre�",
+              "indices":  [
+                118,
+                140
+              ]
+            }
+          ]
+        },
+        "favorited": false,
+        "retweeted": false,
+        "possibly_sensitive": false,
+        "lang": "en"
+      },
+      "is_quote_status": false,
+      "retweet_count": 9,
+      "favorite_count": 0,
+      "entities":  {
+        "hashtags":  [
+           {
+            "text": "FilmFleadh",
+            "indices":  [
+              110,
+              121
+            ]
+          },
+           {
+            "text": "Galway2020",
+            "indices":  [
+              122,
+              133
+            ]
+          }
+        ],
+        "symbols":  [],
+        "user_mentions":  [
+           {
+            "screen_name": "GalwayFilm",
+            "name": "Galway Film Fleadh",
+            "id": 237301916,
+            "id_str": "237301916",
+            "indices":  [
+              3,
+              14
+            ]
+          }
+        ],
+        "urls":  [
+           {
+            "url": "http://t.co/en5JuNsUTA",
+            "expanded_url": "http://www.galwayfilmfleadh.com/news.php?t=free-open-air-concert-of-music-from-the-movies&id=92",
+            "display_url": "galwayfilmfleadh.com/news.php?t=fre�",
+            "indices":  [
+              139,
+              140
+            ]
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "en"
+    },
+     {
+      "metadata":  {
+        "iso_language_code": "und",
+        "result_type": "recent"
+      },
+      "created_at": "Thu Jun 11 18:53:14 +0000 2015",
+      "id": 609070904207941600,
+      "id_str": "609070904207941633",
+      "text": "RT @MecksiMay: #Galway2020 https://t.co/eWiA6vjfVN",
+      "source": '<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>',
+      "truncated": false,
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user":  {
+        "id": 1898251915,
+        "id_str": "1898251915",
+        "name": "Gabe Cronnelly",
+        "screen_name": "GabeCronnelly",
+        "location": "",
+        "description": "",
+        "url": null,
+        "entities":  {
+          "description":  {
+            "urls":  []
+          }
+        },
+        "protected": false,
+        "followers_count": 98,
+        "friends_count": 138,
+        "listed_count": 13,
+        "created_at": "Mon Sep 23 19:37:59 +0000 2013",
+        "favourites_count": 355,
+        "utc_offset": null,
+        "time_zone": null,
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 2109,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "C0DEED",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/378800000499002744/0fd1d11bd1fbdf0fc3001f52b43d9efb_normal.jpeg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/378800000499002744/0fd1d11bd1fbdf0fc3001f52b43d9efb_normal.jpeg",
+        "profile_link_color": "0084B4",
+        "profile_sidebar_border_color": "C0DEED",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "default_profile": true,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "retweeted_status":  {
+        "metadata":  {
+          "iso_language_code": "und",
+          "result_type": "recent"
+        },
+        "created_at": "Thu Jun 11 11:32:26 +0000 2015",
+        "id": 608959976246276100,
+        "id_str": "608959976246276096",
+        "text": "#Galway2020 https://t.co/eWiA6vjfVN",
+        "source": '<a href="http://twitter.com" rel="nofollow">Twitter Web Client</a>',
+        "truncated": false,
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": null,
+        "in_reply_to_user_id_str": null,
+        "in_reply_to_screen_name": null,
+        "user":  {
+          "id": 91588138,
+          "id_str": "91588138",
+          "name": "Margaret Flaherty",
+          "screen_name": "MecksiMay",
+          "location": "Renvyle & Galway, Ireland",
+          "description": "",
+          "url": null,
+          "entities":  {
+            "description":  {
+              "urls":  []
+            }
+          },
+          "protected": false,
+          "followers_count": 284,
+          "friends_count": 648,
+          "listed_count": 18,
+          "created_at": "Sat Nov 21 15:07:24 +0000 2009",
+          "favourites_count": 684,
+          "utc_offset": 3600,
+          "time_zone": "Europe/Dublin",
+          "geo_enabled": true,
+          "verified": false,
+          "statuses_count": 1309,
+          "lang": "en",
+          "contributors_enabled": false,
+          "is_translator": false,
+          "is_translation_enabled": false,
+          "profile_background_color": "ACDED6",
+          "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/861113011/cf070c68ecb7bf28dea0fbfd63e53d49.jpeg",
+          "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/861113011/cf070c68ecb7bf28dea0fbfd63e53d49.jpeg",
+          "profile_background_tile": true,
+          "profile_image_url": "http://pbs.twimg.com/profile_images/608956932934623233/NdA3umgo_normal.png",
+          "profile_image_url_https": "https://pbs.twimg.com/profile_images/608956932934623233/NdA3umgo_normal.png",
+          "profile_banner_url": "https://pbs.twimg.com/profile_banners/91588138/1427184354",
+          "profile_link_color": "038543",
+          "profile_sidebar_border_color": "000000",
+          "profile_sidebar_fill_color": "F6F6F6",
+          "profile_text_color": "333333",
+          "profile_use_background_image": true,
+          "default_profile": false,
+          "default_profile_image": false,
+          "following": false,
+          "follow_request_sent": false,
+          "notifications": false
+        },
+        "geo": null,
+        "coordinates": null,
+        "place": null,
+        "contributors": null,
+        "is_quote_status": false,
+        "retweet_count": 2,
+        "favorite_count": 2,
+        "entities":  {
+          "hashtags":  [
+             {
+              "text": "Galway2020",
+              "indices":  [
+                0,
+                11
+              ]
+            }
+          ],
+          "symbols":  [],
+          "user_mentions":  [],
+          "urls":  [
+             {
+              "url": "https://t.co/eWiA6vjfVN",
+              "expanded_url": "https://vimeo.com/user39786250/galway2020",
+              "display_url": "vimeo.com/user39786250/g�",
+              "indices":  [
+                12,
+                35
+              ]
+            }
+          ]
+        },
+        "favorited": false,
+        "retweeted": false,
+        "possibly_sensitive": false,
+        "lang": "und"
+      },
+      "is_quote_status": false,
+      "retweet_count": 2,
+      "favorite_count": 0,
+      "entities":  {
+        "hashtags":  [
+           {
+            "text": "Galway2020",
+            "indices":  [
+              15,
+              26
+            ]
+          }
+        ],
+        "symbols":  [],
+        "user_mentions":  [
+           {
+            "screen_name": "MecksiMay",
+            "name": "Margaret Flaherty",
+            "id": 91588138,
+            "id_str": "91588138",
+            "indices":  [
+              3,
+              13
+            ]
+          }
+        ],
+        "urls":  [
+           {
+            "url": "https://t.co/eWiA6vjfVN",
+            "expanded_url": "https://vimeo.com/user39786250/galway2020",
+            "display_url": "vimeo.com/user39786250/g�",
+            "indices":  [
+              27,
+              50
+            ]
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "und"
+    },
+     {
+      "metadata":  {
+        "iso_language_code": "en",
+        "result_type": "recent"
+      },
+      "created_at": "Thu Jun 11 18:24:57 +0000 2015",
+      "id": 609063788734754800,
+      "id_str": "609063788734754817",
+      "text": "RT @catcoy11: Who else is attending ChangeX Meetup? #Galway http://t.co/CjZc4C0Uql #galway2020",
+      "source": '<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>',
+      "truncated": false,
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user":  {
+        "id": 2584644408,
+        "id_str": "2584644408",
+        "name": "IrelandCan",
+        "screen_name": "YesIrelandCan",
+        "location": "",
+        "description": "Can Do - Get It Done - Common Sense & Coming Together - Celebrating and encouraging community and start-up projects, and those facing challenges",
+        "url": "http://t.co/w09XlyQlHt",
+        "entities":  {
+          "url":  {
+            "urls":  [
+               {
+                "url": "http://t.co/w09XlyQlHt",
+                "expanded_url": "http://www.irelandcan.com",
+                "display_url": "irelandcan.com",
+                "indices":  [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description":  {
+            "urls":  []
+          }
+        },
+        "protected": false,
+        "followers_count": 283,
+        "friends_count": 222,
+        "listed_count": 27,
+        "created_at": "Mon Jun 23 22:13:38 +0000 2014",
+        "favourites_count": 12,
+        "utc_offset": null,
+        "time_zone": null,
+        "geo_enabled": true,
+        "verified": false,
+        "statuses_count": 1582,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "C0DEED",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/551496824842752000/9oFI4VE9_normal.jpeg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/551496824842752000/9oFI4VE9_normal.jpeg",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/2584644408/1420322111",
+        "profile_link_color": "ABB8C2",
+        "profile_sidebar_border_color": "C0DEED",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "retweeted_status":  {
+        "metadata":  {
+          "iso_language_code": "en",
+          "result_type": "recent"
+        },
+        "created_at": "Thu Jun 11 15:35:16 +0000 2015",
+        "id": 609021087452684300,
+        "id_str": "609021087452684288",
+        "text": "Who else is attending ChangeX Meetup? #Galway http://t.co/CjZc4C0Uql #galway2020",
+        "source": '<a href="http://twitter.com" rel="nofollow">Twitter Web Client</a>',
+        "truncated": false,
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": null,
+        "in_reply_to_user_id_str": null,
+        "in_reply_to_screen_name": null,
+        "user":  {
+          "id": 174250540,
+          "id_str": "174250540",
+          "name": "Caitr�ona Coyne",
+          "screen_name": "catcoy11",
+          "location": "Oakland, CA",
+          "description": "Journalist & life-enthusiast! Contae na Gaillimhe. Associate Producer @CorridorDoc . Gaeilgeoir.",
+          "url": "http://t.co/60WFnrxuEe",
+          "entities":  {
+            "url":  {
+              "urls":  [
+                 {
+                  "url": "http://t.co/60WFnrxuEe",
+                  "expanded_url": "http://www.linkedin.com/in/caitrionanichadhain",
+                  "display_url": "linkedin.com/in/caitrionani�",
+                  "indices":  [
+                    0,
+                    22
+                  ]
+                }
+              ]
+            },
+            "description":  {
+              "urls":  []
+            }
+          },
+          "protected": false,
+          "followers_count": 292,
+          "friends_count": 790,
+          "listed_count": 8,
+          "created_at": "Tue Aug 03 13:34:46 +0000 2010",
+          "favourites_count": 207,
+          "utc_offset": -25200,
+          "time_zone": "Pacific Time (US & Canada)",
+          "geo_enabled": false,
+          "verified": false,
+          "statuses_count": 459,
+          "lang": "ga",
+          "contributors_enabled": false,
+          "is_translator": false,
+          "is_translation_enabled": false,
+          "profile_background_color": "89C9FA",
+          "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/511781740671537152/Mx7DeSeP.jpeg",
+          "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/511781740671537152/Mx7DeSeP.jpeg",
+          "profile_background_tile": false,
+          "profile_image_url": "http://pbs.twimg.com/profile_images/1667564170/164313_10150094537703211_707898210_6003205_2111714_n_normal.jpg",
+          "profile_image_url_https": "https://pbs.twimg.com/profile_images/1667564170/164313_10150094537703211_707898210_6003205_2111714_n_normal.jpg",
+          "profile_banner_url": "https://pbs.twimg.com/profile_banners/174250540/1410853493",
+          "profile_link_color": "038543",
+          "profile_sidebar_border_color": "FFFFFF",
+          "profile_sidebar_fill_color": "F6F6F6",
+          "profile_text_color": "333333",
+          "profile_use_background_image": true,
+          "default_profile": false,
+          "default_profile_image": false,
+          "following": false,
+          "follow_request_sent": false,
+          "notifications": false
+        },
+        "geo": null,
+        "coordinates": null,
+        "place": null,
+        "contributors": null,
+        "is_quote_status": false,
+        "retweet_count": 3,
+        "favorite_count": 2,
+        "entities":  {
+          "hashtags":  [
+             {
+              "text": "Galway",
+              "indices":  [
+                38,
+                45
+              ]
+            },
+             {
+              "text": "galway2020",
+              "indices":  [
+                69,
+                80
+              ]
+            }
+          ],
+          "symbols":  [],
+          "user_mentions":  [],
+          "urls":  [
+             {
+              "url": "http://t.co/CjZc4C0Uql",
+              "expanded_url": "http://galway2020.ie/en/event/changex-meetup/",
+              "display_url": "galway2020.ie/en/event/chang�",
+              "indices":  [
+                46,
+                68
+              ]
+            }
+          ]
+        },
+        "favorited": false,
+        "retweeted": false,
+        "possibly_sensitive": false,
+        "lang": "en"
+      },
+      "is_quote_status": false,
+      "retweet_count": 3,
+      "favorite_count": 0,
+      "entities":  {
+        "hashtags":  [
+           {
+            "text": "Galway",
+            "indices":  [
+              52,
+              59
+            ]
+          },
+           {
+            "text": "galway2020",
+            "indices":  [
+              83,
+              94
+            ]
+          }
+        ],
+        "symbols":  [],
+        "user_mentions":  [
+           {
+            "screen_name": "catcoy11",
+            "name": "Caitr�ona Coyne",
+            "id": 174250540,
+            "id_str": "174250540",
+            "indices":  [
+              3,
+              12
+            ]
+          }
+        ],
+        "urls":  [
+           {
+            "url": "http://t.co/CjZc4C0Uql",
+            "expanded_url": "http://galway2020.ie/en/event/changex-meetup/",
+            "display_url": "galway2020.ie/en/event/chang�",
+            "indices":  [
+              60,
+              82
+            ]
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "en"
+    },
+     {
+      "metadata":  {
+        "iso_language_code": "en",
+        "result_type": "recent"
+      },
+      "created_at": "Thu Jun 11 18:23:49 +0000 2015",
+      "id": 609063500497956900,
+      "id_str": "609063500497956864",
+      "text": "RT @GalwayFilm: What could make a summers day by the Spanish Arch any better? How about a symphony orchestra? #FilmFleadh #Galway2020\nhttp:�",
+      "source": '<a href="http://twitter.com/#!/download/ipad" rel="nofollow">Twitter for iPad</a>',
+      "truncated": false,
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user":  {
+        "id": 3077480689,
+        "id_str": "3077480689",
+        "name": "Kaitlin A Feeney",
+        "screen_name": "kaitlinafeeney",
+        "location": "",
+        "description": "Actress, singer, whatever!\r\nRepresented by Blowup Management\r\nSpotlight:4931-0199-3725",
+        "url": null,
+        "entities":  {
+          "description":  {
+            "urls":  []
+          }
+        },
+        "protected": false,
+        "followers_count": 119,
+        "friends_count": 478,
+        "listed_count": 0,
+        "created_at": "Fri Mar 13 17:09:22 +0000 2015",
+        "favourites_count": 6,
+        "utc_offset": null,
+        "time_zone": null,
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 227,
+        "lang": "en-gb",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "C0DEED",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/576430685130506240/lWjhdopx_normal.jpeg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/576430685130506240/lWjhdopx_normal.jpeg",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/3077480689/1426676564",
+        "profile_link_color": "0084B4",
+        "profile_sidebar_border_color": "C0DEED",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "default_profile": true,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "retweeted_status":  {
+        "metadata":  {
+          "iso_language_code": "en",
+          "result_type": "recent"
+        },
+        "created_at": "Thu Jun 11 12:06:57 +0000 2015",
+        "id": 608968660049383400,
+        "id_str": "608968660049383424",
+        "text": "What could make a summers day by the Spanish Arch any better? How about a symphony orchestra? #FilmFleadh #Galway2020\nhttp://t.co/en5JuNsUTA",
+        "source": '<a href="http://twitter.com" rel="nofollow">Twitter Web Client</a>',
+        "truncated": false,
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": null,
+        "in_reply_to_user_id_str": null,
+        "in_reply_to_screen_name": null,
+        "user":  {
+          "id": 237301916,
+          "id_str": "237301916",
+          "name": "Galway Film Fleadh",
+          "screen_name": "GalwayFilm",
+          "location": "Galway, Ireland",
+          "description": "The Galway Film Fleadh is a six day international film event held every July and welcomes a mad diversity of filmmaking from around the world. #FilmFleadh",
+          "url": "http://t.co/peS6R4qJcx",
+          "entities":  {
+            "url":  {
+              "urls":  [
+                 {
+                  "url": "http://t.co/peS6R4qJcx",
+                  "expanded_url": "http://www.galwayfilmfleadh.com",
+                  "display_url": "galwayfilmfleadh.com",
+                  "indices":  [
+                    0,
+                    22
+                  ]
+                }
+              ]
+            },
+            "description":  {
+              "urls":  []
+            }
+          },
+          "protected": false,
+          "followers_count": 8309,
+          "friends_count": 1609,
+          "listed_count": 105,
+          "created_at": "Wed Jan 12 14:51:38 +0000 2011",
+          "favourites_count": 512,
+          "utc_offset": 3600,
+          "time_zone": "Dublin",
+          "geo_enabled": true,
+          "verified": false,
+          "statuses_count": 1473,
+          "lang": "en",
+          "contributors_enabled": false,
+          "is_translator": false,
+          "is_translation_enabled": false,
+          "profile_background_color": "C40F0F",
+          "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/567550431/786zzgxk2knlv8a0yu0q.jpeg",
+          "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/567550431/786zzgxk2knlv8a0yu0q.jpeg",
+          "profile_background_tile": true,
+          "profile_image_url": "http://pbs.twimg.com/profile_images/603216917105614848/gMGz6vwu_normal.jpg",
+          "profile_image_url_https": "https://pbs.twimg.com/profile_images/603216917105614848/gMGz6vwu_normal.jpg",
+          "profile_banner_url": "https://pbs.twimg.com/profile_banners/237301916/1428762991",
+          "profile_link_color": "C40F0F",
+          "profile_sidebar_border_color": "000000",
+          "profile_sidebar_fill_color": "252429",
+          "profile_text_color": "666666",
+          "profile_use_background_image": false,
+          "default_profile": false,
+          "default_profile_image": false,
+          "following": true,
+          "follow_request_sent": false,
+          "notifications": false
+        },
+        "geo": null,
+        "coordinates": null,
+        "place": null,
+        "contributors": null,
+        "is_quote_status": false,
+        "retweet_count": 9,
+        "favorite_count": 9,
+        "entities":  {
+          "hashtags":  [
+             {
+              "text": "FilmFleadh",
+              "indices":  [
+                94,
+                105
+              ]
+            },
+             {
+              "text": "Galway2020",
+              "indices":  [
+                106,
+                117
+              ]
+            }
+          ],
+          "symbols":  [],
+          "user_mentions":  [],
+          "urls":  [
+             {
+              "url": "http://t.co/en5JuNsUTA",
+              "expanded_url": "http://www.galwayfilmfleadh.com/news.php?t=free-open-air-concert-of-music-from-the-movies&id=92",
+              "display_url": "galwayfilmfleadh.com/news.php?t=fre�",
+              "indices":  [
+                118,
+                140
+              ]
+            }
+          ]
+        },
+        "favorited": false,
+        "retweeted": false,
+        "possibly_sensitive": false,
+        "lang": "en"
+      },
+      "is_quote_status": false,
+      "retweet_count": 9,
+      "favorite_count": 0,
+      "entities":  {
+        "hashtags":  [
+           {
+            "text": "FilmFleadh",
+            "indices":  [
+              110,
+              121
+            ]
+          },
+           {
+            "text": "Galway2020",
+            "indices":  [
+              122,
+              133
+            ]
+          }
+        ],
+        "symbols":  [],
+        "user_mentions":  [
+           {
+            "screen_name": "GalwayFilm",
+            "name": "Galway Film Fleadh",
+            "id": 237301916,
+            "id_str": "237301916",
+            "indices":  [
+              3,
+              14
+            ]
+          }
+        ],
+        "urls":  [
+           {
+            "url": "http://t.co/en5JuNsUTA",
+            "expanded_url": "http://www.galwayfilmfleadh.com/news.php?t=free-open-air-concert-of-music-from-the-movies&id=92",
+            "display_url": "galwayfilmfleadh.com/news.php?t=fre�",
+            "indices":  [
+              139,
+              140
+            ]
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "en"
+    }
+  ],
+  "search_metadata":  {
+    "completed_in": 0.034,
+    "max_id": 609146880640090100,
+    "max_id_str": "609146880640090112",
+    "next_results": "?max_id=609063500497956863&q=%23galway2020&include_entities=1",
+    "query": "%23galway2020",
+    "refresh_url": "?since_id=609146880640090112&q=%23galway2020&include_entities=1",
+    "count": 15,
+    "since_id": 0,
+    "since_id_str": "0"
+  }
+}
