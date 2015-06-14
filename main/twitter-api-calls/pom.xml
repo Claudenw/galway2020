@@ -27,5 +27,9 @@
     	<artifactId>twitter4j-core</artifactId>
     	<version>4.0.2</version>
     </dependency>
+    <dependency>
+    	<groupId>commons-io</groupId>
+    	<artifactId>commons-io</artifactId>
+    </dependency>
   </dependencies>
 </project>
