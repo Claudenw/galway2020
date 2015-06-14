@@ -18,9 +18,9 @@ public class SearchTweets {
 			 Query query = new Query(queryText);
 			 
 			    QueryResult result = auth.twitter.search(query);
-			    for (Status status : result.getTweets()) {
-			        System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
-			    }
+			    
+			    //Store the results in a graph
+			    StoreTweets.storeTweets(result);
 		}
 		
 	}
