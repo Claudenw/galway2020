@@ -6,11 +6,11 @@ public class DeleteEntity extends AbstractEntity {
 
 	
 	public DeleteEntity(Model model) {
-		super(model, "INSERT");
+		super(model, "DELETE");
 	}
 	
 	public DeleteEntity(Model model, String graphName) {
-		super(model, graphName, "INSERT");
+		super(model, graphName, "DELETE");
 	}
 
 }

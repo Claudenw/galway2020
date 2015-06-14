@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.twitter.api.calls;
+package org.xenei.galway2020.twitter.calls;
 
 import twitter4j.*;
 

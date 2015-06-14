@@ -2,7 +2,6 @@ package org.xenei.galway2020;
 
 import java.io.IOException;
 
-import org.apache.http.client.methods.HttpPost;
 import org.apache.jena.rdf.model.Model;
 
 public interface ModelSink {

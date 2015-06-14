@@ -1,10 +1,17 @@
-package org.twitter.api.calls;
+package org.xenei.galway2020.twitter.calls;
 
-import org.xenei.galway2020.twitter;
-import org.xenei.galway2020.twitter.Model;
+import org.xenei.galway2020.twitter.Parser;
 
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.xenei.galway2020.twitter.writer.StatusToRDF;
+
+import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class StoreTweets {
