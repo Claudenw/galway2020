@@ -8,7 +8,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>../twitter-to-rdf</module>
-    <module>twitter-api-calls</module>
   </modules>
   <dependencyManagement>
   	<dependencies>
