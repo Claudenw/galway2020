@@ -10,6 +10,7 @@
   	<module>../twitter-to-rdf</module>
     <module>rdf-to-fuseki</module>
     <module>rdf-to-file</module>
+    <module>common</module>
   </modules>
   <dependencyManagement>
   	<dependencies>

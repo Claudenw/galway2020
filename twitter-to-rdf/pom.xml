@@ -11,7 +11,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.xenei.galway2020</groupId>
-			<artifactId>main</artifactId>
+			<artifactId>common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
