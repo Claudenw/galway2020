@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.configuration.*;
 
 import twitter4j.Query;
 import twitter4j.QueryResult;
@@ -35,5 +36,18 @@ public class SearchTweets {
 	    ClassLoader classLoader = getClass().getClassLoader();
 		List<String> lines = FileUtils.readLines(new File(classLoader.getResource(fileName).getFile()), "utf-8");
 		return lines;
+	}
+	
+	protected Configuration getConfigObject(String fileName) {
+		Configuration config = null;
+		ClassLoader classLoader = getClass().getClassLoader();
+		try {
+			config = new PropertiesConfiguration(classLoader.getResource(fileName).getFile());
+		} catch (ConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return config;
+		
 	}
 }
