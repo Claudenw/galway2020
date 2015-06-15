@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.apache.commons.configuration.Configuration;
+
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -28,6 +30,14 @@ public class OAuthSetUp {
 	    twitter.setOAuthConsumer(consumerKey, consumerSecret);
 	    
 	   
+	}
+	
+	public OAuthSetUp(Configuration cfg) throws TwitterException, IOException {
+		consumerKey = cfg.getString("consumer.key");
+		consumerSecret = cfg.getString("consumer.secret");
+		accessTokenKey = cfg.getString("oauth.accessToken");
+		accessTokenSecret = cfg.getString("oauth.accessTokenSecret");	    
+	    twitter.setOAuthConsumer(consumerKey, consumerSecret);  
 	}
 	
 	private static void storeAccessToken(long useId, AccessToken accessToken){

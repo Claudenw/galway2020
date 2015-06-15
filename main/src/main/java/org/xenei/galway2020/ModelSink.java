@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.apache.jena.rdf.model.Model;
 
 public interface ModelSink {
+	
 	/**
 	 * Add the model to the sink's default graph.
 	 * @param model The model to add to the default graph.

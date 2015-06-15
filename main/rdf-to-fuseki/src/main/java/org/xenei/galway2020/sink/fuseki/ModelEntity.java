@@ -1,4 +1,4 @@
-package org.xenei.galway2020.fuseki;
+package org.xenei.galway2020.sink.fuseki;
 
 import java.io.IOException;
 import java.io.InputStream;
