@@ -14,40 +14,57 @@ import twitter4j.TwitterException;
 
 public class SearchTweets {
 
-	
 	SearchTweets() {
-		
+
 	}
-	
-	public void findTweets(OAuthSetUp auth,List<String> queryList) throws TwitterException {
-		
-		for(String queryText : queryList) {
-			 Query query = new Query(queryText);
-			 
-			    QueryResult result = auth.twitter.search(query);
-			    
-			    //Store the results in a graph
-			    StoreTweets.storeTweets(result);
+
+	public void findTweets(OAuthSetUp auth, List<String> queryList)
+			throws TwitterException {
+
+		for (String queryText : queryList) {
+			Query query = new Query(queryText);
+
+			QueryResult result = auth.twitter.search(query);
+
+			// Store the results in a graph
+			StoreTweets.storeTweets(result);
 		}
-		
-		
+
 	}
+
 	protected List<String> getAllQuerys(String fileName) throws IOException {
-	    ClassLoader classLoader = getClass().getClassLoader();
-		List<String> lines = FileUtils.readLines(new File(classLoader.getResource(fileName).getFile()), "utf-8");
+		ClassLoader classLoader = getClass().getClassLoader();
+		List<String> lines = FileUtils.readLines(new File(classLoader
+				.getResource(fileName).getFile()), "utf-8");
 		return lines;
 	}
-	
+
 	protected Configuration getConfigObject(String fileName) {
 		Configuration config = null;
 		ClassLoader classLoader = getClass().getClassLoader();
 		try {
-			config = new PropertiesConfiguration(classLoader.getResource(fileName).getFile());
+			config = new PropertiesConfiguration(classLoader.getResource(
+					fileName).getFile());
 		} catch (ConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return config;
-		
+
 	}
+
+	public void findTweets(OAuthSetUp auth, Configuration cfg)
+			throws TwitterException {
+
+		String[] twitterCfg = cfg.getStringArray("hashtag");
+		for (String queryText : twitterCfg) {
+			Query query = new Query(queryText);
+
+			QueryResult result = auth.twitter.search(query);
+
+			// Store the results in a graph
+			StoreTweets.storeTweets(result);
+		}
+	}
+
 }
