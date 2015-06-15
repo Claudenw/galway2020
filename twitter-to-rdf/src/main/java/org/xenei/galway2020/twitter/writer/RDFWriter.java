@@ -8,7 +8,7 @@ import org.apache.jena.vocabulary.OWL;
 
 public interface RDFWriter {
 	public static String NS = "http://galway2020.xenei.net/ns/twitter#";
-	public static String GN_NS = "http://www.geonames.org/ontology";
+	public static String GN_NS = "http://www.geonames.org/ontology#";
 	public static String WGS84_NS = "http://www.w3.org/2003/01/geo/wgs84_pos#";
 	// public static String TZ_NS="http://www.w3.org/2006/timezone#";
 	public static Property text = ResourceFactory.createProperty(NS, "text");

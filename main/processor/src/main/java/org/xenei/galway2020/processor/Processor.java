@@ -54,7 +54,7 @@ public class Processor implements Runnable {
 		ClosableIterator<Model> modelIter = source.modelIterator();
 		try {
 			while (modelIter.hasNext()) {
-				if (sink.insert(modelIter.next(), cfg.getString(GRAPH_NAME))) {
+				if (!sink.insert(modelIter.next(), cfg.getString(GRAPH_NAME))) {
 					LOG.error("Could not update data");
 				}
 			}
