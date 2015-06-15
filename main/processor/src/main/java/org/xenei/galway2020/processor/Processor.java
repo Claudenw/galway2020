@@ -1,13 +1,17 @@
-package org.xenei.galway2020;
+package org.xenei.galway2020.processor;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.util.iterator.ClosableIterator;
 import org.apache.log4j.Logger;
+import org.xenei.galway2020.ModelSink;
+import org.xenei.galway2020.ModelSource;
 
 
 public class Processor implements Runnable {
@@ -17,9 +21,10 @@ public class Processor implements Runnable {
 	private ModelSink sink;
 	private ModelSource source;
 	
-	public static void main(String... args)
+	public static void main(String... args) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ConfigurationException
 	{
-		
+		Processor p = new Processor( new PropertiesConfiguration( args[0] ) );
+		p.run();
 	}
 		
 	public Processor(Configuration cfg) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
