@@ -5,9 +5,10 @@ public class App
 	
 	
 	public static void main(String args[]) throws Exception{
+		
 	    OAuthSetUp authorize = new OAuthSetUp();
 	    SearchTweets search = new SearchTweets();
-	    search.findTweets(authorize,search.getAllQuerys("twitter.cfg") );
+	    search.findTweets(authorize,search.getConfigObject("twitter.properties") );
 	    System.exit(0);
 	  }
 	
