@@ -39,6 +39,10 @@ public class FileModelSink implements ModelSink {
 	}
 
 	public boolean insert(Model model, String graphName) throws IOException {
+		if (graphName == null)
+		{
+			return insert(model);
+		}
 		File outFile = getFile(graphName);
 		if (outFile.exists()) {
 			Model m = ModelFactory.createDefaultModel();

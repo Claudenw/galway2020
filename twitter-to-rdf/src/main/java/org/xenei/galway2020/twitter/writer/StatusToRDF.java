@@ -50,7 +50,7 @@ public class StatusToRDF {
 				main.addLiteral(RDFWriter.contributorId, getId(l));
 			}
 		}
-		main.addLiteral(DC_11.date, status.getCreatedAt());
+		main.addLiteral(DC_11.date,  DateToRDF.write(status.getCreatedAt()));
 		// Not in the graph
 		// main.addLiteral( RDFWriter.retweetId,
 		// status.getCurrentUserRetweetId());

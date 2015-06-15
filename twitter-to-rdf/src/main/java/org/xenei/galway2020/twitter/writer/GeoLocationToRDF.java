@@ -1,5 +1,8 @@
 package org.xenei.galway2020.twitter.writer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.RDFList;
 import org.apache.jena.rdf.model.Resource;
@@ -25,14 +28,20 @@ public class GeoLocationToRDF {
 	}
 
 	public Resource writeCoordinates(GeoLocation[][] geoLocMatrix) {
-		RDFList lst = model.createList();
+		
+		List<RDFList> lstlst = new ArrayList<RDFList>();	
 		for (GeoLocation[] geoLst : geoLocMatrix) {
-			RDFList subList = model.createList();
-			lst.add(subList);
+			List<Resource> geoLocs = new ArrayList<Resource>();
 			for (GeoLocation geoLoc : geoLst) {
-				lst.add(write(geoLoc));
+				geoLocs.add(write(geoLoc));
 			}
+			lstlst.add( model.createList( geoLocs.iterator() ));			
 		}
-		return lst;
+		if (lstlst.isEmpty())
+		{
+			return model.createList();
+		}
+		
+		return model.createList( lstlst.iterator() );
 	}
 }

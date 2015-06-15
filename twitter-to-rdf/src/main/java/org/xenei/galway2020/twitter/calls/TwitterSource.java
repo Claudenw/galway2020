@@ -39,7 +39,7 @@ public class TwitterSource implements ModelSource {
 //		consumerSecret = System.getProperty("consumer.secret");
 //		accessTokenKey = System.getProperty("oauth.accessToken");
 //		accessTokenSecret = System.getProperty("oauth.accessTokenSecret");	
-		authorize = new OAuthSetUp( cfg );
+		authorize = new OAuthSetUp( this.cfg );
 	}
 	
 	private List<String> getTopics()

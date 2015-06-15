@@ -49,7 +49,8 @@ public class UserToRDF {
 			user.addProperty(FOAF.img, mediaWriter.writeURL(
 					userObj.getBiggerProfileImageURLHttps(), Size.LARGE));
 		}
-		user.addLiteral(DC_11.date, userObj.getCreatedAt());
+		
+		user.addLiteral(DC_11.date, DateToRDF.write(userObj.getCreatedAt()));
 		if (StringUtils.isNotBlank(userObj.getDescription())) {
 			user.addLiteral(DC_11.description, userObj.getDescription());
 		}
