@@ -8,7 +8,7 @@
 	<name>Galway 2020 - Main</name>
 	<packaging>pom</packaging>
 	<modules>
-		<module>../twitter-to-rdf</module>
+		<module>twitter-to-rdf</module>
 		<module>rdf-to-fuseki</module>
 		<module>rdf-to-file</module>
 		<module>common</module>
