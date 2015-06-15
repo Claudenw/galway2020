@@ -9,8 +9,10 @@ import org.apache.commons.configuration.*;
 
 import twitter4j.Query;
 import twitter4j.QueryResult;
+import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.TwitterException;
+import twitter4j.User;
 
 public class SearchTweets {
 
@@ -56,8 +58,13 @@ public class SearchTweets {
 	public void findTweets(OAuthSetUp auth, Configuration cfg)
 			throws TwitterException {
 
-		String[] twitterCfg = cfg.getStringArray("hashtag");
-		for (String queryText : twitterCfg) {
+		queryAndStore(auth, cfg.getStringArray("hashtag"));
+
+	}
+
+	private void queryAndStore(OAuthSetUp auth, String[] twitterQueries)
+			throws TwitterException {
+		for (String queryText : twitterQueries) {
 			Query query = new Query(queryText);
 
 			QueryResult result = auth.twitter.search(query);
@@ -65,6 +72,22 @@ public class SearchTweets {
 			// Store the results in a graph
 			StoreTweets.storeTweets(result);
 		}
+	}
+
+	public void findUsers(OAuthSetUp auth, Configuration cfg) throws TwitterException {
+
+		String[] twitterQueries = cfg.getStringArray("user");
+		
+		for (String queryText : twitterQueries) {
+			Query query = new Query(queryText);
+
+			ResponseList<User> result = auth.twitter.searchUsers(queryText, 0);
+
+			// Store the results in a graph
+			StoreTweets.storeTweets(result);
+			
+		}
+		
 	}
 
 }
