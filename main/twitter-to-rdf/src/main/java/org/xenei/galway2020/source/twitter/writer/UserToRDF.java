@@ -6,6 +6,7 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
+import org.apache.jena.vocabulary.RDFS;
 
 import twitter4j.MediaEntity.Size;
 import twitter4j.URLEntity;
@@ -132,6 +133,7 @@ public class UserToRDF {
 					screenName), FOAF.OnlineAccount);
 			model.add(user, RDFWriter.foafAccount, acct);
 			acct.addProperty(FOAF.accountServiceHomepage, RDFWriter.TwitterURL);
+			acct.addProperty( RDFS.label, screenName );
 		}
 	}
 
