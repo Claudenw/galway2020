@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.util.Map;
+import java.util.zip.GZIPOutputStream;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -40,13 +41,14 @@ public class ModelEntity implements HttpEntity {
 	}
 
 	public Header getContentType() {
-		return new BasicHeader( "Content-Type", lang.getHeaderString());
+		return new BasicHeader( "Content-Type", String.format( "%s; charset=%s",lang.getHeaderString(), "UTF-8"));
 	}
-
-	public Header getContentEncoding() {
-		return new BasicHeader( "Content-Encoding", "UTF-8");
+	
+	public Header getContentEncoding()
+	{
+		return null;
 	}
-
+	
 	public InputStream getContent() throws IOException,
 			UnsupportedOperationException {
 		if (contentThread != null && contentThread.isAlive())

@@ -27,6 +27,10 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.5</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.jena</groupId>
+			<artifactId>jena-querybuilder</artifactId>
+		</dependency>
 	</dependencies>
 	<name>Galway 2020 - Fuseki Model Sink</name>
 </project>
