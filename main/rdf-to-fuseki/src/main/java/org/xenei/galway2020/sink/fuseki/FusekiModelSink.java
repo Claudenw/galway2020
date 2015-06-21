@@ -23,19 +23,15 @@ public class FusekiModelSink implements ModelSink {
 	private static final String USER = "user";
 	private static final String PWD = "pwd";
 	
-	//public static final String GZIP = "gzip";
-	//public static final String DEFLATE = "deflate";
-	
 	private final CloseableHttpClient httpclient;
 	private HttpClientContext ctxt = null;
 	
 	private Configuration cfg;
-	//private String encoding;
 	
 	public FusekiModelSink( Configuration cfg )
 	{
 		this.cfg = cfg;
-		//this.encoding = GZIP;
+
 		
 		if (!cfg.containsKey(HOST))
 		{
@@ -52,7 +48,6 @@ public class FusekiModelSink implements ModelSink {
 		}
 		
 		HttpClientBuilder builder = HttpClientBuilder.create();
-		//builder.setContentDecoderRegistry(getContentDecoderMap());
 		httpclient = builder.build();
 		
 		if (cfg.containsKey( USER ))
