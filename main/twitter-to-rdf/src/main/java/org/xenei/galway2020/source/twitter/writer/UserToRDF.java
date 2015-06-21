@@ -7,8 +7,10 @@ import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
-import org.xenei.galway2020.ns.RDFWriter;
+import org.xenei.galway2020.source.twitter.TwitterSource;
 import org.xenei.galway2020.utils.DateToRDF;
+import org.xenei.galway2020.vocab.FOAF_Extra;
+import org.xenei.galway2020.vocab.Galway2020;
 
 import twitter4j.MediaEntity.Size;
 import twitter4j.URLEntity;
@@ -28,7 +30,9 @@ public class UserToRDF {
 		}
 		String url = String.format(
 				"http://galway2020.xenei.net/twitter/user#%s", id);
-		return model.createResource(url, FOAF.Person);
+		Resource resource = model.createResource(url, Galway2020.User);
+		resource.addProperty( RDF.type, FOAF.Person);
+		return resource;
 	}
 
 	public UserToRDF(Model model) {
@@ -62,14 +66,14 @@ public class UserToRDF {
 				user.addProperty(FOAF.interest, urlWriter.write(url));
 			}
 		}
-		user.addLiteral(RDFWriter.favoriteCount, userObj.getFavouritesCount());
-		user.addLiteral(RDFWriter.followersCount, userObj.getFollowersCount());
-		user.addLiteral(RDFWriter.friendsCount, userObj.getFriendsCount());
+		user.addLiteral(Galway2020.favoriteCount, userObj.getFavouritesCount());
+		user.addLiteral(Galway2020.followersCount, userObj.getFollowersCount());
+		user.addLiteral(Galway2020.friendsCount, userObj.getFriendsCount());
 		if (StringUtils.isNotBlank(userObj.getLang())) {
 			user.addLiteral(DC_11.language, userObj.getLang());
 		}
 		if (StringUtils.isNotBlank(userObj.getLocation())) {
-			user.addLiteral(RDFWriter.location, userObj.getLocation());
+			user.addLiteral(Galway2020.location, userObj.getLocation());
 		}
 		if (StringUtils.isNotBlank(userObj.getMiniProfileImageURL())) {
 			user.addProperty(FOAF.img, mediaWriter.writeURL(
@@ -92,12 +96,12 @@ public class UserToRDF {
 		}
 		addOnlineAccount(user, userObj.getScreenName());
 		if (userObj.getStatus() != null) {
-			user.addProperty(RDFWriter.status,
+			user.addProperty(Galway2020.status,
 					statusWriter.write(userObj.getStatus()));
 		}
-		user.addLiteral(RDFWriter.statusCount, userObj.getStatusesCount());
+		user.addLiteral(Galway2020.statusCount, userObj.getStatusesCount());
 		if (StringUtils.isNotBlank(userObj.getTimeZone())) {
-			user.addLiteral(RDFWriter.timeZone, userObj.getTimeZone());
+			user.addLiteral(Galway2020.timeZone, userObj.getTimeZone());
 		}
 		if (StringUtils.isNotBlank(userObj.getURL())) {
 			user.addProperty(FOAF.homepage,
@@ -108,7 +112,7 @@ public class UserToRDF {
 			user.addProperty(FOAF.homepage,
 					urlWriter.write(userObj.getURLEntity()));
 		}
-		user.addLiteral(RDFWriter.timeZoneOffset, userObj.getUtcOffset());
+		user.addLiteral(Galway2020.timeZoneOffset, userObj.getUtcOffset());
 		return user;
 	}
 
@@ -129,12 +133,12 @@ public class UserToRDF {
 
 	private void addOnlineAccount(Resource user, String screenName) {
 		if (StringUtils.isNotBlank(screenName)) {
-			model.add(RDFWriter.Twitter, RDF.type, FOAF.Agent);
+			model.add(Galway2020.Twitter, RDF.type, FOAF.Agent);
 			Resource acct = model.createResource(String.format(
 					"http://galway2020.xenei.net/twitter/twiterAccount#%s",
 					screenName), FOAF.OnlineAccount);
-			model.add(user, RDFWriter.foafAccount, acct);
-			acct.addProperty(FOAF.accountServiceHomepage, RDFWriter.TwitterURL);
+			model.add(user, FOAF_Extra.foafAccount, acct);
+			acct.addProperty(FOAF.accountServiceHomepage, TwitterSource.TWITTER_URL);
 			acct.addProperty( RDFS.label, screenName );
 		}
 	}

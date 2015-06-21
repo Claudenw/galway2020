@@ -5,8 +5,9 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.DC_11;
-import org.xenei.galway2020.ns.RDFWriter;
+import org.apache.jena.vocabulary.RDF;
 import org.xenei.galway2020.utils.DateToRDF;
+import org.xenei.galway2020.vocab.Galway2020;
 
 import twitter4j.HashtagEntity;
 import twitter4j.MediaEntity;
@@ -29,7 +30,9 @@ public class StatusToRDF {
 	public Resource getId(long id) {
 		String url = String.format(
 				"http://galway2020.xenei.net/twitter/status#%s", id);
-		return model.createResource(url, FOAF.Document);
+		Resource retval = model.createResource(url, Galway2020.Tweet);
+		retval.addProperty( RDF.type, FOAF.Document );
+		return retval;
 	}
 
 	public StatusToRDF(Model model) {
@@ -46,10 +49,10 @@ public class StatusToRDF {
 	public Resource write(Status status) {
 
 		Resource main = getId(status.getId());
-		main.addLiteral(RDFWriter.accessLevel, status.getAccessLevel());
+		main.addLiteral(Galway2020.accessLevel, status.getAccessLevel());
 		if (status.getContributors() != null) {
 			for (long l : status.getContributors()) {
-				main.addLiteral(RDFWriter.contributorId, getId(l));
+				main.addLiteral(Galway2020.contributorId, getId(l));
 			}
 		}
 		main.addLiteral(DC_11.date,  DateToRDF.asDateTime(status.getCreatedAt()));
@@ -58,10 +61,10 @@ public class StatusToRDF {
 		// status.getCurrentUserRetweetId());
 
 		for (MediaEntity media : status.getExtendedMediaEntities()) {
-			main.addProperty(RDFWriter.media, mediaEntityWriter.write(media));
+			main.addProperty(Galway2020.media, mediaEntityWriter.write(media));
 		}
 
-		main.addLiteral(RDFWriter.favoriteCount, status.getFavoriteCount());
+		main.addLiteral(Galway2020.favoriteCount, status.getFavoriteCount());
 		if (status.getGeoLocation() != null) {
 			geoLocationWriter.write(status.getGeoLocation());
 		}
@@ -71,7 +74,7 @@ public class StatusToRDF {
 		}
 
 		if (status.getInReplyToStatusId() >= 0) {
-			main.addProperty(RDFWriter.replyTo,
+			main.addProperty(Galway2020.replyTo,
 					getId(status.getInReplyToStatusId()));
 		}
 
@@ -84,37 +87,37 @@ public class StatusToRDF {
 		}
 
 		for (MediaEntity media : status.getMediaEntities()) {
-			main.addProperty(RDFWriter.media, mediaEntityWriter.write(media));
+			main.addProperty(Galway2020.media, mediaEntityWriter.write(media));
 		}
 
 		if (status.getPlace() != null) {
-			main.addProperty(RDFWriter.place,
+			main.addProperty(Galway2020.place,
 					placeWriter.write(status.getPlace()));
 		}
 
 		if (status.getRetweetCount()>-1)
 		{
-			main.addLiteral(RDFWriter.retweetCount, status.getRetweetCount());
+			main.addLiteral(Galway2020.retweetCount, status.getRetweetCount());
 		}
 		
 		if (status.getRetweetedStatus() != null) {
-			main.addProperty(RDFWriter.retweet,
+			main.addProperty(Galway2020.retweet,
 					write(status.getRetweetedStatus()));
 		}
 
 		if (status.getScopes() != null) {
 			for (String placeId : status.getScopes().getPlaceIds()) {
-				main.addProperty(RDFWriter.scope, placeWriter.getId(placeId));
+				main.addProperty(Galway2020.scope, placeWriter.getId(placeId));
 			}
 		}
 
-		main.addLiteral(RDFWriter.source, status.getSource());
+		main.addLiteral(Galway2020.source, status.getSource());
 
 		for (SymbolEntity symbol : status.getSymbolEntities()) {
 			symbolWriter.write(symbol);
 		}
 
-		main.addLiteral(RDFWriter.text, status.getText());
+		main.addLiteral(Galway2020.text, status.getText());
 
 		for (URLEntity url : status.getURLEntities()) {
 			if (StringUtils.isNotBlank(url.getURL())) {
@@ -123,12 +126,12 @@ public class StatusToRDF {
 		}
 
 		if (status.getUser() != null) {
-			userWriter.write(status.getUser()).addProperty(RDFWriter.tweet,
+			userWriter.write(status.getUser()).addProperty(Galway2020.tweet,
 					main);
 		}
 
 		for (UserMentionEntity userMention : status.getUserMentionEntities()) {
-			main.addProperty(RDFWriter.mentions,
+			main.addProperty(Galway2020.mentions,
 					userWriter.write(status.getUser(), userMention));
 		}
 		return main;

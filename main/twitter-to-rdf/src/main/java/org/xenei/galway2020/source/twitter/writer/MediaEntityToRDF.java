@@ -4,8 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
-import org.xenei.galway2020.ns.RDFWriter;
 import org.xenei.galway2020.utils.OwlFuncs;
+import org.xenei.galway2020.vocab.Galway2020;
 
 import twitter4j.MediaEntity;
 import twitter4j.MediaEntity.Size;
@@ -33,16 +33,16 @@ public class MediaEntityToRDF {
 		}
 		Resource retval = model.createResource(url);
 		if (size != null) {
-			retval.addLiteral(RDFWriter.width, size.getWidth());
-			retval.addLiteral(RDFWriter.height, size.getHeight());
+			retval.addLiteral(Galway2020.width, size.getWidth());
+			retval.addLiteral(Galway2020.height, size.getHeight());
 			if (size.getResize() == Size.FIT) {
-				retval.addLiteral(RDFWriter.resize, "Fit");
+				retval.addLiteral(Galway2020.resize, "Fit");
 			}
 			if (size.getResize() == Size.CROP) {
-				retval.addLiteral(RDFWriter.resize, "Crop");
+				retval.addLiteral(Galway2020.resize, "Crop");
 			}
 			if (sizeType >= 0 && sizeType < sizes.length) {
-				retval.addLiteral(RDFWriter.size, sizes[sizeType]);
+				retval.addLiteral(Galway2020.size, sizes[sizeType]);
 			}
 		}
 		return retval;

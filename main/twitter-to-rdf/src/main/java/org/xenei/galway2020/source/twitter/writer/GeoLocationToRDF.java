@@ -7,7 +7,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.RDFList;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
-import org.xenei.galway2020.ns.RDFWriter;
+import org.xenei.galway2020.vocab.Wgs84_pos;
 
 import twitter4j.GeoLocation;
 
@@ -21,10 +21,10 @@ public class GeoLocationToRDF {
 
 	public Resource write(GeoLocation geoLoc) {
 		Resource point = model.createResource();
-		point.addProperty(RDF.type, RDFWriter.gnPoint);
+		point.addProperty(RDF.type, Wgs84_pos.Point);
 
-		point.addLiteral(RDFWriter.gnLat, geoLoc.getLatitude());
-		point.addLiteral(RDFWriter.gnLong, geoLoc.getLongitude());
+		point.addLiteral(Wgs84_pos.lat, geoLoc.getLatitude());
+		point.addLiteral(Wgs84_pos.long_, geoLoc.getLongitude());
 		return point;
 	}
 

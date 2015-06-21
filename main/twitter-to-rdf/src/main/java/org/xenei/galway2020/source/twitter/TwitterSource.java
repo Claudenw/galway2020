@@ -18,6 +18,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.ResIterator;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.util.iterator.ExtendedIterator;
 import org.apache.jena.util.iterator.LazyIterator;
@@ -28,9 +29,9 @@ import org.apache.jena.vocabulary.RDFS;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xenei.galway2020.ModelSource;
-import org.xenei.galway2020.ns.RDFWriter;
 import org.xenei.galway2020.source.twitter.calls.OAuthSetUp;
 import org.xenei.galway2020.source.twitter.writer.StatusToRDF;
+import org.xenei.galway2020.vocab.Galway2020;
 
 import twitter4j.Query;
 import twitter4j.QueryResult;
@@ -43,6 +44,8 @@ public class TwitterSource implements ModelSource {
 	private final Configuration cfg;
 	private final OAuthSetUp authorize;
 	private final static Logger LOG = LoggerFactory.getLogger(TwitterSource.class);
+	
+	public final static Resource TWITTER_URL = ResourceFactory.createResource("https://twitter.com/");
 	
 	public TwitterSource(Configuration cfg) throws TwitterException, IOException
 	{
@@ -163,7 +166,7 @@ public class TwitterSource implements ModelSource {
 		@Override
 		public Model next() {
 			Model retval = modelIter.next();
-			ResIterator rIter = retval.listSubjectsWithProperty( RDF.type, RDFWriter.Hashtag);
+			ResIterator rIter = retval.listSubjectsWithProperty( RDF.type, Galway2020.Hashtag);
 			while (rIter.hasNext())
 			{
 				Resource r = rIter.next().getPropertyResourceValue( RDFS.label);

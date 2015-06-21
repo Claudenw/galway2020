@@ -4,7 +4,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDFS;
-import org.xenei.galway2020.ns.RDFWriter;
+import org.xenei.galway2020.vocab.Galway2020;
 
 import twitter4j.HashtagEntity;
 
@@ -19,7 +19,7 @@ public class HashtagToRDF {
 	public Resource getId(String hashTag) {
 		String url = String.format(
 				"http://galway2020.xenei.net/twitter/hashtag#%s", hashTag);
-		Resource r = model.createResource(url, RDFWriter.Hashtag);
+		Resource r = model.createResource(url, Galway2020.Hashtag);
 		r.addLiteral(DC_11.subject, hashTag);
 		r.addLiteral(RDFS.label, hashTag);
 		return r;
