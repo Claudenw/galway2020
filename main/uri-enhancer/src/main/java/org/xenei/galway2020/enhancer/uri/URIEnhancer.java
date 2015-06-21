@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.xenei.galway2020.Enhancer;
@@ -18,7 +17,6 @@ import org.xenei.uri.URIMatcher;
 import org.xenei.uri.URIRewriter;
 import org.apache.commons.configuration.Configuration;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
-import org.apache.jena.graph.Node;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
@@ -50,7 +48,7 @@ public class URIEnhancer implements Enhancer {
 	private final List<URIMatcher> ignoreList = new ArrayList<URIMatcher>();
 
 	private final Query uriQuery;
-	
+
 	private final URLHandlerFactory factory;
 
 	public URIEnhancer(Configuration config) throws IOException,
@@ -63,15 +61,14 @@ public class URIEnhancer implements Enhancer {
 		parseIgnoreList(config.subset("ignore"));
 		SelectBuilder sb = loadClassList(config.getStringArray("class"));
 		sb = loadPropertyList(sb, config.getStringArray("property"));
-		if (sb == null)
-		{
-			throw new IllegalArgumentException( "Configuration must have at least one class or property defined");
+		if (sb == null) {
+			throw new IllegalArgumentException(
+					"Configuration must have at least one class or property defined");
 		}
-		sb.setDistinct(true).optimize();
-		uriQuery = sb.build();
-		factory = new URLHandlerFactory( this );
+		uriQuery = sb.setDistinct(true).build();
+		factory = new URLHandlerFactory(this);
 	}
-	
+
 	private void parseIgnoreList(Configuration cfg) {
 		for (String ignoreKey : CfgTools.getPrefix(cfg)) {
 			ignoreList
@@ -119,8 +116,8 @@ public class URIEnhancer implements Enhancer {
 		SelectBuilder builder = new SelectBuilder().addVar(url);
 		boolean first = true;
 		for (String clz : classes) {
-			SelectBuilder sub = new SelectBuilder()
-			.addWhere(url, RDF.type, ResourceFactory.createResource(clz));
+			SelectBuilder sub = new SelectBuilder().addWhere(url, RDF.type,
+					ResourceFactory.createResource(clz));
 			if (first) {
 				builder.addSubQuery(sub.addVar(url));
 				first = false;
@@ -147,8 +144,8 @@ public class URIEnhancer implements Enhancer {
 		}
 
 		for (String property : properties) {
-			SelectBuilder sub = new SelectBuilder()
-			.addWhere("?x", ResourceFactory.createProperty(property), url);
+			SelectBuilder sub = new SelectBuilder().addWhere("?x",
+					ResourceFactory.createProperty(property), url);
 			if (first) {
 				builder.addSubQuery(sub.addVar(url));
 				first = false;
@@ -239,22 +236,24 @@ public class URIEnhancer implements Enhancer {
 	@Override
 	public Model apply(Model model) {
 		Model updates = ModelFactory.createDefaultModel();
-		try (QueryExecution qexec = QueryExecutionFactory.create(uriQuery, model)) {
-		    ResultSet results = qexec.execSelect() ;
-		    for ( ; results.hasNext() ; )
-		    {
-		      QuerySolution soln = results.nextSolution() ;
-		      Resource r = soln.getResource( "url") ; // Get a result variable - must be a resource
-		      factory.getHandler(r, updates).handle();
-		    }
-		  } catch (Exception e)
-		{
-			  System.out.println( e.getMessage() );
-			  e.printStackTrace(System.out);
+		try (QueryExecution qexec = QueryExecutionFactory.create(uriQuery,
+				model)) {
+			ResultSet results = qexec.execSelect();
+			for (; results.hasNext();) {
+				QuerySolution soln = results.nextSolution();
+				Resource r = soln.getResource("url"); // Get a result variable -
+														// must be a resource
+				try {
+					factory.getHandler(r, updates).handle();
+				} catch (RuntimeException e) {
+					LOG.error(e.getMessage(), e);
+				}
+			}
+		} catch (RuntimeException e) {
+			LOG.error(e.getMessage(), e);
 		}
-		return model.add( updates );
+		return model.add(updates);
 
-		
 	}
 
 }

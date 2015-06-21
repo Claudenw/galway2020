@@ -1,6 +1,5 @@
 package org.xenei.galway2020.enhancer.uri.handlers;
 
-import java.io.IOException;
 import java.net.URLConnection;
 
 import javax.ws.rs.core.MediaType;

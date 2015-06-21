@@ -1,18 +1,9 @@
 package org.xenei.galway2020.enhancer.uri.handlers;
 
-import java.util.Arrays;
-import java.util.List;
-
 import javax.ws.rs.core.MediaType;
 
-import org.apache.jena.graph.Node;
 import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.vocabulary.OWL;
-import org.apache.jena.vocabulary.RDF;
-import org.apache.jena.vocabulary.RDFS;
-import org.apache.jena.vocabulary.DCTerms;;
+import org.apache.jena.rdf.model.Resource;;
 
 /**
  * Am abstract urlResource handler.

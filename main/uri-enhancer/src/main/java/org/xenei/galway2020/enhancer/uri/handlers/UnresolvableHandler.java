@@ -8,7 +8,6 @@ import org.xenei.galway2020.ns.RDFWriter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.vocabulary.DC;
 
 /**
  * An Unresolvable handler handles the case where the URI resolution fails or the server 

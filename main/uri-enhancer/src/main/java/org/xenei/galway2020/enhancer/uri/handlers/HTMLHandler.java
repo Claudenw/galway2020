@@ -10,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.vocabulary.DC;
 import org.apache.jena.vocabulary.DCTypes;
 import org.apache.jena.vocabulary.DC_11;
@@ -81,7 +80,7 @@ public class HTMLHandler extends URIHandler {
 			
 			findContentLanguage(document);
 			
-			addLiteral(DC.title, document.getElementsByTagName("title"));
+			addLiteral(DC_11.title, document.getElementsByTagName("title"));
 			processMeta(document.getElementsByTagName("meta"));
 		} catch (IOException e) {
 			LOG.error(e.getMessage(), e);
@@ -135,14 +134,14 @@ public class HTMLHandler extends URIHandler {
 				if (StringUtils.isNotBlank(type)
 						&& StringUtils.isNotBlank(content)) {
 					if ("description".equalsIgnoreCase(type)) {
-						addLiteral(DC.description, content);
+						addLiteral(DC_11.description, content);
 					} else if ("keywords".equalsIgnoreCase(type)) {
 						String[] words = content.split(",");
 						for (String word : words) {
-							addLiteral(DC.subject, word);
+							addLiteral(DC_11.subject, word);
 						}
 					} else if ("author".equalsIgnoreCase(type)) {
-						addLiteral(DC.creator, content);
+						addLiteral(DC_11.creator, content);
 					}
 				}
 			}

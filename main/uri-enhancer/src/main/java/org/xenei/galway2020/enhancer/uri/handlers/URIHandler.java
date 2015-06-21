@@ -1,6 +1,5 @@
 package org.xenei.galway2020.enhancer.uri.handlers;
 
-import java.net.HttpURLConnection;
 import java.net.URLConnection;
 import java.util.Date;
 
@@ -8,7 +7,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.vocabulary.DC;
 import org.xenei.galway2020.utils.DateToRDF;
 
 /**
