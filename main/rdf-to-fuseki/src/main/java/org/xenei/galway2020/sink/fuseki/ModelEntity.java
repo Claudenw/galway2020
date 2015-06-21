@@ -6,8 +6,6 @@ import java.io.OutputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.util.Map;
-import java.util.zip.GZIPOutputStream;
-
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.message.BasicHeader;
@@ -28,27 +26,33 @@ public class ModelEntity implements HttpEntity {
 		this.model = model;
 	}
 
+	@Override
 	public boolean isRepeatable() {
 		return true;
 	}
 
+	@Override
 	public boolean isChunked() {
 		return false;
 	}
 
+	@Override
 	public long getContentLength() {
 		return -1; // don't know size.
 	}
 
+	@Override
 	public Header getContentType() {
 		return new BasicHeader( "Content-Type", String.format( "%s; charset=%s",lang.getHeaderString(), "UTF-8"));
 	}
 	
+	@Override
 	public Header getContentEncoding()
 	{
 		return null;
 	}
 	
+	@Override
 	public InputStream getContent() throws IOException,
 			UnsupportedOperationException {
 		if (contentThread != null && contentThread.isAlive())
@@ -60,7 +64,8 @@ public class ModelEntity implements HttpEntity {
 		final PipedOutputStream out = new PipedOutputStream(in);
 		contentThread = new Thread(
 		        new Runnable() {
-		            public void run () {
+		            @Override
+					public void run () {
 		                try {
 		                    // write the original OutputStream to the PipedOutputStream
 		                    writeTo(out);
@@ -75,6 +80,7 @@ public class ModelEntity implements HttpEntity {
 		return in;
 	}
 
+	@Override
 	public void writeTo(OutputStream outstream) throws IOException {
 		Map<String,String> map = model.getNsPrefixMap();
 		for (String pfx : map.keySet())
@@ -85,10 +91,12 @@ public class ModelEntity implements HttpEntity {
 		model.setNsPrefixes(map);
 	}
 
+	@Override
 	public boolean isStreaming() {
 		return true;
 	}
 
+	@Override
 	public void consumeContent() throws IOException {
 		if (contentThread != null && contentThread.isAlive())
 		{

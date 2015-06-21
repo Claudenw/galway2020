@@ -7,6 +7,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.RDFList;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
+import org.xenei.galway2020.ns.RDFWriter;
 
 import twitter4j.GeoLocation;
 

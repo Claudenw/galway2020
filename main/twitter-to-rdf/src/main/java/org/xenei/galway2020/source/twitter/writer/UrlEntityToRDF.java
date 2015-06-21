@@ -5,6 +5,8 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.DC_11;
+import org.xenei.galway2020.utils.OwlFuncs;
+
 import twitter4j.URLEntity;
 
 public class UrlEntityToRDF {
@@ -24,7 +26,7 @@ public class UrlEntityToRDF {
 			r.addLiteral(DC_11.title, url.getDisplayURL());
 		}
 		if (StringUtils.isNotBlank(url.getExpandedURL())) {
-			RDFWriter.Util.markSameAs(r,
+			OwlFuncs.makeSameAs(r,
 					model.createResource(url.getExpandedURL()));
 		}
 

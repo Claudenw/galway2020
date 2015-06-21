@@ -5,6 +5,8 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.DC_11;
+import org.xenei.galway2020.ns.RDFWriter;
+import org.xenei.galway2020.utils.DateToRDF;
 
 import twitter4j.HashtagEntity;
 import twitter4j.MediaEntity;
@@ -50,7 +52,7 @@ public class StatusToRDF {
 				main.addLiteral(RDFWriter.contributorId, getId(l));
 			}
 		}
-		main.addLiteral(DC_11.date,  DateToRDF.write(status.getCreatedAt()));
+		main.addLiteral(DC_11.date,  DateToRDF.asDateTime(status.getCreatedAt()));
 		// Not in the graph
 		// main.addLiteral( RDFWriter.retweetId,
 		// status.getCurrentUserRetweetId());
@@ -76,7 +78,10 @@ public class StatusToRDF {
 		userWriter.setUserScreenName(status.getInReplyToUserId(),
 				status.getInReplyToScreenName());
 
-		main.addProperty(DC_11.language, status.getLang());
+		if (StringUtils.isNotBlank(status.getLang()))
+		{
+			main.addProperty(DC_11.language, status.getLang());
+		}
 
 		for (MediaEntity media : status.getMediaEntities()) {
 			main.addProperty(RDFWriter.media, mediaEntityWriter.write(media));
@@ -87,8 +92,11 @@ public class StatusToRDF {
 					placeWriter.write(status.getPlace()));
 		}
 
-		main.addLiteral(RDFWriter.retweetCount, status.getRetweetCount());
-
+		if (status.getRetweetCount()>-1)
+		{
+			main.addLiteral(RDFWriter.retweetCount, status.getRetweetCount());
+		}
+		
 		if (status.getRetweetedStatus() != null) {
 			main.addProperty(RDFWriter.retweet,
 					write(status.getRetweetedStatus()));

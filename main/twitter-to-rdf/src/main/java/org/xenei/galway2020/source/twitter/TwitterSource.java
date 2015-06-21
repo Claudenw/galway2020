@@ -28,8 +28,8 @@ import org.apache.jena.vocabulary.RDFS;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xenei.galway2020.ModelSource;
+import org.xenei.galway2020.ns.RDFWriter;
 import org.xenei.galway2020.source.twitter.calls.OAuthSetUp;
-import org.xenei.galway2020.source.twitter.writer.RDFWriter;
 import org.xenei.galway2020.source.twitter.writer.StatusToRDF;
 
 import twitter4j.Query;

@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.apache.commons.configuration.Configuration;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.riot.Lang;
@@ -26,7 +27,7 @@ public class FileModelSink implements ModelSink {
 		dir = new File(cfg.getString(FILE_DIR));
 	}
 
-	public boolean insert(Model model) throws IOException {
+	private boolean insertUnnamed(Model model) throws IOException {
 		File outFile = File.createTempFile(prefix, "."
 				+ lang.getFileExtensions().get(0), dir);
 		model.write(new FileOutputStream(outFile), lang.getName());
@@ -39,11 +40,12 @@ public class FileModelSink implements ModelSink {
 	}
 
 	public boolean insert(Model model, String graphName) throws IOException {
-		if (graphName == null)
+		if (StringUtils.isBlank( graphName))
 		{
-			return insert(model);
+			return insertUnnamed( model );
 		}
 		File outFile = getFile(graphName);
+		
 		if (outFile.exists()) {
 			Model m = ModelFactory.createDefaultModel();
 			m.read(new FileInputStream(outFile), outFile.getName() + "#",
@@ -56,12 +58,12 @@ public class FileModelSink implements ModelSink {
 		return true;
 	}
 
-	public boolean delete(Model model) throws IOException {
-		throw new UnsupportedOperationException(
-				"Delete without graphName is not supported");
-	}
-
 	public boolean delete(Model model, String graphName) throws IOException {
+		if (StringUtils.isBlank( graphName ))
+		{
+			throw new IOException(
+					"Delete without graphName is not supported");
+		}
 		File outFile = getFile(graphName);
 		if (outFile.exists()) {
 			Model m = ModelFactory.createDefaultModel();

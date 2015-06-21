@@ -7,6 +7,8 @@ import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
+import org.xenei.galway2020.ns.RDFWriter;
+import org.xenei.galway2020.utils.DateToRDF;
 
 import twitter4j.MediaEntity.Size;
 import twitter4j.URLEntity;
@@ -51,7 +53,7 @@ public class UserToRDF {
 					userObj.getBiggerProfileImageURLHttps(), Size.LARGE));
 		}
 		
-		user.addLiteral(DC_11.date, DateToRDF.write(userObj.getCreatedAt()));
+		user.addLiteral(DC_11.date, DateToRDF.asDateTime(userObj.getCreatedAt()));
 		if (StringUtils.isNotBlank(userObj.getDescription())) {
 			user.addLiteral(DC_11.description, userObj.getDescription());
 		}

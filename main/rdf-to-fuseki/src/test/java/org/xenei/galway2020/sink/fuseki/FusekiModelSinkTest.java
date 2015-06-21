@@ -1,16 +1,10 @@
 package org.xenei.galway2020.sink.fuseki;
 
-import static org.junit.Assert.*;
-
-import java.io.IOException;
-
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
-import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.ResourceFactory;
-import org.junit.Test;
 
 public class FusekiModelSinkTest {
 

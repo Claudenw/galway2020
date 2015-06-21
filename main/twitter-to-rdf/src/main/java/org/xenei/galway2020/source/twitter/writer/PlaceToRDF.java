@@ -4,6 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
+import org.xenei.galway2020.ns.RDFWriter;
+import org.xenei.galway2020.utils.OwlFuncs;
 
 import twitter4j.Place;
 
@@ -63,7 +65,7 @@ public class PlaceToRDF {
 					placeObj.getStreetAddress());
 		}
 		if (StringUtils.isNotEmpty(placeObj.getURL())) {
-			RDFWriter.Util.markSameAs(place,
+			OwlFuncs.makeSameAs(place,
 					model.createResource(placeObj.getURL()));
 		}
 		return place;

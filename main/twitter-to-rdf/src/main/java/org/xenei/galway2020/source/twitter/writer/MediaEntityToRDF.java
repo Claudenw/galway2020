@@ -4,6 +4,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
+import org.xenei.galway2020.ns.RDFWriter;
+import org.xenei.galway2020.utils.OwlFuncs;
+
 import twitter4j.MediaEntity;
 import twitter4j.MediaEntity.Size;
 
@@ -57,13 +60,13 @@ public class MediaEntityToRDF {
 		Resource media = getId(mediaObj.getId());
 
 		if (StringUtils.isNotBlank(mediaObj.getURL())) {
-			RDFWriter.Util.markSameAs(media, urlWriter.write(mediaObj));
+			OwlFuncs.makeSameAs(media, urlWriter.write(mediaObj));
 		}
 		if (StringUtils.isNotBlank(mediaObj.getMediaURL())) {
-			RDFWriter.Util.markSameAs(media, writeURL(mediaObj.getMediaURL()));
+			OwlFuncs.makeSameAs(media, writeURL(mediaObj.getMediaURL()));
 		}
 		if (StringUtils.isNotBlank(mediaObj.getMediaURLHttps())) {
-			RDFWriter.Util.markSameAs(media,
+			OwlFuncs.makeSameAs(media,
 					writeURL(mediaObj.getMediaURLHttps()));
 		}
 		media.addProperty(DC_11.type, mediaObj.getType());

@@ -13,6 +13,7 @@
 		<module>rdf-to-file</module>
 		<module>common</module>
 		<module>processor</module>
+		<module>uri-enhancer</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -44,6 +45,11 @@
 				<groupId>org.apache.jena</groupId>
 				<artifactId>jena-querybuilder</artifactId>
 				<version>3.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.12</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

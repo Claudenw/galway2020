@@ -1,4 +1,4 @@
-package org.xenei.galway2020.source.twitter.writer;
+package org.xenei.galway2020.ns;
 
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
@@ -98,11 +98,5 @@ public interface RDFWriter {
 			+ "Twitter");
 	public static Resource TwitterURL = ResourceFactory
 			.createResource("https://twitter.com/");
-
-	public static class Util {
-		public static void markSameAs(Resource r1, Resource r2) {
-			r1.addProperty(OWL.sameAs, r2);
-			r2.addProperty(OWL.sameAs, r1);
-		}
-	}
+	public static Property httpStatus = ResourceFactory.createProperty( NS, "httpStatus" );
 }

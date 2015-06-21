@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.xenei.galway2020</groupId>
+    <artifactId>main</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>uri-enhancer</artifactId>
+  <name>Galway 2020 - URI Model Enhancement</name>
+  <description>Pulls URLs from the Model and enahances them with annotation about content type.</description>
+  <dependencies>
+  	<dependency>
+  		<groupId>javax.ws.rs</groupId>
+  		<artifactId>javax.ws.rs-api</artifactId>
+  		<version>2.0.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.slf4j</groupId>
+  		<artifactId>slf4j-api</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.jena</groupId>
+  		<artifactId>apache-jena-libs</artifactId>
+  		<type>pom</type>
+  	</dependency>
+  	<dependency>
+    <groupId>org.xenei.galway2020</groupId>
+    <artifactId>common</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </dependency>
+  	<dependency>
+  		<groupId>org.xenei</groupId>
+  		<artifactId>URIEditor</artifactId>
+  		<version>1.0.0</version>
+  	</dependency>
+  	<dependency>
+	<groupId>net.sf.jtidy</groupId>
+	<artifactId>jtidy</artifactId>
+	<version>r938</version>
+</dependency>
+
+  	<dependency>
+  		<groupId>org.apache.jena</groupId>
+  		<artifactId>jena-querybuilder</artifactId>
+  	</dependency>
+  </dependencies>
+</project>
