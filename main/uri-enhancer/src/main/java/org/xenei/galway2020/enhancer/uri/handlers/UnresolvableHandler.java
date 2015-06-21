@@ -4,7 +4,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xenei.galway2020.ns.RDFWriter;
+import org.xenei.galway2020.vocab.Galway2020;
+import org.xenei.galway2020.vocab.Http_headers;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
@@ -53,7 +54,7 @@ public class UnresolvableHandler extends URIHandler {
 		super.handle();
 		if (StringUtils.isNotBlank( reason ))
 		{
-			getWritingResource().addLiteral( RDFWriter.httpStatus, reason);
+			getWritingResource().addLiteral( Galway2020.httpStatus, reason);
 		}
 	}
 	

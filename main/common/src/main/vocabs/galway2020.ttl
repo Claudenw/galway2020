@@ -132,6 +132,11 @@ twitter:status rdf:type rdf:Property ;
 	rdfs:domain twitter:User;
 	.
 
+twitter:httpStatus rdf:type rdf:Property ;
+	rdfs:label "HTTP Status";
+	rdfs:description "The result for an attempted GET on a URL.";
+	.
+	
 twitter:statusCount rdf:type rdf:Property ;
 	rdfs:label "status count";
 	rdfs:description "The number statuses for the user";
