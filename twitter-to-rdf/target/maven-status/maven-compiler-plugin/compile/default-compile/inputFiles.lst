@@ -1,0 +1,16 @@
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\Parser.java
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\calls\OAuthSetUp.java
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\calls\App.java
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\writer\SymbolToRDF.java
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\writer\RDFWriter.java
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\calls\test.java
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\writer\UserToRDF.java
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\writer\PlaceToRDF.java
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\writer\MediaEntityToRDF.java
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\calls\TwitterSource.java
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\writer\StatusToRDF.java
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\writer\UrlEntityToRDF.java
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\writer\HashtagToRDF.java
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\writer\GeoLocationToRDF.java
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\calls\StoreTweets.java
+C:\Users\andrew\Documents\GitHub\Galway2020\galway2020\twitter-to-rdf\src\main\java\org\xenei\galway2020\twitter\calls\SearchTweets.java
