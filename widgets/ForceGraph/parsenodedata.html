@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Data Parser</title>
+</head>
+<body>
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+
+</style>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js"></script>
+<script>
+
+var nodeQuery="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
+"		SELECT ?label ?radius"+
+"		WHERE {"+
+"		{SELECT ?subject (count(?x) as ?radius)"+
+"		WHERE {"+
+"		 ?subject rdf:type <http://galway2020.xenei.net/ns/twitter#Hashtag> ."+
+"		  ?x <http://purl.org/dc/elements/1.1/subject> ?subject."+
+"		}"+
+"		Group by ?subject }"+
+"		        {?subject rdfs:label ?label}"+
+"		}";
+
+
+var nodes;
+//"node_data.json"
+d3.json("http://galway2020.xenei.net/tst/query").header( "Accept", "application/sparql-results+json" )
+.post(nodeQuery, function(error, nodes) {
+  if (error) throw error;
+
+  var bindings = nodes.results.bindings;
+  var nodes = bindings.map( function(obj){
+	  var rObj = {};
+	  rObj["label"]=obj.label.value;
+	  rObj["radius"]=obj.diameter.value;
+	  return rObj;
+  });
+
+  nodes.forEach( function(element, index, array) {
+	  console.log(' '+index+' name: '+element.label+' radius: '+element.radius);
+  }); 
+});
+  
+
+</script>
+<h1> hello there</h1>
+</body>
+</html>
