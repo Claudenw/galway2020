@@ -5,7 +5,6 @@ import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xenei.galway2020.vocab.Galway2020;
-import org.xenei.galway2020.vocab.Http_headers;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
@@ -46,7 +45,6 @@ public class UnresolvableHandler extends URIHandler {
 			Resource urlResource, Model updates) {
 		super(factory,mediaType, false, urlResource, updates);
 		this.reason = reason;
-		LOG.warn("{} {}", urlResource, this.reason);
 	}
 
 	@Override

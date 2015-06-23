@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration.SystemConfiguration;
 
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -17,37 +18,39 @@ public class OAuthSetUp {
 
 	private static String consumerKey;
 	private static String consumerSecret;
-	private static String accessTokenKey;
-	private static String accessTokenSecret;
-	public Twitter twitter = TwitterFactory.getSingleton();
-	public OAuthSetUp() throws TwitterException, IOException {
 
-		consumerKey = System.getProperty("consumer.key");
-		consumerSecret = System.getProperty("consumer.secret");
-		accessTokenKey = System.getProperty("oauth.accessToken");
-		accessTokenSecret = System.getProperty("oauth.accessTokenSecret");	
-	    
-	    twitter.setOAuthConsumer(consumerKey, consumerSecret);
-	    
-	   
+	public Twitter twitter = TwitterFactory.getSingleton();
+	
+	/**
+	 * Creates am OAuthSetup from the system properties:
+	 * <ul>
+	 * <li>consumer.key</li>
+	 * <li>consumer.secret</li>
+	 * </ul?
+	 * @throws TwitterException
+	 * @throws IOException
+	 */
+	public OAuthSetUp() throws TwitterException, IOException {
+		this( new SystemConfiguration() );
 	}
 	
+	/**
+	 * Creates am OAuthSetup from the provided properties:
+	 * <ul>
+	 * <li>consumer.key</li>
+	 * <li>consumer.secret</li>
+	 * </ul>
+	 * 
+	 * @param cfg The configuration file that contains the above properties.
+	 * @throws TwitterException
+	 * @throws IOException
+	 */
 	public OAuthSetUp(Configuration cfg) throws TwitterException, IOException {
 		consumerKey = cfg.getString("consumer.key");
-		consumerSecret = cfg.getString("consumer.secret");
-		accessTokenKey = cfg.getString("oauth.accessToken");
-		accessTokenSecret = cfg.getString("oauth.accessTokenSecret");	    
+		consumerSecret = cfg.getString("consumer.secret");    
 	    twitter.setOAuthConsumer(consumerKey, consumerSecret);  
 	}
 	
-	private static void storeAccessToken(long useId, AccessToken accessToken){
-	   System.out.println(accessToken.getToken());
-	    System.out.println(accessToken.getTokenSecret());
-	  }
-	private static void storeAccessToken(int useId, AccessToken accessToken){
-	    //store accessToken.getToken()
-	    //store accessToken.getTokenSecret()
-	  }
 	private static void initialSetUP(Twitter twitter) throws TwitterException, IOException {
 		 RequestToken requestToken = twitter.getOAuthRequestToken();
 		    AccessToken accessToken = null;
@@ -72,12 +75,13 @@ public class OAuthSetUp {
 		        }
 		      }
 		    }
+		    twitter.verifyCredentials();
 		    //persist to the accessToken for future reference.
 		   
-				storeAccessToken(twitter.verifyCredentials().getId() , accessToken);
+				//storeAccessToken(twitter.verifyCredentials().getId() , accessToken);
 	
-		    Status status = twitter.updateStatus("OAuth Set up Complete");
-		    System.out.println("Successfully updated the status to [" + status.getText() + "].");
+		    //Status status = twitter.updateStatus("OAuth Set up Complete");
+		    //System.out.println("Successfully updated the status to [" + status.getText() + "].");
     
 	}
 }

@@ -46,6 +46,8 @@ public abstract class AbstractWorkChain {
 	
 	public final void run() 
 	{
+		getLog().info( "Starting");
+		int i=0;
 		ExtendedIterator<Model> iter = source.modelIterator();
 		for (Enhancer enh : enhancers )
 		{
@@ -68,6 +70,8 @@ public abstract class AbstractWorkChain {
 					getLog().error( "Unable to send model to sink or retryQueue -- DATA LOST");
 				}
 			}
+			getLog().info( String.format( "finished model #%s", ++i));
 		}
+		getLog().info( "Finished" );
 	}
 }

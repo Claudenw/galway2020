@@ -109,6 +109,8 @@ public class URLHandlerFactory {
 					}
 					// not a 200 series response
 					haveContent = false;
+
+					LOG.warn("{} {} ({})", urlResource, hConnection.getResponseMessage(), hConnection.getResponseCode());
 					return new UnresolvableHandler( this, UNKNOWN, hConnection.getResponseMessage(), urlResource, updates);
 				}
 			}

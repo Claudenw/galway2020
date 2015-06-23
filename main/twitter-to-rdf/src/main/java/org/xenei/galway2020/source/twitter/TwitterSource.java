@@ -11,9 +11,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.Configuration;
-import org.apache.commons.configuration.SystemConfiguration;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.ResIterator;
@@ -38,68 +36,79 @@ import twitter4j.QueryResult;
 import twitter4j.Status;
 import twitter4j.TwitterException;
 
-
 public class TwitterSource implements ModelSource {
-	
+
 	private final Configuration cfg;
 	private final OAuthSetUp authorize;
-	private final static Logger LOG = LoggerFactory.getLogger(TwitterSource.class);
-	
-	public final static Resource TWITTER_URL = ResourceFactory.createResource("https://twitter.com/");
-	
-	public TwitterSource(Configuration cfg) throws TwitterException, IOException
-	{
+	private final static Logger LOG = LoggerFactory
+			.getLogger(TwitterSource.class);
+
+	public final static Resource TWITTER_URL = ResourceFactory
+			.createResource("https://twitter.com/");
+
+	/**
+	 * Constructs a twitter source.
+	 * 
+	 * The configuration file should provide the following:
+	 * <ul>
+	 * <li>consumer.key - OAuth key</li>
+	 * <li>consumer.secret - OAuth secret</li>
+	 * <li>hashtag - a hashtag (without the #) to follow. There may be multiple
+	 * hashtag entries.</li>
+	 * <li>user - a user (without the at-sign) to follow. There may be multiple
+	 * user entries.</li>
+	 * </ul>
+	 * 
+	 * @param cfg
+	 *            The configuration file
+	 * @throws TwitterException
+	 * @throws IOException
+	 */
+	public TwitterSource(Configuration cfg) throws TwitterException,
+			IOException {
 		// read properties from system configuration first.
-		this.cfg = new CompositeConfiguration( new SystemConfiguration() );
-		// then from configuration passed in.
-		((CompositeConfiguration)this.cfg).addConfiguration( cfg );
-//		consumerKey = System.getProperty("consumer.key");
-//		consumerSecret = System.getProperty("consumer.secret");
-//		accessTokenKey = System.getProperty("oauth.accessToken");
-//		accessTokenSecret = System.getProperty("oauth.accessTokenSecret");	
-		authorize = new OAuthSetUp( this.cfg );
+		this.cfg = cfg;
+
+		authorize = new OAuthSetUp(this.cfg);
 	}
-	
-	private ExtendedIterator<String> getTopics()
-	{
-		return getTopics( Arrays.asList(cfg.getStringArray("hashtag")) );
+
+	private ExtendedIterator<String> getTopics() {
+		return getTopics(Arrays.asList(cfg.getStringArray("hashtag")));
 	}
-	
-	private ExtendedIterator<String> getTopics(Collection<String> data)
-	{
-		return WrappedIterator.create(data.iterator())
-				.mapWith(new Function<String,String>(){
+
+	private ExtendedIterator<String> getTopics(Collection<String> data) {
+		return WrappedIterator.create(data.iterator()).mapWith(
+				new Function<String, String>() {
 					@Override
 					public String apply(String t) {
-						return String.format( "#%s", t);
-					}});
+						return String.format("#%s", t);
+					}
+				});
 	}
-	
-	private ExtendedIterator<String> getUsers()
-	{
+
+	private ExtendedIterator<String> getUsers() {
 		return getUsers(Arrays.asList(cfg.getStringArray("user")));
 	}
-	
-	private ExtendedIterator<String> getUsers(Collection<String> data)
-	{
-		return WrappedIterator.create(data.iterator())
-				.mapWith(new Function<String,String>(){
+
+	private ExtendedIterator<String> getUsers(Collection<String> data) {
+		return WrappedIterator.create(data.iterator()).mapWith(
+				new Function<String, String>() {
 
 					@Override
 					public String apply(String t) {
-						return String.format( "@%s", t);
-					}});
+						return String.format("@%s", t);
+					}
+				});
 	}
 
 	public class LazyModelIterator extends LazyIterator<Model> {
-		
-		private RecordingModelIterator  rmi;
-		
-		public LazyModelIterator( RecordingModelIterator  rmi )
-		{
+
+		private RecordingModelIterator rmi;
+
+		public LazyModelIterator(RecordingModelIterator rmi) {
 			this.rmi = rmi;
 		}
-		
+
 		@Override
 		public Model removeNext() {
 			throw new UnsupportedOperationException();
@@ -113,12 +122,12 @@ public class TwitterSource implements ModelSource {
 
 		@Override
 		public List<Model> toList() {
-			return NiceIterator.asList( this );
+			return NiceIterator.asList(this);
 		}
 
 		@Override
 		public Set<Model> toSet() {
-			return NiceIterator.asSet( this );
+			return NiceIterator.asSet(this);
 		}
 
 		@Override
@@ -126,27 +135,27 @@ public class TwitterSource implements ModelSource {
 			return getTopics(rmi.getHashtags()).andThen(
 					getUsers(rmi.getUsers())).mapWith(new QueryMap());
 		}
-		
+
 	}
+
 	@Override
 	public ExtendedIterator<Model> modelIterator() {
-		
-		ExtendedIterator<Model> modelIter = getTopics().andThen( getUsers() ).mapWith( new QueryMap() );
-	
-		RecordingModelIterator rmi = new RecordingModelIterator(  modelIter );
-		
-		return rmi.andThen( new LazyModelIterator(rmi) );
-	
+
+		ExtendedIterator<Model> modelIter = getTopics().andThen(getUsers())
+				.mapWith(new QueryMap());
+
+		RecordingModelIterator rmi = new RecordingModelIterator(modelIter);
+
+		return rmi.andThen(new LazyModelIterator(rmi));
+
 	}
-	
-	private class RecordingModelIterator implements ExtendedIterator<Model>
-	{
+
+	private class RecordingModelIterator implements ExtendedIterator<Model> {
 		private Set<String> hashtags = new HashSet<String>();
 		private Set<String> users = new HashSet<String>();
 		private ExtendedIterator<Model> modelIter;
-		
-		public RecordingModelIterator(ExtendedIterator<Model> modelIter)
-		{
+
+		public RecordingModelIterator(ExtendedIterator<Model> modelIter) {
 			this.modelIter = modelIter;
 		}
 
@@ -154,11 +163,11 @@ public class TwitterSource implements ModelSource {
 		public boolean hasNext() {
 			return modelIter.hasNext();
 		}
-		
+
 		public Set<String> getHashtags() {
 			return hashtags;
 		}
-		
+
 		public Set<String> getUsers() {
 			return users;
 		}
@@ -166,28 +175,26 @@ public class TwitterSource implements ModelSource {
 		@Override
 		public Model next() {
 			Model retval = modelIter.next();
-			ResIterator rIter = retval.listSubjectsWithProperty( RDF.type, Galway2020.Hashtag);
-			while (rIter.hasNext())
-			{
-				Resource r = rIter.next().getPropertyResourceValue( RDFS.label);
-				if (r != null)
-				{
+			ResIterator rIter = retval.listSubjectsWithProperty(RDF.type,
+					Galway2020.Hashtag);
+			while (rIter.hasNext()) {
+				Resource r = rIter.next().getPropertyResourceValue(RDFS.label);
+				if (r != null) {
 					hashtags.add(r.asLiteral().getValue().toString());
 				}
 			}
-			
-			rIter = retval.listSubjectsWithProperty( RDF.type, FOAF.OnlineAccount);
-			while (rIter.hasNext())
-			{
-				Resource r = rIter.next().getPropertyResourceValue( RDFS.label);
-				if (r != null)
-				{
+
+			rIter = retval.listSubjectsWithProperty(RDF.type,
+					FOAF.OnlineAccount);
+			while (rIter.hasNext()) {
+				Resource r = rIter.next().getPropertyResourceValue(RDFS.label);
+				if (r != null) {
 					users.add(r.asLiteral().getValue().toString());
 				}
 			}
-			
+
 			return retval;
-			
+
 		}
 
 		@Override
@@ -240,32 +247,37 @@ public class TwitterSource implements ModelSource {
 		public Set<Model> toSet() {
 			return modelIter.toSet();
 		}
-		
-		
+
 	}
-	
-	
-	
-	private class QueryMap implements Function<String,Model>
-	{
+
+	/**
+	 * Convert a string to a model. Performs the search and returns the result
+	 * as a model.
+	 * 
+	 */
+	private class QueryMap implements Function<String, Model> {
 		@Override
 		public Model apply(String topic) {
 			Model model = ModelFactory.createDefaultModel();
 			StatusToRDF statusWriter = new StatusToRDF(model);
-			 Query query = new Query(topic);
-			    QueryResult result;
+			Query query = new Query(topic);
+
+			QueryResult result = null;
+			do {
 				try {
 					result = authorize.twitter.search(query);
 					for (Status status : result.getTweets()) {
 						statusWriter.write(status);
 					}
 				} catch (TwitterException e) {
-					LOG.error( "Unable to execute query: "+query, e );
+					LOG.error("Unable to execute query: " + query, e);
 				}
-			    
+				query = result.nextQuery();
+			} while (query != null);
+
 			return model;
 		}
+
 	}
-	
 
 }
