@@ -13,3 +13,4 @@ will take the `hash_tags_jena.json` file and generate the `hash_tags_d3.json` fi
 python -m SimpleHTTPServer 8000
 ```
 will start a server in the folder and you can go to the URL [http://localhost:8000/test_page.html](http://localhost:8000/test_page.html) in your browser to visualize the graph.
+
