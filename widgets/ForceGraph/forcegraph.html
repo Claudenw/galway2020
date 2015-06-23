@@ -8,17 +8,17 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
-
-.node {
-  stroke: #fff;
-  stroke-width: 1.5px;
-}
-
-.link {
-  stroke: #999;
-  stroke-opacity: .6;
-}
-
+  .node {
+    stroke: #fff;
+    stroke-width: 1.5px;
+  }
+  .node text {
+    font: 9px helvetica;
+  }
+  .link {
+    stroke: #999;
+    stroke-opacity: .6;
+  }
 </style>
 <body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
@@ -52,7 +52,7 @@ var svg = d3.select("body").append("svg")
 
 var nodes;
 
-d3.json("node_data", function(error, nodes) {
+d3.json("test_data.json", function(error, nodes) {
   if (error) throw error;
 
   force
