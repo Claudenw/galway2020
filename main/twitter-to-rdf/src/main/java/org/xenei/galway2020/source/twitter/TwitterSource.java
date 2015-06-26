@@ -81,6 +81,7 @@ public class TwitterSource implements ModelSource {
 				new Function<String, String>() {
 					@Override
 					public String apply(String t) {
+						LOG.debug( "Getting hashtag {}", t);
 						return String.format("#%s", t);
 					}
 				});
@@ -96,6 +97,7 @@ public class TwitterSource implements ModelSource {
 
 					@Override
 					public String apply(String t) {
+						LOG.debug( "Getting user {}", t);
 						return String.format("@%s", t);
 					}
 				});
@@ -267,6 +269,7 @@ public class TwitterSource implements ModelSource {
 				try {
 					result = authorize.twitter.search(query);
 					for (Status status : result.getTweets()) {
+						LOG.debug( "Processing tweet: {}", status.getId());
 						statusWriter.write(status);
 					}
 				} catch (TwitterException e) {

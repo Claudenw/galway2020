@@ -16,9 +16,9 @@
 				<version>3.0.0-SNAPSHOT</version>
 				<configuration>
 					<includes>
-						<include>src/main/vocabs/*.ttl</include>
-						<include>src/main/vocabs/*.rdf</include>
-						<include>src/main/vocabs/*.owl</include>
+						<include>src/main/resources/vocabs/*.ttl</include>
+						<include>src/main/resources/vocabs/*.rdf</include>
+						<include>src/main/resources/vocabs/*.owl</include>
 					</includes>
 					<fileOptions>
 						<source>
