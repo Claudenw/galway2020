@@ -70,6 +70,9 @@ public abstract class AbstractWorkChain {
 					getLog().error( "Unable to send model to sink or retryQueue -- DATA LOST");
 				}
 			}
+			finally {
+				model.close();
+			}
 			getLog().info( String.format( "finished model #%s", ++i));
 		}
 		getLog().info( "Finished" );

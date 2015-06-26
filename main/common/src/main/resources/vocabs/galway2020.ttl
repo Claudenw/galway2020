@@ -7,13 +7,13 @@
 
 twitter:text rdf:type rdf:Property;
 	rdfs:label "Tweet Text" ;
-	rdfs:description "The text of a tweet";
+	rdfs:comment "The text of a tweet";
 	.
 	
 twitter:retweetCount rdf:type rdf:Property ;
 	rdfs:label "Number of retweets" ;
 	rdfs:domain twitter:Tweet ;
-	rdfs:description "The number of retweets of a tweet" ;
+	rdfs:comment "The number of retweets of a tweet" ;
 	.
 	
 twitter:accessLevel rdf:type rdf:Property ;
@@ -26,196 +26,196 @@ twitter:contributorId rdf:type rdf:Property ;
 	
 twitter:favoriteCount rdf:type rdf:Property ;
 	rdfs:label "favorite count" ;
-	rdfs:description "The number of times this tweet has been favorited" ;
+	rdfs:comment "The number of times this tweet has been favorited" ;
 	.
 	
 twitter:followersCount rdf:type rdf:Property ;
 	rdfs:label "followers count";
-	rdfs:description "The number of followers of this user";
+	rdfs:comment "The number of followers of this user";
 	.
 	
 
 twitter:friendsCount rdf:type rdf:Property ;
 	rdfs:label "friends count";
-	rdfs:description "The number of friends of this user";
+	rdfs:comment "The number of friends of this user";
 	.
 
 twitter:location rdf:type rdf:Property ;
 	rdfs:label "location";
-	rdfs:description "The number of friends the user";
+	rdfs:comment "The number of friends the user";
 	.
 
 twitter:replyTo rdf:type rdf:Property ;
 	rdfs:label "reply to";
-	rdfs:description "The tweet this is a reply to";
+	rdfs:comment "The tweet this is a reply to";
 	.
 
 twitter:source rdf:type rdf:Property ;
 	rdfs:label "source";
-	rdfs:description "The device type that created this tweet";
+	rdfs:comment "The device type that created this tweet";
 	.
 
 twitter:scope rdf:type rdf:Property ;
 	rdfs:label "geo scope";
-	rdfs:description "The geo scope that this tweet was targeted to";
+	rdfs:comment "The geo scope that this tweet was targeted to";
 	.
 
 twitter:mentions rdf:type rdf:Property ;
 	rdfs:label "mentions";
-	rdfs:description "The users that were mentioned in the tweet";
+	rdfs:comment "The users that were mentioned in the tweet";
 	.
 
 twitter:timeZone rdf:type rdf:Property ;
 	rdfs:label "timezone";
-	rdfs:description "The timezone the tweet was generated in";
+	rdfs:comment "The timezone the tweet was generated in";
 	.
 
 twitter:timeZoneOffset rdf:type rdf:Property ;
 	rdfs:label "timezone offset";
-	rdfs:description "The offset of the timezone from GMT";
+	rdfs:comment "The offset of the timezone from GMT";
 	.
 
 twitter:place rdf:type rdf:Property ;
 	rdfs:label "place";
-	rdfs:description "A textual representation of a place";
+	rdfs:comment "A textual representation of a place";
 	.
 
 twitter:country rdf:type rdf:Property ;
 	rdfs:label "country";
-	rdfs:description "The country where the tweet was created.";
+	rdfs:comment "The country where the tweet was created.";
 	.
 
 twitter:countryCode rdf:type rdf:Property ;
 	rdfs:label "country code";
-	rdfs:description "The country code for the country where the tweet was created.";
+	rdfs:comment "The country code for the country where the tweet was created.";
 	.
 
 twitter:placeType rdf:type rdf:Property ;
 	rdfs:label "type of place";
-	rdfs:description "The type of place identified.";
+	rdfs:comment "The type of place identified.";
 	.
 
 twitter:streetAddress rdf:type rdf:Property ;
 	rdfs:label "street address";
-	rdfs:description "The street address of the location.";
+	rdfs:comment "The street address of the location.";
 	.
 
 twitter:media rdf:type rdf:Property ;
 	rdfs:label "a media object";
-	rdfs:description "Identifies a media object associated with the tweet.";
+	rdfs:comment "Identifies a media object associated with the tweet.";
 	.
 
 twitter:height rdf:type rdf:Property ;
 	rdfs:label "height";
-	rdfs:description "The height of an image";
+	rdfs:comment "The height of an image";
 	.
 
 twitter:width rdf:type rdf:Property ;
 	rdfs:label "width";
-	rdfs:description "The width of an image";
+	rdfs:comment "The width of an image";
 	.
 
 twitter:resize rdf:type rdf:Property ;
 	rdfs:label "resize method";
-	rdfs:description "The suggested method for resizing the image.";
+	rdfs:comment "The suggested method for resizing the image.";
 	.
 
 twitter:size  rdf:type rdf:Property ;
 	rdfs:label "size";
-	rdfs:description "Identifies the size of an image.";
+	rdfs:comment "Identifies the size of an image.";
 	.
 
 twitter:status rdf:type rdf:Property ;
 	rdfs:label "status";
-	rdfs:description "Identifies the status of this user";
+	rdfs:comment "Identifies the status of this user";
 	rdfs:range twitter:Status;
 	rdfs:domain twitter:User;
 	.
 
 twitter:httpStatus rdf:type rdf:Property ;
 	rdfs:label "HTTP Status";
-	rdfs:description "The result for an attempted GET on a URL.";
+	rdfs:comment "The result for an attempted GET on a URL.";
 	.
 	
 twitter:statusCount rdf:type rdf:Property ;
 	rdfs:label "status count";
-	rdfs:description "The number statuses for the user";
+	rdfs:comment "The number statuses for the user";
 	rdfs:domain twitter:User;
 	.
 
 #twitter:displayURL rdf:type rdf:Property ;
 #	rdfs:label "friends count";
-#	rdfs:description "The number of friends of this user";
+#	rdfs:comment "The number of friends of this user";
 #	.
 
 #twitter:expandedURL rdf:type rdf:Property ;
 #	rdfs:label "friends count";
-#	rdfs:description "The number of friends of this user";
+#	rdfs:comment "The number of friends of this user";
 #	.
 
 twitter:tweet rdf:type rdf:Property ;
 	rdfs:label "A tweet";
-	rdfs:description "identifies a tweet of a user";
+	rdfs:comment "identifies a tweet of a user";
 	rdfs:domain twitter:User ;
 	rdfs:range twitter:Tweet ;
 	.
 
 twitter:retweet rdf:type rdf:Property ;
 	rdfs:label "a retweet";
-	rdfs:description "identifies a retweet of a tweet";
+	rdfs:comment "identifies a retweet of a tweet";
 	rdfs:domain twitter:Tweet;
 	rdfs:range twitter:Tweet;
 	.
 
 twitter:boundingBox rdf:type rdf:Property ;
 	rdfs:label "bounding box";
-	rdfs:description "a bounding box for location.";
+	rdfs:comment "a bounding box for location.";
 	.
 
 twitter:boundingBoxType rdf:type rdf:Property ;
 	rdfs:label "bounding box type";
-	rdfs:description "The general shape of the bounding box";
+	rdfs:comment "The general shape of the bounding box";
 	.
 
 twitter:geometry rdf:type rdf:Property ;
 	rdfs:label "A geometry";
-	rdfs:description "the bounding box of a geometry";
+	rdfs:comment "the bounding box of a geometry";
 	.
 
 twitter:geometryType rdf:type rdf:Property ;
 	rdfs:label "geometry type";
-	rdfs:description "The shape of the geometry";
+	rdfs:comment "The shape of the geometry";
 	.
 
 twitter:containedBy rdf:type rdf:Property ;
 	rdfs:label "contained by";
-	rdfs:description "Identifies a bounding box that contains this bounding box";
+	rdfs:comment "Identifies a bounding box that contains this bounding box";
 	.
 
 twitter:Size rdf:type owl:Class ;
 	rdfs:label "A size object";
-	rdfs:description "Identifies the size of something.";
+	rdfs:comment "Identifies the size of something.";
 	.
 
 twitter:Hashtag rdf:type owl:Class ;
 	rdfs:label "A hashtag";
-	rdfs:description "A hashtag from a tweet.";
+	rdfs:comment "A hashtag from a tweet.";
 	.
 
 twitter:Twitter rdf:type owl:Class ;
 	rdfs:label "The twitter system";
-	rdfs:description "Identifies the twitter system.";
+	rdfs:comment "Identifies the twitter system.";
 	.
 
 twitter:Tweet rdf:type owl:Class ;
 	rdfs:label "A tweet";
-	rdfs:description "Identifies the tweet system.";
+	rdfs:comment "Identifies the tweet system.";
 	rdfs:subClassOf foaf:Document;
 	.
 
 twitter:User rdf:type owl:Class ;
 	rdfs:label "A twiter user";
-	rdfs:description "Identifies user on the twitter system.";
+	rdfs:comment "Identifies user on the twitter system.";
 	rdfs:subClassOf foaf:Agent;
 	.	
 
