@@ -6,7 +6,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>reasoner-enhancer</artifactId>
-  <name>Reasoner enhancer</name>
+  <name>Galway 2020 - Reasoner Based Model Enhancement</name>
   <description>Enhances the model with triples from a reasoner.</description>
  <dependencies>
   
@@ -24,5 +24,15 @@
     <artifactId>common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </dependency>
-  </dependencies>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.xenei</groupId>
+  		<artifactId>classpath-utils</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+ </dependencies>
 </project>

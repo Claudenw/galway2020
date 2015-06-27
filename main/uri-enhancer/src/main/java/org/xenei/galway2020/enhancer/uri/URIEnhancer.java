@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.xenei.galway2020.Enhancer;
@@ -69,6 +70,13 @@ public class URIEnhancer implements Enhancer {
 		factory = new URLHandlerFactory(this);
 	}
 
+	@Override
+	public void shutdown()
+	{
+		rewriteList.clear();
+		ignoreList.clear();	
+	}
+	
 	private void parseIgnoreList(Configuration cfg) {
 		for (String ignoreKey : CfgTools.getPrefix(cfg)) {
 			ignoreList

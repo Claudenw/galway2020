@@ -7,6 +7,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.ResourceFactory;
+import org.apache.jena.vocabulary.OWL;
 import org.xenei.galway2020.utils.DateToRDF;
 
 /**
@@ -82,7 +84,15 @@ public class URIHandler extends URLHandlerImpl {
 				DateToRDF.addDate(getWritingResource(), new Date( connection.getDate() ));
 			}
 			addLength( connection.getContentLengthLong() );
+			if (! connection.getURL().toExternalForm().equals( getURIString() ))
+			{
+				
+				Resource other = getWritingResource().getModel().createResource(connection.getURL().toExternalForm());
+				getWritingResource().addProperty( OWL.sameAs, other);
+				other.addProperty( OWL.sameAs, getWritingResource() );
+			}
 		} 
+		
 		
 		// Attempt rewrite of URI for more data
 		URLHandler rewritenHandler = factory.rewriteHandler(this);

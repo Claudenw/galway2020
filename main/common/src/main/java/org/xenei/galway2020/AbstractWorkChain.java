@@ -9,7 +9,11 @@ import org.apache.jena.util.iterator.ExtendedIterator;
 import org.slf4j.Logger;
 import org.xenei.galway2020.sink.common.LoggingSink;
 
-public abstract class AbstractWorkChain {
+/**
+ * A chain comprising a ModelSource, zero or more Enhancers, a ModelSink and an optional ModelSink requeue.
+ * 
+ */
+public abstract class AbstractWorkChain implements Runnable {
 	private final ModelSource source;
 	private final ModelSink sink;
 	private final ModelSink retryQueue;
@@ -49,32 +53,41 @@ public abstract class AbstractWorkChain {
 		getLog().info( "Starting");
 		int i=0;
 		ExtendedIterator<Model> iter = source.modelIterator();
-		for (Enhancer enh : enhancers )
-		{
-			iter = iter.mapWith( enh );
-		}
-		while (iter.hasNext())
-		{
-			Model model = iter.next();
-			try {
-				if (! performSink( graphName, sink , model))
-				{
-					performSink( graphName, retryQueue, model );
-				}
-			} catch (IOException e) {
+		try {
+			for (Enhancer enh : enhancers )
+			{
+				iter = iter.mapWith( enh );
+			}
+			while (iter.hasNext())
+			{
+				Model model = iter.next();
 				try {
-					performSink( graphName, retryQueue, model );
+					if (! performSink( graphName, sink , model))
+					{
+						performSink( graphName, retryQueue, model );
+					}
+				} catch (IOException e) {
+					try {
+						performSink( graphName, retryQueue, model );
+					}
+					catch (IOException e2)
+					{
+						getLog().error( "Unable to send model to sink or retryQueue -- DATA LOST");
+					}
 				}
-				catch (IOException e2)
-				{
-					getLog().error( "Unable to send model to sink or retryQueue -- DATA LOST");
+				finally {
+					model.close();
 				}
+				getLog().info( String.format( "finished model #%s", ++i));
 			}
-			finally {
-				model.close();
-			}
-			getLog().info( String.format( "finished model #%s", ++i));
 		}
-		getLog().info( "Finished" );
+		finally {
+		getLog().info( "Shutting down");
+			for (Enhancer enh : enhancers)
+			{
+				enh.shutdown();
+			}
+			getLog().info( "Finished" );
+		}
 	}
 }

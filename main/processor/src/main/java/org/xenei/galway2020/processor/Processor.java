@@ -13,6 +13,7 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.SystemConfiguration;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -139,19 +140,25 @@ public class Processor implements Runnable {
 			NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException {
-		Action action = Action.valueOf( cfg.getString( "action", "action not defined" ).toUpperCase());
+		String actionStr = cfg.getString( "action");
+		if (StringUtils.isBlank(actionStr))
+		{
+			throw new IllegalArgumentException( "action must not be null or a null string");
+		}
+		Action action = Action.valueOf( actionStr.toUpperCase());
 		LOG.info( "Action: "+action);
 		LOG.info( "To Graph: "+cfg.getString( "graphName", "(none defined)"));
-		ModelSink sink = (ModelSink) createClass( cfg.subset( "sink" ));
+		
+		ModelSink sink = (ModelSink) createClass( checkClassCfg(cfg, "sink" ));
 		LOG.info( "Sink: "+sink.getClass());
-		ModelSource source = (ModelSource) createClass( cfg.subset("source"));
+		ModelSource source = (ModelSource) createClass( checkClassCfg(cfg, "source"));
 		LOG.info( "Source: "+source.getClass());
 		List<Enhancer> enhancers = createEnhancers(cfg.subset("enhancer"));
 		
 		ModelSink retryQueue = null;
 		if (cfg.containsKey( "retryQueue"))
 		{
-			retryQueue = (ModelSink) createClass( cfg.subset( "retryQueue"));
+			retryQueue = (ModelSink) createClass( checkClassCfg(cfg, "retryQueue"));
 			LOG.info( "Retry Queue: "+retryQueue.getClass());
 		}
 		if (action == Action.INSERT )
@@ -162,6 +169,29 @@ public class Processor implements Runnable {
 		{
 			workChain = new DeleteWorkChain( cfg.getString( "graphName"), source, enhancers, sink, retryQueue );
 		}
+	}
+	
+	private Configuration checkClassCfg( Configuration cfg, String subCfgName )
+	{
+		Configuration subCfg = cfg.subset(subCfgName);
+		
+		Iterator<String> iter = subCfg.getKeys();
+		while (iter.hasNext())
+		{
+			System.out.println( String.format( "%s : %s", subCfgName, iter.next()));
+		}
+		
+		if (!subCfg.containsKey("class"))
+		{
+			throw new IllegalArgumentException( String.format( "Section %s does not define 'class' property", subCfgName ));
+		}
+
+		Configuration cfg2 = subCfg.subset("config");
+		if (cfg2 == null)
+		{
+			throw new IllegalArgumentException( String.format( "Section %s does not define 'config' property", subCfgName ));
+		}
+		return subCfg;
 	}
 
 	private Object createClass(Configuration cfg) throws ClassNotFoundException,

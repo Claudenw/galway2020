@@ -96,6 +96,8 @@ public class ModelEntity implements HttpEntity {
 		return true;
 	}
 
+	
+	@Deprecated
 	@Override
 	public void consumeContent() throws IOException {
 		if (contentThread != null && contentThread.isAlive())

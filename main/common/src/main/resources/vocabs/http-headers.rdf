@@ -1212,7 +1212,7 @@
   <rdf:Description rdf:about="http://www.w3.org/2006/appformats/">
     <dct:title xml:lang="en">Web Application Formats (WAF) Working Group</dct:title>
     <dct:identifier>http://www.w3.org/2006/appformats/</dct:identifier>
-  </rdf:Description>http://www.w3.org/2005/MWI/BPWG/
+  </rdf:Description>
 
   <rdf:Description rdf:about="http://www.w3.org/Protocols/HTTP/Object_Headers.html">
     <dct:title xml:lang="en">Object Header lines in HTTP</dct:title>
@@ -1267,6 +1267,6 @@
   <rdf:Description rdf:about="http://www.w3.org/TR/2002/REC-P3P-20020416/">
     <dct:title xml:lang="en">The Platform for Privacy Preferences 1.0 (P3P1.0) Specification</dct:title>
     <dct:identifier>http://www.w3.org/TR/2002/REC-P3P-20020416/</dct:identifier>
-  </rdf:Description>http://www.w3.org/2006/appformats/
+  </rdf:Description>
 
 </rdf:RDF>

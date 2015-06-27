@@ -17,7 +17,7 @@ import org.junit.Test;
 import org.xenei.galway2020.vocab.Galway2020;
 
 public class ReasonerEnhancerTest {
-	ReasonerEnhancer enhancer;
+	private ReasonerEnhancer enhancer;
 
 	@Before
 	public void setup() throws URISyntaxException, IOException {
@@ -27,7 +27,7 @@ public class ReasonerEnhancerTest {
 	@Test
 	public void testAddition() throws FileNotFoundException {
 		Model m = ModelFactory.createDefaultModel();
-		Resource s = ResourceFactory.createResource("urn:test:subject");
+		Resource s = ResourceFactory.createResource("http://example.com/test");
 		m.add(s, RDF.type, Galway2020.Tweet);
 		Model m2 = enhancer.apply(m);
 		assertTrue(m2.contains(s, RDF.type, FOAF.Document));

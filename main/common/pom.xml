@@ -22,14 +22,14 @@
 					</includes>
 					<fileOptions>
 						<source>
-							<input>src/main/vocabs/wgs84_pos.rdf</input>
+							<input>src/main/resources/vocabs/wgs84_pos.rdf</input>
 							<namespace>http://www.w3.org/2003/01/geo/wgs84_pos#</namespace>
 							<package-name>org.xenei.galway2020.vocab</package-name>
 							<output>${project.basedir}/src/main/java</output>
 							<langRdfs>true</langRdfs>
 						</source>
 						<source>
-							<input>src/main/vocabs/geonames.owl</input>
+							<input>src/main/resources/vocabs/geonames.owl</input>
 							<package-name>org.xenei.galway2020.vocab</package-name>
 							<output>${project.basedir}/src/main/java</output>
 							<langOwl>true</langOwl>

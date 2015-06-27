@@ -7,7 +7,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>rdf-to-queue</artifactId>
-	<name>rdf-to-queue</name>
+	<name>Galway 2020 - Queue Interfaces</name>
 	<description>Submit rdfto a queue</description>
 	<dependencies>
 		<dependency>

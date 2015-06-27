@@ -66,12 +66,12 @@ public class TweetModelIterator implements Iterator<Model> {
 	
 	public Iterator<String> getUsers()
 	{
-		return users.iterator();
+		return WrappedIterator.create(users.iterator()).mapWith(new UserNameFunction());
 	}
 	
 	public Iterator<String> getHashTags()
 	{
-		return hashTags.iterator();
+		return WrappedIterator.create(hashTags.iterator()).mapWith(new TopicFunction());
 	}
 	
 	public Collection<Status> getRetweets()
