@@ -8,6 +8,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DCTypes;
 import org.apache.jena.vocabulary.RDF;
+import org.xenei.galway2020.enhancer.uri.URIEnhancer;
 
 /**
  * Create an image handler.
@@ -30,11 +31,14 @@ public class ImageHandler extends URIHandler {
 	 *            The urlResource.
 	 * @param updates
 	 *            The model to write the updates to.
+	 * @param enhancer
+	 *            The URIEnhancer instance
 	 */
 	public ImageHandler(URLHandlerFactory factory, MediaType mediaType,
-			URLConnection connection, Resource urlResource, Model updates) {
-		super(factory, mediaType, true, connection, urlResource, updates);
-
+			URLConnection connection, Resource urlResource, Model updates,
+			URIEnhancer enhancer) {
+		super(factory, mediaType, true, connection, urlResource, updates,
+				enhancer);
 	}
 
 	/**
@@ -43,7 +47,7 @@ public class ImageHandler extends URIHandler {
 	@Override
 	public void handle() {
 		super.handle();
-		getWritingResource().addLiteral(RDF.type, DCTypes.Image);
+		getWritingResource().addProperty(RDF.type, DCTypes.Image);
 	}
 
 }

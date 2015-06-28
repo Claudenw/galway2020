@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
 import org.xenei.galway2020.Enhancer;
 import org.xenei.galway2020.enhancer.uri.handlers.URLHandlerFactory;
 import org.xenei.galway2020.utils.CfgTools;
@@ -18,6 +16,8 @@ import org.xenei.uri.URIMatcher;
 import org.xenei.uri.URIRewriter;
 import org.apache.commons.configuration.Configuration;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
+import org.apache.jena.graph.Node;
+import org.apache.jena.graph.Triple;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
@@ -36,8 +36,6 @@ public class URIEnhancer implements Enhancer {
 
 	private Configuration config;
 
-	private Level logLevel;
-
 	/**
 	 * A list of rewriters that describe how to rewrite a URI into another URI
 	 * for further checking.
@@ -55,28 +53,34 @@ public class URIEnhancer implements Enhancer {
 	public URIEnhancer(Configuration config) throws IOException,
 			URISyntaxException {
 		this.config = config;
-
-		logLevel = Level.toLevel(config.getString("log-level", "INFO")
-				.toUpperCase());
 		parseRewriterList(config.subset("rewriter"));
 		parseIgnoreList(config.subset("ignore"));
-		SelectBuilder sb = loadClassList(config.getStringArray("class"));
-		sb = loadPropertyList(sb, config.getStringArray("property"));
-		if (sb == null) {
+		List<Triple> lst = new ArrayList<Triple>();
+		lst = loadClassList(lst, config.getStringArray("class"));
+		lst = loadPropertyList(lst, config.getStringArray("property"));
+		if (lst.isEmpty()) {
 			throw new IllegalArgumentException(
 					"Configuration must have at least one class or property defined");
+		}
+		SelectBuilder sb = new SelectBuilder().addVar("?url");
+		if (lst.size() == 1) {
+			sb.addWhere(lst.get(0));
+		} else {
+			for (Triple t : lst) {
+				SelectBuilder subSelect = new SelectBuilder().addWhere(t);
+				sb.addUnion(subSelect);
+			}
 		}
 		uriQuery = sb.setDistinct(true).build();
 		factory = new URLHandlerFactory(this);
 	}
 
 	@Override
-	public void shutdown()
-	{
+	public void shutdown() {
 		rewriteList.clear();
-		ignoreList.clear();	
+		ignoreList.clear();
 	}
-	
+
 	private void parseIgnoreList(Configuration cfg) {
 		for (String ignoreKey : CfgTools.getPrefix(cfg)) {
 			ignoreList
@@ -116,52 +120,40 @@ public class URIEnhancer implements Enhancer {
 		}
 	}
 
-	private SelectBuilder loadClassList(String[] classes) {
+	private List<Triple> loadClassList(List<Triple> lst, String[] classes) {
 		if (classes == null) {
-			return null;
+			return lst;
 		}
 		Var url = Var.alloc("url");
-		SelectBuilder builder = new SelectBuilder().addVar(url);
-		boolean first = true;
 		for (String clz : classes) {
-			SelectBuilder sub = new SelectBuilder().addWhere(url, RDF.type,
-					ResourceFactory.createResource(clz));
-			if (first) {
-				builder.addSubQuery(sub.addVar(url));
-				first = false;
-			} else {
-				builder.addUnion(sub);
-			}
+			lst.add(new Triple(url.asNode(), RDF.type.asNode(), ResourceFactory
+					.createResource(clz).asNode()));
 		}
-		return builder;
+		return lst;
 	}
 
-	private SelectBuilder loadPropertyList(SelectBuilder sb, String[] properties) {
+	private List<Triple> loadPropertyList(List<Triple> lst, String[] properties) {
 		if (properties == null) {
-			return null;
+			return lst;
 		}
 		Var url = Var.alloc("url");
-		SelectBuilder builder = null;
-		boolean first;
-		if (sb == null) {
-			builder = new SelectBuilder().addVar(url);
-			first = true;
-		} else {
-			builder = sb;
-			first = false;
-		}
-
 		for (String property : properties) {
-			SelectBuilder sub = new SelectBuilder().addWhere("?x",
-					ResourceFactory.createProperty(property), url);
-			if (first) {
-				builder.addSubQuery(sub.addVar(url));
-				first = false;
-			} else {
-				builder.addUnion(sub);
+			lst.add(new Triple(Node.ANY, ResourceFactory.createProperty(
+					property).asNode(), url.asNode()));
+		}
+		return lst;
+	}
+
+	public void addToIgnoreList(Resource r) {
+		if (r.isURIResource()) {
+			try {
+				URIMatcher matcher = new URIMatcher(new URI(r.getURI()));
+				ignoreList.add(matcher);
+				LOG.debug("Added {} to ignore list", matcher);
+			} catch (URISyntaxException e) {
+				LOG.error("{} is not a valid URI: {}", r.getURI(), e.toString());
 			}
 		}
-		return builder;
 	}
 
 	/**
@@ -173,20 +165,48 @@ public class URIEnhancer implements Enhancer {
 	 */
 	public boolean isIgnored(RDFNode node) {
 		if (!node.isURIResource()) {
+			LOG.debug("Ignoring {}", node);
 			return false;
 		}
+		return isIgnored(node.toString());
+	}
 
+	/**
+	 * Searches the ignoreList.
+	 *
+	 * @param uriStr
+	 *            The URI as a string.
+	 * @return true if the uriStr and matches a URI in the ignoreList.
+	 */
+	public boolean isIgnored(String uriStr) {
 		URI uri;
 		try {
-			uri = new URI(node.toString());
+			uri = new URI(uriStr);
 		} catch (URISyntaxException e) {
-			LOG.error("{} is not a valid URI: {}", node.toString(),
-					e.toString());
+			LOG.error("{} is not a valid URI: {}", uriStr, e.toString());
 			return false;
 		}
 
 		for (URIMatcher ignored : ignoreList) {
 			if (ignored.matches(uri)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Searches the ignoreList.
+	 *
+	 * @param uri
+	 *            The uri to check
+	 * @return true if the uri matches a URI in the ignoreList.
+	 */
+	public boolean isIgnored(URI uri) {
+
+		for (URIMatcher ignored : ignoreList) {
+			if (ignored.matches(uri)) {
+				LOG.debug("Ignoring {}", uri);
 				return true;
 			}
 		}
@@ -238,12 +258,16 @@ public class URIEnhancer implements Enhancer {
 			}
 		}
 		String retval = uri.toString();
-		return retval.equals(uriStr) ? null : retval;
+		if (retval.equals(uriStr) || isIgnored(uri)) {
+			return null;
+		}
+		return retval;
 	}
 
 	@Override
 	public Model apply(Model model) {
 		Model updates = ModelFactory.createDefaultModel();
+		LOG.debug("Query {}", uriQuery);
 		try (QueryExecution qexec = QueryExecutionFactory.create(uriQuery,
 				model)) {
 			ResultSet results = qexec.execSelect();
@@ -251,10 +275,13 @@ public class URIEnhancer implements Enhancer {
 				QuerySolution soln = results.nextSolution();
 				Resource r = soln.getResource("url"); // Get a result variable -
 														// must be a resource
-				try {
-					factory.getHandler(r, updates).handle();
-				} catch (RuntimeException e) {
-					LOG.error(e.getMessage(), e);
+				LOG.debug("processing {}", r);
+				if (!isIgnored(r)) {
+					try {
+						factory.getHandler(r, updates).handle();
+					} catch (RuntimeException e) {
+						LOG.error(e.getMessage(), e);
+					}
 				}
 			}
 		} catch (RuntimeException e) {

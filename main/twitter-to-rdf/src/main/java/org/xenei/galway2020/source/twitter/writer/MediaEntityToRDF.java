@@ -3,7 +3,9 @@ package org.xenei.galway2020.source.twitter.writer;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.DC_11;
+import org.apache.jena.vocabulary.RDF;
 import org.xenei.galway2020.utils.OwlFuncs;
 import org.xenei.galway2020.vocab.Galway2020;
 
@@ -70,6 +72,10 @@ public class MediaEntityToRDF {
 					writeURL(mediaObj.getMediaURLHttps()));
 		}
 		media.addProperty(DC_11.type, mediaObj.getType());
+		if (mediaObj.getType().equals("photo"))
+		{
+			media.addProperty( RDF.type, FOAF.Image);
+		}
 		return media;
 	}
 }

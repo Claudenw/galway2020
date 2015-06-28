@@ -179,8 +179,11 @@ public class TwitterSource implements ModelSource {
 
 		@Override
 		public void onRateLimitReached(RateLimitStatusEvent event) {
-			// TODO Auto-generated method stub
-			
+			try {
+				Thread.sleep( event.getRateLimitStatus().getRemaining()+100);
+			} catch (InterruptedException e) {
+				LOG.warn( "Interruped" );
+			}
 		}
 		
 	}

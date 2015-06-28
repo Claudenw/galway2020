@@ -12,10 +12,10 @@ import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xenei.galway2020.enhancer.uri.URIEnhancer;
-import org.xenei.galway2020.utils.OwlFuncs;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.vocabulary.RDFS;
 
 /**
  * Find a handler for a urlResource.
@@ -33,16 +33,15 @@ public class URLHandlerFactory {
 	/**
 	 * A set of custom media type definitions that we will use.
 	 */
-	private static MediaType APP_RDF_XML = new MediaType("application",
+	public static final MediaType APP_RDF_XML = new MediaType("application",
 			"rdf+xml");
-	private static MediaType IMAGE = new MediaType("image", "*");
-	private static MediaType UNKNOWN = MediaType.valueOf("unknown/*");
+	public static final MediaType IMAGE = new MediaType("image", "*");
+	public static final MediaType UNKNOWN = MediaType.valueOf("unknown/*");
 
-	public URLHandlerFactory( URIEnhancer uriEnhancer )
-	{
+	public URLHandlerFactory(URIEnhancer uriEnhancer) {
 		this.uriEnhancer = uriEnhancer;
 	}
-	
+
 	/**
 	 * Get the configuration.
 	 * 
@@ -52,7 +51,6 @@ public class URLHandlerFactory {
 		return uriEnhancer;
 	}
 
-
 	/**
 	 * Get the urlResource handler for a URI.
 	 * 
@@ -60,12 +58,15 @@ public class URLHandlerFactory {
 	 *            The uri to connect to.
 	 * @param urlResource
 	 *            The resource we are processing
-	 * @param updates The model to send updates to.
-	 * @return A URLhandler
+	 * @param updates
+	 *            The model to send updates to.
+	 * @return A URLhandler or null if the URI should be ignored.
 	 */
-	private URLHandler getHandler(String uri,
-			Resource urlResource, Model updates) {
-
+	private URLHandler getHandler(String uri, Resource urlResource,
+			Model updates) {
+		if (uriEnhancer.isIgnored(uri)) {
+			return new IgnoredURIHandler(urlResource, updates);
+		}
 		// connection to see if we can connect.
 		URLConnection objectConnection = null;
 		// default to an unknown media type.
@@ -95,23 +96,30 @@ public class URLHandlerFactory {
 						haveContent = false;
 					}
 				} else {
-					if (hConnection.getResponseCode() == 301)
-					{
+					if (hConnection.getResponseCode() == 301) {
 						// moved permanently
-						String newURL = hConnection.getHeaderField( "Location");
-						if (StringUtils.isNotBlank(newURL))
-						{
-							new UnresolvableHandler( this, UNKNOWN, hConnection.getResponseMessage(), urlResource, updates).handle();
-							Resource newResource = updates.createResource( newURL );
-							OwlFuncs.makeSameAs(newResource, urlResource );
-							return getHandler( newResource, updates );
+						String newURL = hConnection.getHeaderField("Location");
+						if (StringUtils.isNotBlank(newURL)) {
+							new UnresolvableHandler(this, UNKNOWN,
+									hConnection.getResponseMessage(),
+									urlResource, updates, uriEnhancer).handle();
+							Resource newResource = updates
+									.createResource(newURL);
+							// OwlFuncs.makeSameAs(newResource, urlResource );
+							urlResource.addProperty(RDFS.seeAlso, newResource);
+
+							return getHandler(newResource, updates);
 						}
 					}
 					// not a 200 series response
 					haveContent = false;
 
-					LOG.warn("{} {} ({})", urlResource, hConnection.getResponseMessage(), hConnection.getResponseCode());
-					return new UnresolvableHandler( this, UNKNOWN, hConnection.getResponseMessage(), urlResource, updates);
+					LOG.warn("{} {} ({})", urlResource,
+							hConnection.getResponseMessage(),
+							hConnection.getResponseCode());
+					return new UnresolvableHandler(this, UNKNOWN,
+							hConnection.getResponseMessage(), urlResource,
+							updates, uriEnhancer);
 				}
 			}
 
@@ -119,31 +127,37 @@ public class URLHandlerFactory {
 			if (haveContent) {
 				// check if there is an RDF result
 				if (APP_RDF_XML.getSubtype().equals(mediaType.getSubtype())) {
-					return new RDFHandler(this, mediaType, objectConnection, urlResource, updates);
+					return new RDFHandler(this, mediaType, objectConnection,
+							urlResource, updates, uriEnhancer);
 				}
 				// check if there is an IMAGE result
 				if (IMAGE.isCompatible(mediaType)) {
-					return new ImageHandler(this, mediaType, objectConnection, urlResource, updates);
+					return new ImageHandler(this, mediaType, objectConnection,
+							urlResource, updates, uriEnhancer);
 				}
 				// check if there is an HTML result.
 				if (MediaType.TEXT_HTML_TYPE.isCompatible(mediaType)) {
-					return new HTMLHandler(this, mediaType, objectConnection, urlResource, updates);
+					return new HTMLHandler(this, mediaType, objectConnection,
+							urlResource, updates, uriEnhancer);
 				}
 			}
 			// here we have an unknown type and possibly content
-			return new URIHandler(this, mediaType, haveContent, 
-					objectConnection, urlResource, updates);
+			return new URIHandler(this, mediaType, haveContent,
+					objectConnection, urlResource, updates, uriEnhancer);
 		} catch (SocketTimeoutException e) {
 			// server did not respond within the time limit. This is
 			// equivalent to
 			// a 408, 503 or 504 response
-			return new UnresolvableHandler(this, mediaType, e, urlResource, updates);
+			return new UnresolvableHandler(this, mediaType, e, urlResource,
+					updates, uriEnhancer);
 		} catch (MalformedURLException e) {
 			// URL is invalid
-			return new UnresolvableHandler(this, mediaType, e, urlResource, updates);
+			return new UnresolvableHandler(this, mediaType, e, urlResource,
+					updates, uriEnhancer);
 		} catch (IOException e) {
 			// could not communicate with endpoint
-			return new UnresolvableHandler(this, mediaType, e, urlResource, updates);
+			return new UnresolvableHandler(this, mediaType, e, urlResource,
+					updates, uriEnhancer);
 		}
 	}
 
@@ -154,17 +168,15 @@ public class URLHandlerFactory {
 	 *            The Resource we are processing
 	 * @param updates
 	 *            The model we will write updates to.
-	 *   
+	 * 
 	 * @return A URLHandler.
 	 */
-	public URLHandler getHandler(
-			Resource urlResource, Model updates) {
+	public URLHandler getHandler(Resource urlResource, Model updates) {
 
 		if (urlResource.isURIResource()) {
-			return getHandler(urlResource.getURI(), 
-					urlResource, updates );
+			return getHandler(urlResource.getURI(), urlResource, updates);
 		}
-		return new NonURIHandler(UNKNOWN,  urlResource, updates);
+		return new NonURIHandler(UNKNOWN, urlResource, updates);
 	}
 
 	/**
@@ -185,11 +197,15 @@ public class URLHandlerFactory {
 		}
 		String rewrittenUri = uriEnhancer.rewrite(handler.getURIString());
 		if (rewrittenUri != null) {
-			Resource rewrittenResource = handler.getModel().createResource( rewrittenUri );
+			Resource rewrittenResource = handler.getModel().createResource(
+					rewrittenUri);
 			URLHandler rewrittenHandler = getHandler(rewrittenUri,
-					rewrittenResource, handler.getModel() );
+					rewrittenResource, handler.getModel());
 			if (rewrittenHandler instanceof URIHandler) {
-				OwlFuncs.makeSameAs( handler.getWritingResource(), rewrittenResource );
+				// OwlFuncs.makeSameAs( handler.getWritingResource(),
+				// rewrittenResource );
+				handler.getWritingResource().addProperty(RDFS.seeAlso,
+						rewrittenHandler.getWritingResource());
 				return new RewrittenHandler(((URIHandler) rewrittenHandler));
 			}
 		}

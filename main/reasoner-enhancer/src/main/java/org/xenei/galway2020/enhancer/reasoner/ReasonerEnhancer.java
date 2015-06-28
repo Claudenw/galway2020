@@ -12,8 +12,6 @@ import org.apache.jena.graph.GraphStatisticsHandler;
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.TransactionHandler;
 import org.apache.jena.graph.Triple;
-import org.apache.jena.graph.compose.Difference;
-import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.reasoner.Reasoner;
@@ -37,7 +35,6 @@ import org.xenei.classpathutils.filter.SuffixFilter;
  *
  */
 public class ReasonerEnhancer implements Enhancer {
-	private boolean firstTime;
 	private final Reasoner reasoner;
 	private final Model tbox;
 	private static final Logger LOG = LoggerFactory
@@ -68,7 +65,6 @@ public class ReasonerEnhancer implements Enhancer {
 	 */
 	public ReasonerEnhancer(Configuration cfg) throws URISyntaxException,
 			IOException {
-		firstTime = true;
 		tbox = buildTBox();
 		String rName = cfg == null ? "OWLMini" : cfg.getString("reasoner",
 				"OWLMini");
@@ -124,16 +120,7 @@ public class ReasonerEnhancer implements Enhancer {
 
 	@Override
 	public Model apply(Model t) {
-		InfModel infModel = ModelFactory.createInfModel(reasoner, tbox, t);
-		if (firstTime) {
-			firstTime = false;
-			return infModel;
-		} else {
-
-			Graph g = new Difference(infModel.getGraph(), new UnclosableGraph(
-					tbox.getGraph()));
-			return ModelFactory.createModelForGraph(g);
-		}
+		return ModelFactory.createInfModel(reasoner, tbox, t);		
 	}
 
 	public class UnclosableGraph implements Graph {

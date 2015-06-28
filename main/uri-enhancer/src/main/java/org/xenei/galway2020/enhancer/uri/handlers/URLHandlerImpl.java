@@ -3,7 +3,9 @@ package org.xenei.galway2020.enhancer.uri.handlers;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.Resource;;
+import org.apache.jena.rdf.model.Resource;
+
+;
 
 /**
  * Am abstract urlResource handler.
@@ -21,16 +23,21 @@ abstract public class URLHandlerImpl implements URLHandler {
 
 	/**
 	 * Constructor
-	 * @param mediaType the media type of the object.
-	 * @param topic The topic the urlResource is for.
-	 * @param urlResource the urlResource.
+	 * 
+	 * @param mediaType
+	 *            the media type of the object.
+	 * @param topic
+	 *            The topic the urlResource is for.
+	 * @param urlResource
+	 *            the urlResource.
+	 * @param model
+	 *            the model to write to.
 	 */
-	public URLHandlerImpl(MediaType mediaType, 
-			Resource urlResource, Model updates) {
+	public URLHandlerImpl(MediaType mediaType, Resource urlResource, Model model) {
 		this.mediaType = mediaType;
 		this.readingResource = urlResource;
-		this.model = updates;
-		this.writingResource = model.createResource( urlResource.getURI());
+		this.model = model;
+		this.writingResource = model.createResource(urlResource.getURI());
 	}
 
 	@Override
@@ -52,26 +59,25 @@ abstract public class URLHandlerImpl implements URLHandler {
 	public final Resource getWritingResource() {
 		return writingResource;
 	}
-	
+
 	@Override
 	public final Model getModel() {
 		return model;
 	}
-	
+
 	/**
 	 * Adds the urlResource subject as a topic example.
 	 * 
 	 */
 	@Override
 	public void handle() {
-		getWritingResource().addLiteral( URLHandler.content_type, getMediaType().toString());
+		getWritingResource().addLiteral(URLHandler.content_type,
+				getMediaType().toString());
 	}
-	
-	protected void addLength( long length )
-	{
-		if (length > -1)
-		{
-			getWritingResource().addLiteral( URLHandler.content_length, length );
+
+	protected void addLength(long length) {
+		if (length > -1) {
+			getWritingResource().addLiteral(URLHandler.content_length, length);
 		}
 	}
 

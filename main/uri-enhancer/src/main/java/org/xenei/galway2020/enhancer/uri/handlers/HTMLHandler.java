@@ -10,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.vocabulary.DC;
 import org.apache.jena.vocabulary.DCTypes;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
@@ -24,6 +23,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.tidy.Tidy;
+import org.xenei.galway2020.enhancer.uri.URIEnhancer;
 
 /**
  * Handle an HTML type.
@@ -32,19 +32,30 @@ import org.w3c.tidy.Tidy;
 public class HTMLHandler extends URIHandler {
 
 	public static final Logger LOG = LoggerFactory.getLogger(HTMLHandler.class);
-	
+
 	/**
 	 * Constructor.
-	 * @param factory The URLHandlerFactory that we can use.
-	 * @param mediaType The media type of the object.
-	 * @param haveContent true if there is content.
-	 * @param connection The connection to the URL resource.
-	 * @param urlResource The urlResource.
-	 * @param updates The model to write the updates to.
+	 * 
+	 * @param factory
+	 *            The URLHandlerFactory that we can use.
+	 * @param mediaType
+	 *            The media type of the object.
+	 * @param haveContent
+	 *            true if there is content.
+	 * @param connection
+	 *            The connection to the URL resource.
+	 * @param urlResource
+	 *            The urlResource.
+	 * @param updates
+	 *            The model to write the updates to.
+	 * @param enhancer
+	 *            The URIEnhancer instance
 	 */
 	public HTMLHandler(URLHandlerFactory factory, MediaType mediaType,
-			URLConnection connection, Resource urlResource, Model updates) {
-		super(factory, mediaType, true, connection, urlResource, updates);
+			URLConnection connection, Resource urlResource, Model updates,
+			URIEnhancer enhancer) {
+		super(factory, mediaType, true, connection, urlResource, updates,
+				enhancer);
 	}
 
 	/**
@@ -54,12 +65,11 @@ public class HTMLHandler extends URIHandler {
 	public void handle() {
 		super.handle();
 		getWritingResource().addProperty(RDF.type, DCTypes.InteractiveResource);
-		List<String> lst = getConnection().getHeaderFields().get("Content-Language");
-		if (lst != null)
-		{
-			for (String s : lst)
-			{
-				addLiteral( DC_11.language, s);
+		List<String> lst = getConnection().getHeaderFields().get(
+				"Content-Language");
+		if (lst != null) {
+			for (String s : lst) {
+				addLiteral(DC_11.language, s);
 			}
 		}
 
@@ -72,14 +82,15 @@ public class HTMLHandler extends URIHandler {
 		tidy.setFixComments(true);
 		tidy.setMakeClean(true);
 		tidy.setMakeBare(true);
-		tidy.setQuiet(true); 
+		tidy.setQuiet(true);
 		tidy.setShowErrors(0);
 		tidy.setShowWarnings(false);
 		try {
-			Document document = tidy.parseDOM(getConnection().getInputStream(), null);
-			
+			Document document = tidy.parseDOM(getConnection().getInputStream(),
+					null);
+
 			findContentLanguage(document);
-			
+
 			addLiteral(DC_11.title, document.getElementsByTagName("title"));
 			processMeta(document.getElementsByTagName("meta"));
 		} catch (IOException e) {
@@ -88,28 +99,24 @@ public class HTMLHandler extends URIHandler {
 
 	}
 
-	 private String getText(Node node)
-	    {
-	        StringBuffer reply = new StringBuffer();
+	private String getText(Node node) {
+		StringBuffer reply = new StringBuffer();
 
-	        NodeList children = node.getChildNodes();
-	        for (int i = 0; i < children.getLength(); i++)
-	        {
-	            Node child = children.item(i);
+		NodeList children = node.getChildNodes();
+		for (int i = 0; i < children.getLength(); i++) {
+			Node child = children.item(i);
 
-	            if ((child instanceof CharacterData && !(child instanceof Comment)) || child instanceof EntityReference)
-	            {
-	                reply.append(child.getNodeValue());
-	            }
-	            else if (child.getNodeType() == Node.ELEMENT_NODE)
-	            {
-	                reply.append(getText(child));
-	            }
-	        }
+			if ((child instanceof CharacterData && !(child instanceof Comment))
+					|| child instanceof EntityReference) {
+				reply.append(child.getNodeValue());
+			} else if (child.getNodeType() == Node.ELEMENT_NODE) {
+				reply.append(getText(child));
+			}
+		}
 
-	        return reply.toString();
-	    }
-	 
+		return reply.toString();
+	}
+
 	private void addLiteral(Property property, NodeList nl) {
 		for (int i = 0; i < nl.getLength(); i++) {
 			addLiteral(property, getText(nl.item(i)));
@@ -122,8 +129,7 @@ public class HTMLHandler extends URIHandler {
 		}
 	}
 
-	private void processMetaName( NamedNodeMap nnm )
-	{
+	private void processMetaName(NamedNodeMap nnm) {
 		Node n2 = nnm.getNamedItem("name");
 		if (n2 != null) {
 			String type = n2.getNodeValue();
@@ -147,9 +153,8 @@ public class HTMLHandler extends URIHandler {
 			}
 		}
 	}
-	
-	private void processMetaHttpEquiv( NamedNodeMap nnm )
-	{
+
+	private void processMetaHttpEquiv(NamedNodeMap nnm) {
 		Node n2 = nnm.getNamedItem("http-equiv");
 		if (n2 != null) {
 			String type = n2.getNodeValue();
@@ -161,30 +166,28 @@ public class HTMLHandler extends URIHandler {
 						&& StringUtils.isNotBlank(content)) {
 					if ("content-language".equalsIgnoreCase(type)) {
 						addLiteral(DC_11.language, content);
-					} 
+					}
 				}
 			}
 		}
 	}
+
 	private void processMeta(NodeList nl) {
 		for (int i = 0; i < nl.getLength(); i++) {
 			Node n = nl.item(i);
 			NamedNodeMap nnm = n.getAttributes();
-			processMetaName( nnm );
-			processMetaHttpEquiv( nnm );
+			processMetaName(nnm);
+			processMetaHttpEquiv(nnm);
 		}
 	}
-	
-	private void findContentLanguage( Document document )
-	{
+
+	private void findContentLanguage(Document document) {
 		NodeList nl = document.getElementsByTagName("html");
-		for (int i=0;i<nl.getLength();i++)
-		{
+		for (int i = 0; i < nl.getLength(); i++) {
 			Node n = nl.item(i);
 			NamedNodeMap nnm = n.getAttributes();
 			Node n2 = nnm.getNamedItem("lang");
-			if (n2 != null)
-			{
+			if (n2 != null) {
 				addLiteral(DC_11.language, n2.getNodeValue());
 			}
 		}
