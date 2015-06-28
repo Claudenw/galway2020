@@ -1,0 +1,51 @@
+@prefix fuseki:  <http://jena.apache.org/fuseki#> .
+@prefix tdb:     <http://jena.hpl.hp.com/2008/tdb#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
+@prefix sec:    <http://apache.org/jena/security/Assembler#> .
+@prefix my:     <http://example.org/#> .
+
+[] ja:loadClass    "org.apache.jena.security.SecuredAssembler" .
+sec:Model       rdfs:subClassOf  ja:NamedModel .
+
+[] ja:loadClass "org.apache.jena.tdb.TDB" .
+tdb:DatasetTDB  rdfs:subClassOf  ja:RDFDataset .
+tdb:GraphTDB    rdfs:subClassOf  ja:Model      .
+
+
+my:baseModel rdf:type tdb:DatasetTDB ;
+    tdb:location "DB" ;
+ 	.
+ 	
+my:securedModel rdf:type sec:Model ;
+    sec:baseModel my:baseModel ;
+    ja:modelName "https://galway2020.xenei.net/securedModel" ;
+    sec:evaluatorImpl my:secEvaluator . 
+    
+my:secEvaluator rdf:type sec:Evaluator ;
+    sec:args [  
+        rdf:_1 my:baseModel ;
+    ] ;
+    sec:evaluatorClass "org.xenei.galway2020..permissions.PermissionEvaluatorImpl" .
+    
+my:securedDataset rdf:type ja:RDFDataset ;
+    ja:defaultGraph my:securedModel .
+    
+my:fuskei rdf:type fuseki:Server ;
+    fuseki:services (
+        my:service1
+    ) .
+    
+my:service1 rdf:type fuseki:Service ;
+    rdfs:label                        "My Secured Data Service" ;
+    fuseki:name                       "tst" ;       # http://host:port/myAppFuseki
+    fuseki:serviceQuery               "query" ;    # SPARQL query service
+    fuseki:serviceQuery               "sparql" ;   # SPARQL query service
+    fuseki:serviceUpdate              "update" ;   # SPARQL query service
+    fuseki:serviceUpload              "upload" ;   # Non-SPARQL upload service
+    fuseki:serviceReadWriteGraphStore "data" ;     # SPARQL Graph store protocol (read and write)
+    # A separate ead-only graph store endpoint:
+    fuseki:serviceReadGraphStore      "get" ;      # SPARQL Graph store protocol (read only)
+    fuseki:dataset                   my:securedDataset ;   
+    . 
