@@ -19,30 +19,37 @@ public class GeoLocationToRDF {
 		this.model = model;
 	}
 
+	/**
+	 * Write a geolocation as a point object
+	 * @param geoLoc The location to write
+	 * @return The point object
+	 */
 	public Resource write(GeoLocation geoLoc) {
 		Resource point = model.createResource();
 		point.addProperty(RDF.type, Wgs84_pos.Point);
-
 		point.addLiteral(Wgs84_pos.lat, geoLoc.getLatitude());
 		point.addLiteral(Wgs84_pos.long_, geoLoc.getLongitude());
 		return point;
 	}
 
-	public Resource writeCoordinates(GeoLocation[][] geoLocMatrix) {
-		
-		List<RDFList> lstlst = new ArrayList<RDFList>();	
-		for (GeoLocation[] geoLst : geoLocMatrix) {
-			List<Resource> geoLocs = new ArrayList<Resource>();
-			for (GeoLocation geoLoc : geoLst) {
-				geoLocs.add(write(geoLoc));
-			}
-			lstlst.add( model.createList( geoLocs.iterator() ));			
-		}
-		if (lstlst.isEmpty())
-		{
-			return model.createList();
-		}
-		
-		return model.createList( lstlst.iterator() );
-	}
+//	public Resource writeCoordinates(GeoLocation[][] geoLocMatrix) {
+//		
+//		List<RDFList> lstlst = new ArrayList<RDFList>();	
+//		for (GeoLocation[] geoLst : geoLocMatrix) {
+//			Resource point = model.createResource();
+//			point.addProperty( RDF.type, Wgs84_pos.Point);
+//			
+//			List<Resource> geoLocs = new ArrayList<Resource>();
+//			for (GeoLocation geoLoc : geoLst) {
+//				geoLocs.add(write(geoLoc));
+//			}
+//			lstlst.add( model.createList( geoLocs.iterator() ));			
+//		}
+//		if (lstlst.isEmpty())
+//		{
+//			return model.createList();
+//		}
+//		
+//		return model.createList( lstlst.iterator() );
+//	}
 }

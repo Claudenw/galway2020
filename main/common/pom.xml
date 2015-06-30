@@ -35,6 +35,12 @@
 							<langOwl>true</langOwl>
 						</source>
 						<source>
+							<input>src/main/resources/vocabs/geosparql.rdf</input>
+							<package-name>org.xenei.galway2020.vocab</package-name>
+							<output>${project.basedir}/src/main/java</output>
+							<langOwl>true</langOwl>
+						</source>
+						<source>
 							<input>default</input>
 							<package-name>org.xenei.galway2020.vocab</package-name>
 							<output>${project.basedir}/src/main/java</output>

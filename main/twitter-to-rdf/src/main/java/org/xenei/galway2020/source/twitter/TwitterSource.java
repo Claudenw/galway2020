@@ -170,7 +170,9 @@ public class TwitterSource implements ModelSource {
 			if (event.getRateLimitStatus().getRemaining() == 0)
 			{
 				try {
-					Thread.sleep( event.getRateLimitStatus().getRemaining()+100);
+					long tm = 100+event.getRateLimitStatus().getSecondsUntilReset()*1000;
+					LOG.debug( String.format( "Sleeping for %s milliseconds", tm ));
+					Thread.sleep( tm );
 				} catch (InterruptedException e) {
 					LOG.warn( "Interruped" );
 				}
@@ -180,7 +182,9 @@ public class TwitterSource implements ModelSource {
 		@Override
 		public void onRateLimitReached(RateLimitStatusEvent event) {
 			try {
-				Thread.sleep( event.getRateLimitStatus().getRemaining()+100);
+				long tm = 100+event.getRateLimitStatus().getSecondsUntilReset()*1000;
+				LOG.debug( String.format( "Sleeping for %s milliseconds", tm ));
+				Thread.sleep( tm);
 			} catch (InterruptedException e) {
 				LOG.warn( "Interruped" );
 			}

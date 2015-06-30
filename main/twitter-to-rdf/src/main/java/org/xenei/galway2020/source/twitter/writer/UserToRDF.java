@@ -35,17 +35,33 @@ public class UserToRDF {
 		return resource;
 	}
 
+	/**
+	 * Constructor.
+	 * Adds the (Twitter type FOAF.Agent) 
+	 * @param model The model to write to.
+	 */
 	public UserToRDF(Model model) {
 		this(model, new StatusToRDF(model));
 	}
 
+	/**
+	 * Create the UserToRDF.
+	 * @param model The model to add data to.
+	 * @param statusWriter A status writer instance to prevent recursion.
+	 */
 	public UserToRDF(Model model, StatusToRDF statusWriter) {
 		this.model = model;
 		this.urlWriter = new UrlEntityToRDF(model);
 		this.mediaWriter = new MediaEntityToRDF(model);
 		this.statusWriter = statusWriter;
+		
 	}
 
+	/**
+	 * Write the userObject to the RDF store.
+	 * @param userObj The object to write
+	 * @return The user Resource in the graph.
+	 */
 	public Resource write(User userObj) {
 		Resource user = getId(userObj.getId());
 		if (StringUtils.isNotBlank(userObj.getBiggerProfileImageURL())) {
@@ -116,10 +132,16 @@ public class UserToRDF {
 		return user;
 	}
 
+	/**
+	 * Write data for a user mentioning another user in a post
+	 * @param userObj The user doing the mention
+	 * @param userMention The mention
+	 * @return the Resource of the user that was mentioned.
+	 */
 	public Resource write(User userObj, UserMentionEntity userMention) {
 		Resource user = getId(userObj.getId());
 		Resource mentioned = getId(userMention.getId());
-		model.add(user, FOAF.knows, mentioned);
+		user.addProperty( FOAF.knows, mentioned);
 		addOnlineAccount(mentioned, userMention.getScreenName());
 		setName(mentioned, userMention.getName());
 		return mentioned;
@@ -131,9 +153,15 @@ public class UserToRDF {
 		}
 	}
 
+	/**
+	 * Add the screen name for the user and make the user a twitter account.
+	 * If screenName is null or blank no data is added. 
+	 * @param user The Resource for the user
+	 * @param screenName The screen name for the user.
+	 */
 	private void addOnlineAccount(Resource user, String screenName) {
 		if (StringUtils.isNotBlank(screenName)) {
-			model.add(Galway2020.Twitter, RDF.type, FOAF.Agent);
+			
 			Resource acct = model.createResource(String.format(
 					"http://galway2020.xenei.net/twitter/twiterAccount#%s",
 					screenName), FOAF.OnlineAccount);
@@ -144,7 +172,7 @@ public class UserToRDF {
 	}
 
 	public void setUserScreenName(long id, String screenName) {
-		if (id > -0) {
+		if (id > 0) {
 			addOnlineAccount(getId(id), screenName);
 		}
 	}

@@ -46,6 +46,11 @@ public class StatusToRDF {
 		this.urlWriter = new UrlEntityToRDF(model);
 	}
 
+	/**
+	 * Write a status (Tweet).
+	 * @param status The tweet to write.
+	 * @return The resource for the tweet.
+	 */
 	public Resource write(Status status) {
 
 		Resource main = getId(status.getId());
@@ -56,9 +61,6 @@ public class StatusToRDF {
 			}
 		}
 		main.addLiteral(DC_11.date,  DateToRDF.asDateTime(status.getCreatedAt()));
-		// Not in the graph
-		// main.addLiteral( RDFWriter.retweetId,
-		// status.getCurrentUserRetweetId());
 
 		for (MediaEntity media : status.getExtendedMediaEntities()) {
 			main.addProperty(Galway2020.media, mediaEntityWriter.write(media));
@@ -86,50 +88,67 @@ public class StatusToRDF {
 			main.addProperty(DC_11.language, status.getLang());
 		}
 
+		// list the media entities.
 		for (MediaEntity media : status.getMediaEntities()) {
 			main.addProperty(Galway2020.media, mediaEntityWriter.write(media));
 		}
 
+		// list the place
 		if (status.getPlace() != null) {
 			main.addProperty(Galway2020.place,
 					placeWriter.write(status.getPlace()));
 		}
+		
+		if (status.getGeoLocation() != null)
+		{
+			main.addProperty(Galway2020.geoLocation,
+					geoLocationWriter.write(status.getGeoLocation()));
+		}
 
+		// list the retweet count
 		if (status.getRetweetCount()>-1)
 		{
 			main.addLiteral(Galway2020.retweetCount, status.getRetweetCount());
 		}
 		
+		// list the retweets
 		if (status.getRetweetedStatus() != null) {
 			main.addProperty(Galway2020.retweet,
 					write(status.getRetweetedStatus()));
 		}
 
+		// list where the tweet was targeted.
 		if (status.getScopes() != null) {
 			for (String placeId : status.getScopes().getPlaceIds()) {
 				main.addProperty(Galway2020.scope, placeWriter.getId(placeId));
 			}
 		}
 
+		// list the tweet source (device)
 		main.addLiteral(Galway2020.source, status.getSource());
 
+		// list the symbols
 		for (SymbolEntity symbol : status.getSymbolEntities()) {
 			symbolWriter.write(symbol);
 		}
 
+		// list the text.
 		main.addLiteral(Galway2020.text, status.getText());
 
+		// list all URLs as FOAF.topic for tweet.
 		for (URLEntity url : status.getURLEntities()) {
 			if (StringUtils.isNotBlank(url.getURL())) {
 				main.addProperty(FOAF.topic, urlWriter.write(url));
 			}
 		}
 
+		// list tweet as publication of user.
 		if (status.getUser() != null) {
-			userWriter.write(status.getUser()).addProperty(Galway2020.tweet,
+			userWriter.write(status.getUser()).addProperty(FOAF.publications,
 					main);
 		}
 
+		// add mentioned users to tweet and add mentioned user as Twitter account.
 		for (UserMentionEntity userMention : status.getUserMentionEntities()) {
 			main.addProperty(Galway2020.mentions,
 					userWriter.write(status.getUser(), userMention));

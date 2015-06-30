@@ -92,7 +92,10 @@ public class TweetModelIterator implements Iterator<Model> {
 		LOG.debug( "Processing tweet: {}", status.getId());
 		statusWriter.write(status);
 		// handle registry
-		users.add( status.getUser().getName() );
+		if (status.getUser() != null && StringUtils.isNotBlank( status.getUser().getScreenName()))
+		{
+			users.add( status.getUser().getScreenName() );
+		}
 	
 		//users.add(  status.getContributors() );
 		for (HashtagEntity hashtag : status.getHashtagEntities())

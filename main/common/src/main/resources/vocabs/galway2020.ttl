@@ -153,12 +153,12 @@ twitter:statusCount rdf:type rdf:Property ;
 #	rdfs:comment "The number of friends of this user";
 #	.
 
-twitter:tweet rdf:type rdf:Property ;
-	rdfs:label "A tweet";
-	rdfs:comment "identifies a tweet of a user";
-	rdfs:domain twitter:User ;
-	rdfs:range twitter:Tweet ;
-	.
+#twitter:tweet rdf:type rdf:Property ;
+#	rdfs:label "A tweet";
+#	rdfs:comment "identifies a tweet of a user";
+#	rdfs:domain twitter:User ;
+#	rdfs:range twitter:Tweet ;
+#	.
 
 twitter:retweet rdf:type rdf:Property ;
 	rdfs:label "a retweet";
@@ -172,19 +172,14 @@ twitter:boundingBox rdf:type rdf:Property ;
 	rdfs:comment "a bounding box for location.";
 	.
 
-twitter:boundingBoxType rdf:type rdf:Property ;
-	rdfs:label "bounding box type";
-	rdfs:comment "The general shape of the bounding box";
-	.
-
 twitter:geometry rdf:type rdf:Property ;
 	rdfs:label "A geometry";
 	rdfs:comment "the bounding box of a geometry";
 	.
 
-twitter:geometryType rdf:type rdf:Property ;
-	rdfs:label "geometry type";
-	rdfs:comment "The shape of the geometry";
+twitter:geoLocation rdf:type rdf:Property ;
+	rdfs:label "geo location";
+	rdfs:comment "A point where the tweet came from";
 	.
 
 twitter:containedBy rdf:type rdf:Property ;
@@ -203,10 +198,11 @@ twitter:Hashtag rdf:type owl:Class ;
 	.
 
 twitter:Twitter rdf:type owl:Class ;
+	rdf:type foaf:Agent ;
 	rdfs:label "The twitter system";
 	rdfs:comment "Identifies the twitter system.";
 	.
-
+	
 twitter:Tweet rdf:type owl:Class ;
 	rdfs:label "A tweet";
 	rdfs:comment "Identifies the tweet system.";
@@ -216,7 +212,7 @@ twitter:Tweet rdf:type owl:Class ;
 twitter:User rdf:type owl:Class ;
 	rdfs:label "A twiter user";
 	rdfs:comment "Identifies user on the twitter system.";
-	rdfs:subClassOf foaf:Agent;
+	rdfs:subClassOf foaf:Person;
 	.	
 
 	

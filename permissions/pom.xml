@@ -5,16 +5,16 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Galway 2020 - Graph Permissions</name>
   <repositories>
-		<repository>
-			<id>apache-snapshot</id>
-			<name>Apache Snapshot Repository</name>
-			<layout>default</layout>
-			<url>https://repository.apache.org/content/repositories/snapshots</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+	<repository>
+		<id>apache-snapshot</id>
+		<name>Apache Snapshot Repository</name>
+		<layout>default</layout>
+		<url>https://repository.apache.org/content/repositories/snapshots</url>
+		<snapshots>
+			<enabled>true</enabled>
+		</snapshots>
+	</repository>
+</repositories>
   <dependencies>
   	<dependency>
   		<groupId>org.apache.jena</groupId>
