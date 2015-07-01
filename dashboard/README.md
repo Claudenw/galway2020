@@ -118,7 +118,7 @@ I developed a Spring MVC application using the following JavaScript libraries:
 
 To compile locally:
 ```
-mvn clean pacakge
+mvn clean package
 ```
 
 To test locally:
