@@ -1,5 +1,6 @@
 package org.xenei.galway2020.source.twitter;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -7,6 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
@@ -35,14 +38,20 @@ import twitter4j.TwitterFactory;
  *
  */
 public class TwitterSource implements ModelSource {
-	private final Twitter twitter;
-	private final Configuration cfg;
-	private final static Logger LOG = LoggerFactory
-			.getLogger(TwitterSource.class);
-
+	public final static String LAST_ID = "lastTweet";
 	
 	public final static Resource TWITTER_URL = ResourceFactory
 			.createResource("https://twitter.com/");
+
+	
+	private final static Logger LOG = LoggerFactory
+			.getLogger(TwitterSource.class);
+
+	private final PropertiesConfiguration tracker;
+	private final Twitter twitter;
+	private final Configuration cfg;
+	private final Long lastTweet;
+	
 
 	/**
 	 * Constructs a twitter source.
@@ -55,16 +64,17 @@ public class TwitterSource implements ModelSource {
 	 * hashtag entries.</li>
 	 * <li>user - a user (without the at-sign) to follow. There may be multiple
 	 * user entries.</li>
+	 * <li>tracking - a file that is used to track the last tweet read.
 	 * </ul>
 	 * 
 	 * @param cfg
 	 *            The configuration file
 	 * @throws TwitterException
 	 * @throws IOException
+	 * @throws ConfigurationException 
 	 */
 	public TwitterSource(Configuration cfg) throws TwitterException,
-			IOException {
-		// read properties from system configuration first.
+			IOException, ConfigurationException {
 		this.cfg = cfg;
 		if (StringUtils.isBlank(cfg.getString("consumer.key")))
 		{
@@ -74,9 +84,17 @@ public class TwitterSource implements ModelSource {
 		{
 			throw new IllegalArgumentException( "consumer.secret missing from configuration file");
 		}
+		File f = new File( cfg.getString( "tracking" ) );
+		if (! f.exists())
+		{
+			f.createNewFile();
+		}
+		tracker = new PropertiesConfiguration( f);
+		tracker.setAutoSave(true);
 		twitter = new TwitterFactory().getInstance();   
 	    twitter.setOAuthConsumer(cfg.getString("consumer.key"), cfg.getString("consumer.secret"));
 	    twitter.addRateLimitStatusListener(new Throttle() );
+	    lastTweet = tracker.getLong( LAST_ID, 0);
 	}
 
 	/**
@@ -103,7 +121,7 @@ public class TwitterSource implements ModelSource {
 
 		// get the iterator of topic and user strings
 		ExtendedIterator<String> strIter =  getTopics().andThen(getUsers());
-		final TweetModelIterator tmi = new TweetModelIterator( twitter, strIter);
+		final TweetModelIterator tmi = new TweetModelIterator( lastTweet, tracker, twitter, strIter);
 
 		// create a model iterator of the topics and users from the config.
 		ExtendedIterator<Model> iter = WrappedIterator.create( tmi );
@@ -119,7 +137,7 @@ public class TwitterSource implements ModelSource {
 				@Override
 				public ExtendedIterator<Model> create() {
 					Iterator<String> iter = WrappedIterator.create( tmi.getHashTags()).andThen( tmi.getUsers() );
-					return WrappedIterator.create(new TweetModelIterator( twitter, iter ));
+					return WrappedIterator.create(new TweetModelIterator( lastTweet, twitter, iter ));
 				}}).andThen(
 						new LazyModelIterator(){
 							// add users info for the users.

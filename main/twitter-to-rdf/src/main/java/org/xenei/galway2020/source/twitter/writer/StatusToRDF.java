@@ -20,25 +20,30 @@ public class StatusToRDF {
 
 	private final Model model;
 	private final MediaEntityToRDF mediaEntityWriter;
-	private final GeoLocationToRDF geoLocationWriter;
 	private final HashtagToRDF hashtagWriter;
 	private final UserToRDF userWriter;
 	private final PlaceToRDF placeWriter;
 	private final SymbolToRDF symbolWriter;
 	private final UrlEntityToRDF urlWriter;
 
+	private final static String ID_FMT = "http://galway2020.xenei.net/twitter/status/id%s"; 
+	
 	public Resource getId(long id) {
-		String url = String.format(
-				"http://galway2020.xenei.net/twitter/status#%s", id);
+		String url = String.format(	ID_FMT, id);
 		Resource retval = model.createResource(url, Galway2020.Tweet);
 		retval.addProperty( RDF.type, FOAF.Document );
 		return retval;
 	}
 
+	public Resource getSubId(long id, String type) {
+		String url = String.format(
+				ID_FMT+"/%s", id,type);
+		return model.createResource(url);
+	}
+	
 	public StatusToRDF(Model model) {
 		this.model = model;
 		this.mediaEntityWriter = new MediaEntityToRDF(model);
-		this.geoLocationWriter = new GeoLocationToRDF(model);
 		this.hashtagWriter = new HashtagToRDF(model);
 		this.userWriter = new UserToRDF(model, this);
 		this.placeWriter = new PlaceToRDF(model);
@@ -67,8 +72,13 @@ public class StatusToRDF {
 		}
 
 		main.addLiteral(Galway2020.favoriteCount, status.getFavoriteCount());
+		
+		
 		if (status.getGeoLocation() != null) {
-			geoLocationWriter.write(status.getGeoLocation());
+			Resource r = getSubId( status.getId(), "geoLoc");
+			main.addProperty(Galway2020.geoLocation,
+					placeWriter.writePoint( r, status.getGeoLocation()));
+	
 		}
 
 		for (HashtagEntity hashtag : status.getHashtagEntities()) {
@@ -97,12 +107,6 @@ public class StatusToRDF {
 		if (status.getPlace() != null) {
 			main.addProperty(Galway2020.place,
 					placeWriter.write(status.getPlace()));
-		}
-		
-		if (status.getGeoLocation() != null)
-		{
-			main.addProperty(Galway2020.geoLocation,
-					geoLocationWriter.write(status.getGeoLocation()));
 		}
 
 		// list the retweet count

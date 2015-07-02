@@ -11,17 +11,29 @@ import org.xenei.galway2020.source.twitter.writer.UserToRDF;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
+/**
+ * An iterator of user data models.
+ * 
+ * These are models based on the user information from Twitter.
+ *
+ */
 public class UserModelIterator implements Iterator<Model> {
 	private final static Logger LOG = LoggerFactory.getLogger(UserModelIterator.class);
 	
-	private Iterator<String> users;
-	private Twitter twitter;
+	private final Iterator<String> users;
+	private final Twitter twitter;
 
+	/**
+	 * Constructor
+	 * @param twitter The Twitter interface
+	 * @param users The iterator of user IDs
+	 */
 	public UserModelIterator(Twitter twitter, Iterator<String> users)
 	{
 		this.users=users;
 		this.twitter = twitter;
 	}
+	
 	@Override
 	public boolean hasNext() {
 		return users.hasNext();

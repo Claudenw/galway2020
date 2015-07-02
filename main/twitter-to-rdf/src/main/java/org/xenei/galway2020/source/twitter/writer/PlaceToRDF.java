@@ -8,10 +8,12 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.vocabulary.DC_11;
+import org.apache.jena.vocabulary.RDF;
 import org.xenei.galway2020.utils.OwlFuncs;
 import org.xenei.galway2020.vocab.Galway2020;
 import org.xenei.galway2020.vocab.Geonames;
 import org.xenei.galway2020.vocab.Geosparql;
+import org.xenei.galway2020.vocab.Wgs84_pos;
 
 import twitter4j.GeoLocation;
 import twitter4j.Place;
@@ -19,21 +21,33 @@ import twitter4j.Place;
 public class PlaceToRDF {
 
 	private final Model model;
-	private final GeoLocationToRDF geoLocationWriter;
 	
 	private static final WktLiteral wktLiteral = new WktLiteral();
 
+	private static final String ID_FMT = "http://galway2020.xenei.net/twitter/place/id%s";
+	
 	public PlaceToRDF(Model model) {
 		this.model = model;
-		this.geoLocationWriter = new GeoLocationToRDF(model);
 	}
-
+	
 	public Resource getId(String id) {
-		String url = String.format(
-				"http://galway2020.xenei.net/twitter/place#%s", id);
+		String url = String.format(ID_FMT, id);
 		return model.createResource(url, Geonames.Feature);
 	}
+	
+	public Resource getSubId(String id, String type) {
+		String url = String.format(
+				ID_FMT+"/%s", id,type);
+		return  model.createResource(url);
+	}
+	
 
+	/**
+	 * Write a bounding box entry on the resource as a "asWKT
+	 * @param resource The resource to add the bounding box to.
+	 * @param type The type of bounding box.
+	 * @param boundingBox The collection of GeoLocations.
+	 */
 	public void addBoundingBox( Resource resource,  String type, GeoLocation[][] boundingBox)
 	{
 		StringBuilder sb = new StringBuilder( type );
@@ -68,13 +82,49 @@ public class PlaceToRDF {
 		resource.addProperty( Geosparql.asWKT, sb.toString());
 	}
 	
+	public Resource collapseToPoint( Resource point, GeoLocation[][] boundingBox)
+	{
+		Double lon = 0.0;
+		Double lat = 0.0;
+		int count = 0;
+		for (GeoLocation[] geoLocSet : boundingBox )
+		{
+			for (GeoLocation geoLoc : geoLocSet)
+			{
+				count++;
+				lat += geoLoc.getLatitude();
+				lon += geoLoc.getLongitude();
+			}
+		}
+		lon /= count;
+		lat /= count;
+		point.addProperty(RDF.type, Wgs84_pos.Point);
+		point.addLiteral(Wgs84_pos.lat, lat);
+		point.addLiteral(Wgs84_pos.long_, lon);
+		return point;
+	}
+	
+	/**
+	 * Write a geolocation as a point object at r.
+	 * @param point the Resource to write the location on.
+	 * @param geoLoc The location to write
+	 * @return The point parameter
+	 */
+	public Resource writePoint(Resource point, GeoLocation geoLoc) {
+		point.addProperty(RDF.type, Wgs84_pos.Point);
+		point.addLiteral(Wgs84_pos.lat, geoLoc.getLatitude());
+		point.addLiteral(Wgs84_pos.long_, geoLoc.getLongitude());
+		return point;
+	}
+	
 	public Resource write(Place placeObj) {
 		Resource place = getId(placeObj.getId());
 		// add the bounding box
 		if (placeObj.getBoundingBoxCoordinates() != null) {
-			Resource r = model.createResource();
+			Resource r = getSubId( placeObj.getId(), "boundingBox");
 			place.addProperty( Galway2020.boundingBox, r );
-			addBoundingBox( r, placeObj.getBoundingBoxType(), placeObj.getBoundingBoxCoordinates());	
+			addBoundingBox( r, placeObj.getBoundingBoxType(), placeObj.getBoundingBoxCoordinates());
+			collapseToPoint( Galway2020.geoLocation, placeObj.getBoundingBoxCoordinates());
 		}
 		
 		for (Place subPlace : placeObj.getContainedWithIn()) {
@@ -91,7 +141,7 @@ public class PlaceToRDF {
 		}
 		 // add geometry
 		if (placeObj.getGeometryCoordinates() != null) {
-			Resource r = model.createResource();
+			Resource r = getSubId( placeObj.getId(), "geometry");
 			place.addProperty( Galway2020.geometry, r );
 			addBoundingBox( r, placeObj.getGeometryType(), placeObj.getGeometryCoordinates());		
 		}
