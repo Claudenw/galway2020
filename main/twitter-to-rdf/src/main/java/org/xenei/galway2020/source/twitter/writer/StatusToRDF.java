@@ -7,6 +7,7 @@ import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.xenei.galway2020.utils.DateToRDF;
+import org.xenei.galway2020.utils.NSTools;
 import org.xenei.galway2020.vocab.Galway2020;
 
 import twitter4j.HashtagEntity;
@@ -26,7 +27,7 @@ public class StatusToRDF {
 	private final SymbolToRDF symbolWriter;
 	private final UrlEntityToRDF urlWriter;
 
-	private final static String ID_FMT = "http://galway2020.xenei.net/twitter/status/id%s"; 
+	private final static String ID_FMT = NSTools.createURL("status/id%s"); 
 	
 	public Resource getId(long id) {
 		String url = String.format(	ID_FMT, id);

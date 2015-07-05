@@ -6,6 +6,7 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
+import org.xenei.galway2020.utils.NSTools;
 import org.xenei.galway2020.utils.OwlFuncs;
 import org.xenei.galway2020.vocab.Galway2020;
 
@@ -19,8 +20,7 @@ public class MediaEntityToRDF {
 	private final static String[] sizes = { "thumb", "small", "medium", "large" };
 
 	public Resource getId(long id) {
-		String url = String.format(
-				"http://galway2020.xenei.net/twitter/media/%s", id);
+		String url = String.format( NSTools.createURL("media#%s" ), id);
 		return model.createResource(url);
 	}
 

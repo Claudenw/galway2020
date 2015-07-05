@@ -9,6 +9,7 @@ import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
 import org.xenei.galway2020.source.twitter.TwitterSource;
 import org.xenei.galway2020.utils.DateToRDF;
+import org.xenei.galway2020.utils.NSTools;
 import org.xenei.galway2020.vocab.FOAF_Extra;
 import org.xenei.galway2020.vocab.Galway2020;
 
@@ -29,7 +30,7 @@ public class UserToRDF {
 			throw new IllegalArgumentException("UserID may not be less that 0");
 		}
 		String url = String.format(
-				"http://galway2020.xenei.net/twitter/user#%s", id);
+				NSTools.createURL( "user#%s"), id);
 		Resource resource = model.createResource(url, Galway2020.User);
 		resource.addProperty( RDF.type, FOAF.Person);
 		return resource;

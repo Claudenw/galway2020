@@ -9,6 +9,7 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
+import org.xenei.galway2020.utils.NSTools;
 import org.xenei.galway2020.utils.OwlFuncs;
 import org.xenei.galway2020.vocab.Galway2020;
 import org.xenei.galway2020.vocab.Geonames;
@@ -24,7 +25,7 @@ public class PlaceToRDF {
 	
 	private static final WktLiteral wktLiteral = new WktLiteral();
 
-	private static final String ID_FMT = "http://galway2020.xenei.net/twitter/place/id%s";
+	private static final String ID_FMT = NSTools.createURL("place/id%s");
 	
 	public PlaceToRDF(Model model) {
 		this.model = model;
