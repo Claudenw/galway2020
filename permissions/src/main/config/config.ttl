@@ -3,10 +3,10 @@
 @prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
-@prefix sec:    <http://apache.org/jena/security/Assembler#> .
+@prefix sec:    <http://apache.org/jena/permissions/Assembler#> .
 @prefix my:     <http://example.org/#> .
 
-[] ja:loadClass    "org.apache.jena.security.SecuredAssembler" .
+[] ja:loadClass    "org.apache.jena.permissions.SecuredAssembler" .
 sec:Model       rdfs:subClassOf  ja:NamedModel .
 
 [] ja:loadClass "org.apache.jena.tdb.TDB" .
@@ -14,28 +14,29 @@ tdb:DatasetTDB  rdfs:subClassOf  ja:RDFDataset .
 tdb:GraphTDB    rdfs:subClassOf  ja:Model      .
 
 
-my:baseModel rdf:type tdb:DatasetTDB ;
+my:baseModel rdf:type tdb:GraphTDB ;
     tdb:location "DB" ;
  	.
  	
 my:securedModel rdf:type sec:Model ;
     sec:baseModel my:baseModel ;
-    ja:modelName "https://galway2020.xenei.net/securedModel" ;
-    sec:evaluatorImpl my:secEvaluator . 
+    ja:modelName "https://odp.galway2020.ie/securedModel" ;
+    sec:evaluatorImpl my:secEvaluator;
+    . 
     
 my:secEvaluator rdf:type sec:Evaluator ;
-    sec:args [  
-        rdf:_1 my:baseModel ;
-    ] ;
-    sec:evaluatorClass "org.xenei.galway2020..permissions.PermissionEvaluatorImpl" .
+    sec:evaluatorClass "org.xenei.galway2020.permissions.PermissionEvaluatorImpl";
+    .
     
 my:securedDataset rdf:type ja:RDFDataset ;
-    ja:defaultGraph my:securedModel .
+    ja:defaultGraph my:securedModel ;
+    .
     
 my:fuskei rdf:type fuseki:Server ;
     fuseki:services (
         my:service1
-    ) .
+    ) 
+    .
     
 my:service1 rdf:type fuseki:Service ;
     rdfs:label                        "My Secured Data Service" ;

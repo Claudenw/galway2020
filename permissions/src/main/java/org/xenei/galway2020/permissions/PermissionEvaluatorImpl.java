@@ -5,9 +5,13 @@ import java.util.Set;
 import org.apache.jena.permissions.SecurityEvaluator;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PermissionEvaluatorImpl implements SecurityEvaluator {
 
+	private static final Logger LOG = LoggerFactory.getLogger(PermissionEvaluatorImpl.class);
+	
 	public boolean evaluate(Object principal, Action action, SecNode graphIRI) {
 		if (action == Action.Read)
 		{
@@ -55,6 +59,13 @@ public class PermissionEvaluatorImpl implements SecurityEvaluator {
 	}
 
 	public Subject getPrincipal() {
+		Subject subj = SecurityUtils.getSubject();
+		if (LOG.isDebugEnabled())
+		{
+			LOG.debug( "Subject: {}", subj.toString());
+			LOG.debug( "Principal: {}", subj.getPrincipal());
+			LOG.debug( "isAuthenticated() : {}", subj.isAuthenticated());
+		}
 		return SecurityUtils.getSubject();
 	}
 
