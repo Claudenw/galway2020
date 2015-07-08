@@ -101,9 +101,9 @@ public class Processor implements Runnable {
 			}
 			PropertyConfigurator.configure( p );
 		}
-		else {
-			BasicConfigurator.configure();
-		}
+//		else {
+//			BasicConfigurator.configure();
+//		}
 	}
 
 	/**

@@ -88,12 +88,21 @@ public class TweetModelIterator implements Iterator<Model> {
 	}
 	
 	/**
-	 * Get the iterator of discovered user ids.
+	 * Get the iterator of discovered user ids with '@' sign
+	 * @return the ExtendedIterator of recorded user ids.
+	 */
+	public ExtendedIterator<String> getUsers()
+	{
+		return WrappedIterator.create(getPlainUsers()).mapWith(new UserNameFunction());
+	}
+	
+	/**
+	 * Get the iterator of discovered user ids without '@' sign
 	 * @return the iterator of recorded user ids.
 	 */
-	public Iterator<String> getUsers()
+	public Iterator<String> getPlainUsers()
 	{
-		return WrappedIterator.create(users.iterator()).mapWith(new UserNameFunction());
+		return users.iterator();
 	}
 	
 	/**

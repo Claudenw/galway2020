@@ -22,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xenei.galway2020.ModelSource;
 
+import twitter4j.RateLimitStatus;
 import twitter4j.RateLimitStatusEvent;
 import twitter4j.RateLimitStatusListener;
 import twitter4j.Twitter;
@@ -143,7 +144,7 @@ public class TwitterSource implements ModelSource {
 							// add users info for the users.
 							@Override
 							public ExtendedIterator<Model> create() {
-								return WrappedIterator.create(new UserModelIterator( twitter, tmi.getUsers()));
+								return WrappedIterator.create(new UserModelIterator( twitter, tmi.getPlainUsers()));
 							}} );
 
 	}
@@ -183,29 +184,43 @@ public class TwitterSource implements ModelSource {
 	 */
 	private class Throttle implements RateLimitStatusListener {
 
-		@Override
-		public void onRateLimitStatus(RateLimitStatusEvent event) {
-			if (event.getRateLimitStatus().getRemaining() == 0)
+		private void debug(RateLimitStatus status)
+		{
+			LOG.debug( status.toString() );
+			LOG.debug( "Limit: "+status.getLimit());
+			LOG.debug( "Remaining: "+status.getRemaining());
+			LOG.debug( "Reset time (S): "+status.getResetTimeInSeconds());
+			LOG.debug( "(S) to reset: "+status.getSecondsUntilReset());
+		}
+		
+		private void checkLimit( RateLimitStatus status )
+		{
+			if (LOG.isDebugEnabled())
+			{
+				debug( status );
+			}
+
+			if (status.getRemaining() <= 1)
 			{
 				try {
-					long tm = 100+event.getRateLimitStatus().getSecondsUntilReset()*1000;
-					LOG.debug( String.format( "Sleeping for %s milliseconds", tm ));
+					long tm = 2000+(status.getSecondsUntilReset()*1000);
+					LOG.info( String.format( "Sleeping for %s milliseconds", tm ));
 					Thread.sleep( tm );
+					LOG.info( "Woke up -- proccessing again");
 				} catch (InterruptedException e) {
 					LOG.warn( "Interruped" );
 				}
 			}
 		}
+		
+		@Override
+		public void onRateLimitStatus(RateLimitStatusEvent event) {
+			checkLimit( event.getRateLimitStatus() );
+		}
 
 		@Override
 		public void onRateLimitReached(RateLimitStatusEvent event) {
-			try {
-				long tm = 100+event.getRateLimitStatus().getSecondsUntilReset()*1000;
-				LOG.debug( String.format( "Sleeping for %s milliseconds", tm ));
-				Thread.sleep( tm);
-			} catch (InterruptedException e) {
-				LOG.warn( "Interruped" );
-			}
+			checkLimit( event.getRateLimitStatus() );
 		}
 		
 	}

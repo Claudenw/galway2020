@@ -95,6 +95,7 @@ public class FileModelSource implements ModelSource {
 			Model retval = ModelFactory.createDefaultModel();
 			Lang lang = RDFLanguages.filenameToLang(t.getName());
 			try {
+				LOG.info( "Reading "+t.getName() );
 				retval.read( new FileInputStream( t ), t.getName(), lang.getName());
 				if (deleteAfterRead)
 				{

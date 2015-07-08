@@ -31,6 +31,7 @@ public class FileModelSink implements ModelSink {
 		File outFile = File.createTempFile(prefix, "."
 				+ lang.getFileExtensions().get(0), dir);
 		model.write(new FileOutputStream(outFile), lang.getName());
+		LOG.debug( "Model written to "+outFile);
 		return true;
 	}
 
@@ -55,6 +56,7 @@ public class FileModelSink implements ModelSink {
 		} else {
 			model.write(new FileOutputStream(outFile), lang.getName());
 		}
+		LOG.debug( "Model written to "+outFile);
 		return true;
 	}
 

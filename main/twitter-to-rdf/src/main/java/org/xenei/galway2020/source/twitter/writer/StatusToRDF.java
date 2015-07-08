@@ -155,8 +155,14 @@ public class StatusToRDF {
 
 		// add mentioned users to tweet and add mentioned user as Twitter account.
 		for (UserMentionEntity userMention : status.getUserMentionEntities()) {
-			main.addProperty(Galway2020.mentions,
-					userWriter.write(status.getUser(), userMention));
+			Resource mentioned = userWriter.write(userMention);
+			main.addProperty(Galway2020.mentions, mentioned );
+			if (status.getUser() != null)
+			{
+				Resource user = getId(status.getUser().getId());
+				user.addProperty( FOAF.knows, mentioned);
+			}
+			
 		}
 		return main;
 	}

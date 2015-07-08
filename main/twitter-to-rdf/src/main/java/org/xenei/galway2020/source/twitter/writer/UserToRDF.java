@@ -139,10 +139,8 @@ public class UserToRDF {
 	 * @param userMention The mention
 	 * @return the Resource of the user that was mentioned.
 	 */
-	public Resource write(User userObj, UserMentionEntity userMention) {
-		Resource user = getId(userObj.getId());
+	public Resource write(UserMentionEntity userMention) {
 		Resource mentioned = getId(userMention.getId());
-		user.addProperty( FOAF.knows, mentioned);
 		addOnlineAccount(mentioned, userMention.getScreenName());
 		setName(mentioned, userMention.getName());
 		return mentioned;
