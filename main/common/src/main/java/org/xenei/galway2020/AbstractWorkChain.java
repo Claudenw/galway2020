@@ -51,11 +51,13 @@ public abstract class AbstractWorkChain implements Runnable {
 	abstract protected boolean performSink(String graphName, ModelSink sink,
 			Model model) throws IOException;
 
+	@Override
 	public final void run() {
 		getLog().info("Starting");
 		int i = 0;
-		ExtendedIterator<Model> iter = source.modelIterator();
 		try {
+			ExtendedIterator<Model> iter = source.modelIterator();
+		
 			for (Enhancer enh : enhancers) {
 				iter = iter.mapWith(enh);
 			}
@@ -82,7 +84,11 @@ public abstract class AbstractWorkChain implements Runnable {
 				}
 				getLog().info(String.format("finished model #%s", ++i));
 			}
-		} finally {
+		} catch (Exception e) {
+			getLog().warn(
+					"Exception thrown during attempted source: "
+							+ e.getMessage(), e);
+		}finally {
 			getLog().info("Shutting down");
 			for (Enhancer enh : enhancers) {
 				enh.shutdown();

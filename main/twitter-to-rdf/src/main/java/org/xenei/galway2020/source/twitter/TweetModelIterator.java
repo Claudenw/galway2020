@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Function;
@@ -237,20 +236,24 @@ public class TweetModelIterator implements Iterator<Model> {
 		
 		@Override
 		public boolean hasNext() {
-			return wrapped.hasNext() || queryResult.hasNext();		
+			if ( !wrapped.hasNext() )
+			{
+			
+				if (queryResult.hasNext())
+				{
+					try {
+						newWrapped(queryResult.nextQuery());
+					} catch (TwitterException e) {
+						LOG.error( "Can not get new queryResult: "+e.getMessage(), e );
+						return false;
+					}
+				}
+			}
+			return wrapped.hasNext();
 		}
 
 		@Override
 		public Status next() {
-			if (!wrapped.hasNext())
-			{
-				try {
-					newWrapped(queryResult.nextQuery());
-				} catch (TwitterException e) {
-					LOG.error( "Can not get new queryResult: "+e.getMessage(), e );
-					throw new NoSuchElementException( );
-				}
-			}
 			return wrapped.next();
 		}
 		

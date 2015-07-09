@@ -14,7 +14,6 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.SystemConfiguration;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.xenei.galway2020.AbstractWorkChain;
@@ -26,6 +25,16 @@ import org.xenei.galway2020.ModelSource;
 import org.xenei.galway2020.utils.CfgTools;
 
 public class Processor implements Runnable {
+
+    private static final String RETRY_QUEUE = "retryQueue";
+    private static final String SINK = "sink";
+    private static final String SOURCE = "source";
+    private static final String ENHANCER = "enhancer";
+    private static final String ACTION = "action";
+    private static final String LOG4J = "log4j";
+    private static final String GRAPH_NAME = "graphName";
+    private static final String CLASS = "class";
+    private static final String CONFIG = "config";
 
 	public enum Action { INSERT, DELETE };
 			
@@ -78,7 +87,7 @@ public class Processor implements Runnable {
 		
 		cfg.addConfiguration( new SystemConfiguration() );
 		
-		setupLogging( cfg.subset("log4j") );
+		setupLogging( cfg.subset(LOG4J) );
 		
 		Processor p = new Processor(cfg);
 		p.run();
@@ -101,9 +110,6 @@ public class Processor implements Runnable {
 			}
 			PropertyConfigurator.configure( p );
 		}
-//		else {
-//			BasicConfigurator.configure();
-//		}
 	}
 
 	/**
@@ -140,56 +146,56 @@ public class Processor implements Runnable {
 			NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException {
-		String actionStr = cfg.getString( "action");
+		String actionStr = cfg.getString( ACTION );
 		if (StringUtils.isBlank(actionStr))
 		{
 			throw new IllegalArgumentException( "action must not be null or a null string");
 		}
 		Action action = Action.valueOf( actionStr.toUpperCase());
 		LOG.info( "Action: "+action);
-		LOG.info( "To Graph: "+cfg.getString( "graphName", "(none defined)"));
+		LOG.info( "To Graph: "+cfg.getString( GRAPH_NAME, "(none defined)"));
 		
-		ModelSink sink = (ModelSink) createClass( checkClassCfg(cfg, "sink" ));
+		ModelSink sink = (ModelSink) createClass( checkClassCfg(cfg, SINK ));
 		LOG.info( "Sink: "+sink.getClass());
-		ModelSource source = (ModelSource) createClass( checkClassCfg(cfg, "source"));
+		ModelSource source = (ModelSource) createClass( checkClassCfg(cfg, SOURCE));
 		LOG.info( "Source: "+source.getClass());
-		List<Enhancer> enhancers = createEnhancers(cfg.subset("enhancer"));
+		List<Enhancer> enhancers = createEnhancers(cfg.subset(ENHANCER));
 		
 		ModelSink retryQueue = null;
-		if (cfg.containsKey( "retryQueue"))
+		if (null != cfg.subset(RETRY_QUEUE))
 		{
-			retryQueue = (ModelSink) createClass( checkClassCfg(cfg, "retryQueue"));
+			retryQueue = (ModelSink) createClass( checkClassCfg(cfg, RETRY_QUEUE));
 			LOG.info( "Retry Queue: "+retryQueue.getClass());
 		}
 		if (action == Action.INSERT )
 		{
-			workChain = new InsertWorkChain( cfg.getString( "graphName"), source, enhancers, sink, retryQueue );
+			workChain = new InsertWorkChain( cfg.getString( GRAPH_NAME), source, enhancers, sink, retryQueue );
 		}
 		else
 		{
-			workChain = new DeleteWorkChain( cfg.getString( "graphName"), source, enhancers, sink, retryQueue );
+			workChain = new DeleteWorkChain( cfg.getString( GRAPH_NAME), source, enhancers, sink, retryQueue );
 		}
 	}
 	
 	private Configuration checkClassCfg( Configuration cfg, String subCfgName )
 	{
-		Configuration subCfg = cfg.subset(subCfgName);
+	    Configuration subCfg = cfg.subset(subCfgName);
 		
 		Iterator<String> iter = subCfg.getKeys();
 		while (iter.hasNext())
 		{
-			System.out.println( String.format( "%s : %s", subCfgName, iter.next()));
+			LOG.info( String.format( "%s : %s", subCfgName, iter.next()));
 		}
 		
-		if (!subCfg.containsKey("class"))
+		if (!subCfg.containsKey(CLASS))
 		{
-			throw new IllegalArgumentException( String.format( "Section %s does not define 'class' property", subCfgName ));
+			throw new IllegalArgumentException( String.format( "Section %s does not define '%s' property", subCfgName, CLASS ));
 		}
 
-		Configuration cfg2 = subCfg.subset("config");
+		Configuration cfg2 = subCfg.subset(CONFIG);
 		if (cfg2 == null)
 		{
-			throw new IllegalArgumentException( String.format( "Section %s does not define 'config' property", subCfgName ));
+			throw new IllegalArgumentException( String.format( "Section %s does not define '%s' property", subCfgName, CONFIG ));
 		}
 		return subCfg;
 	}
@@ -198,8 +204,8 @@ public class Processor implements Runnable {
 			NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException {
-		String className = cfg.getString("class");
-		Configuration cCfg = cfg.subset("config");
+		String className = cfg.getString(CLASS);
+		Configuration cCfg = cfg.subset(CONFIG);
 		Class<?> cls = Class.forName(className);
 		Constructor<?> ctor = cls.getConstructor(Configuration.class);
 		return ctor.newInstance(cCfg);

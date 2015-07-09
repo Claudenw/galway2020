@@ -25,6 +25,14 @@ public class FileModelSink implements ModelSink {
 
 	public FileModelSink(Configuration cfg) {
 		dir = new File(cfg.getString(FILE_DIR));
+		if ( ! dir.exists())
+		{
+			throw new IllegalArgumentException( String.format( "Directory %s does not exist", dir));
+		}
+		if (! dir.canWrite())
+		{
+			throw new IllegalArgumentException( String.format( "Directory %s can not be written", dir));
+		}				
 	}
 
 	private boolean insertUnnamed(Model model) throws IOException {
