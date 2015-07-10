@@ -5,13 +5,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Collection;
 import org.apache.commons.configuration.Configuration;
-import org.apache.jena.graph.Capabilities;
-import org.apache.jena.graph.Graph;
-import org.apache.jena.graph.GraphEventManager;
-import org.apache.jena.graph.GraphStatisticsHandler;
-import org.apache.jena.graph.Node;
-import org.apache.jena.graph.TransactionHandler;
-import org.apache.jena.graph.Triple;
+import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.reasoner.Reasoner;
@@ -19,10 +13,6 @@ import org.apache.jena.reasoner.ReasonerRegistry;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFLanguages;
 import org.apache.jena.riot.RiotException;
-import org.apache.jena.shared.AddDeniedException;
-import org.apache.jena.shared.DeleteDeniedException;
-import org.apache.jena.shared.PrefixMapping;
-import org.apache.jena.util.iterator.ExtendedIterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xenei.galway2020.Enhancer;
@@ -119,111 +109,11 @@ public class ReasonerEnhancer implements Enhancer {
 	}
 
 	@Override
-	public Model apply(Model t) {
-		return ModelFactory.createInfModel(reasoner, tbox, t);		
+	public Model apply(Model model) {
+		InfModel infModel = ModelFactory.createInfModel(reasoner, tbox, model);
+		Model retval = infModel.difference( tbox );	
+		infModel.close();
+		return retval;
 	}
 
-	public class UnclosableGraph implements Graph {
-		private Graph graph;
-
-		UnclosableGraph(Graph graph) {
-			this.graph = graph;
-		}
-
-		@Override
-		public boolean dependsOn(Graph other) {
-			return graph.dependsOn(other);
-		}
-
-		@Override
-		public TransactionHandler getTransactionHandler() {
-			return graph.getTransactionHandler();
-		}
-
-		@Override
-		public Capabilities getCapabilities() {
-			return graph.getCapabilities();
-		}
-
-		@Override
-		public GraphEventManager getEventManager() {
-			return graph.getEventManager();
-		}
-
-		@Override
-		public GraphStatisticsHandler getStatisticsHandler() {
-			return graph.getStatisticsHandler();
-		}
-
-		@Override
-		public PrefixMapping getPrefixMapping() {
-			return graph.getPrefixMapping();
-		}
-
-		@Override
-		public void add(Triple t) throws AddDeniedException {
-			graph.add(t);
-		}
-
-		@Override
-		public void delete(Triple t) throws DeleteDeniedException {
-			graph.delete(t);
-		}
-
-		@Override
-		public ExtendedIterator<Triple> find(Triple m) {
-			return graph.find(m);
-		}
-
-		@Override
-		public ExtendedIterator<Triple> find(Node s, Node p, Node o) {
-			return graph.find(s, p, o);
-		}
-
-		@Override
-		public boolean isIsomorphicWith(Graph g) {
-			return graph.isIsomorphicWith(g);
-		}
-
-		@Override
-		public boolean contains(Node s, Node p, Node o) {
-			return graph.contains(s, p, o);
-		}
-
-		@Override
-		public boolean contains(Triple t) {
-			return graph.contains(t);
-		}
-
-		@Override
-		public void clear() {
-			graph.clear();
-		}
-
-		@Override
-		public void remove(Node s, Node p, Node o) {
-			graph.remove(s, p, o);
-		}
-
-		@Override
-		public void close() {
-			// do nothing
-		}
-
-		@Override
-		public boolean isEmpty() {
-			return graph.isEmpty();
-		}
-
-		@Override
-		public int size() {
-			return graph.size();
-		}
-
-		@Override
-		public boolean isClosed() {
-			return graph.isClosed();
-		}
-
-	}
 }

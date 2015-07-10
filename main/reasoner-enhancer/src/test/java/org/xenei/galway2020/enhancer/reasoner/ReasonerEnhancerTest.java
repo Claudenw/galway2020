@@ -29,8 +29,12 @@ public class ReasonerEnhancerTest {
 		Model m = ModelFactory.createDefaultModel();
 		Resource s = ResourceFactory.createResource("http://example.com/test");
 		m.add(s, RDF.type, Galway2020.Tweet);
-		Model m2 = enhancer.apply(m);
+		Model m2 =  enhancer.apply(m);
+		
+	
+		//m2.getInfModel().write( System.out, "TURTLE");
 		assertTrue(m2.contains(s, RDF.type, FOAF.Document));
+		
 	}
 
 }

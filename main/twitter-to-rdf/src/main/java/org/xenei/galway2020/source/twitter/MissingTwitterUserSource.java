@@ -1,16 +1,11 @@
 package org.xenei.galway2020.source.twitter;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.query.Query;
@@ -26,10 +21,7 @@ import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.lang.sparql_11.ParseException;
 import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.util.iterator.ExtendedIterator;
-import org.apache.jena.util.iterator.LazyIterator;
-import org.apache.jena.util.iterator.NiceIterator;
 import org.apache.jena.util.iterator.WrappedIterator;
-import org.apache.jena.vocabulary.OWL;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
 import org.slf4j.Logger;
@@ -38,9 +30,6 @@ import org.xenei.galway2020.ModelSource;
 import org.xenei.galway2020.vocab.FOAF_Extra;
 import org.xenei.galway2020.vocab.Galway2020;
 
-import twitter4j.RateLimitStatus;
-import twitter4j.RateLimitStatusEvent;
-import twitter4j.RateLimitStatusListener;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -65,7 +54,6 @@ public class MissingTwitterUserSource implements ModelSource {
 			.getLogger(MissingTwitterUserSource.class);
 
 	private final Twitter twitter;
-	private final Configuration cfg;
 	private final Set<String> userIds;
 
 	/**
@@ -91,7 +79,6 @@ public class MissingTwitterUserSource implements ModelSource {
 	 */
 	public MissingTwitterUserSource(Configuration cfg) throws TwitterException,
 			IOException, ConfigurationException, ParseException {
-		this.cfg = cfg;
 		if (StringUtils.isBlank(cfg.getString("consumer.key")))
 		{
 			throw new IllegalArgumentException( "consumer.key missing from configuration file");
@@ -107,6 +94,7 @@ public class MissingTwitterUserSource implements ModelSource {
 			throw new IllegalArgumentException( "url missing from configuration file");
 		}
 		
+		LOG.info( "Reading users from "+serviceURL );
 		twitter = new TwitterFactory().getInstance();   
 	    twitter.setOAuthConsumer(cfg.getString("consumer.key"), cfg.getString("consumer.secret"));
 	    twitter.addRateLimitStatusListener(new Throttle() );
@@ -135,13 +123,13 @@ public class MissingTwitterUserSource implements ModelSource {
 	        	userIds.add( results.next().get("userId").asLiteral().getString());
 	        }
 	    }
+	    LOG.info( userIds.size()+" users to process");
 	}
 
 	
 
 	@Override
 	public ExtendedIterator<Model> modelIterator() {
-
 		return WrappedIterator.create(new UserModelIterator( twitter, userIds.iterator()));
 	}
 
