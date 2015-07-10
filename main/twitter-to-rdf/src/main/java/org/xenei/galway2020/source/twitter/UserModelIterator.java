@@ -44,7 +44,7 @@ public class UserModelIterator implements Iterator<Model> {
 		Model model = ModelFactory.createDefaultModel();
 		UserToRDF userWriter = new UserToRDF(model);
 		String user = users.next();
-		LOG.debug( "Processing user: {}", user );
+		LOG.info( "Processing user: {}", user );
 		try {
 			userWriter.write(twitter.showUser( user));
 		} catch (TwitterException e) {

@@ -162,7 +162,7 @@ public class Processor implements Runnable {
 		List<Enhancer> enhancers = createEnhancers(cfg.subset(ENHANCER));
 		
 		ModelSink retryQueue = null;
-		if (null != cfg.subset(RETRY_QUEUE))
+		if (! cfg.subset(RETRY_QUEUE).isEmpty())
 		{
 			retryQueue = (ModelSink) createClass( checkClassCfg(cfg, RETRY_QUEUE));
 			LOG.info( "Retry Queue: "+retryQueue.getClass());
@@ -192,8 +192,7 @@ public class Processor implements Runnable {
 			throw new IllegalArgumentException( String.format( "Section %s does not define '%s' property", subCfgName, CLASS ));
 		}
 
-		Configuration cfg2 = subCfg.subset(CONFIG);
-		if (cfg2 == null)
+		if (subCfg.subset(CONFIG).isEmpty())
 		{
 			throw new IllegalArgumentException( String.format( "Section %s does not define '%s' property", subCfgName, CONFIG ));
 		}

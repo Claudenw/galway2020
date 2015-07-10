@@ -22,9 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xenei.galway2020.ModelSource;
 
-import twitter4j.RateLimitStatus;
-import twitter4j.RateLimitStatusEvent;
-import twitter4j.RateLimitStatusListener;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -45,7 +42,7 @@ public class TwitterSource implements ModelSource {
 			.createResource("https://twitter.com/");
 
 	
-	private final static Logger LOG = LoggerFactory
+	final static Logger LOG = LoggerFactory
 			.getLogger(TwitterSource.class);
 
 	private final PropertiesConfiguration tracker;
@@ -124,28 +121,7 @@ public class TwitterSource implements ModelSource {
 		ExtendedIterator<String> strIter =  getTopics().andThen(getUsers());
 		final TweetModelIterator tmi = new TweetModelIterator( lastTweet, tracker, twitter, strIter);
 
-		// create a model iterator of the topics and users from the config.
-		ExtendedIterator<Model> iter = WrappedIterator.create( tmi );
-
-		
-		return iter.andThen( new LazyModelIterator(){
-			// add to that an iterator of the retweets
-			@Override
-			public ExtendedIterator<Model> create() {
-				return WrappedIterator.create(new TweetModelIterator( twitter, tmi.getRetweets()));
-			}}).andThen( new LazyModelIterator(){
-				// add an iterator of the users and hashtags discovered in the original sets
-				@Override
-				public ExtendedIterator<Model> create() {
-					Iterator<String> iter = WrappedIterator.create( tmi.getHashTags()).andThen( tmi.getUsers() );
-					return WrappedIterator.create(new TweetModelIterator( lastTweet, twitter, iter ));
-				}}).andThen(
-						new LazyModelIterator(){
-							// add users info for the users.
-							@Override
-							public ExtendedIterator<Model> create() {
-								return WrappedIterator.create(new UserModelIterator( twitter, tmi.getPlainUsers()));
-							}} );
+		return  WrappedIterator.create( tmi );
 
 	}
 
@@ -176,53 +152,6 @@ public class TwitterSource implements ModelSource {
 			return NiceIterator.asSet(this);
 		}
 
-	}
-	
-	/**
-	 * A class to limit our requests to Twitter so that we don't overrun our limits.
-	 *
-	 */
-	private class Throttle implements RateLimitStatusListener {
-
-		private void debug(RateLimitStatus status)
-		{
-			LOG.debug( status.toString() );
-			LOG.debug( "Limit: "+status.getLimit());
-			LOG.debug( "Remaining: "+status.getRemaining());
-			LOG.debug( "Reset time (S): "+status.getResetTimeInSeconds());
-			LOG.debug( "(S) to reset: "+status.getSecondsUntilReset());
-		}
-		
-		private void checkLimit( RateLimitStatus status )
-		{
-			if (LOG.isDebugEnabled())
-			{
-				debug( status );
-			}
-
-			if (status.getRemaining() <= 1)
-			{
-				try {
-					long tm = 2000+(status.getSecondsUntilReset()*1000);
-					LOG.info( String.format( "Sleeping for %s milliseconds", tm ));
-					Thread.sleep( tm );
-					LOG.info( "Woke up -- proccessing again");
-				} catch (InterruptedException e) {
-					LOG.warn( "Interruped" );
-				}
-			}
-		}
-		
-		@Override
-		public void onRateLimitStatus(RateLimitStatusEvent event) {
-			checkLimit( event.getRateLimitStatus() );
-		}
-
-		@Override
-		public void onRateLimitReached(RateLimitStatusEvent event) {
-			checkLimit( event.getRateLimitStatus() );
-		}
-		
 	}
 
 }
