@@ -32,7 +32,7 @@ define( [], function() {
                  "    ?p [] .\n" +
                  " 	?p rdfs:label ?label\n" +
                  "}",
-       "prefixes": ["g2020", "rdfs"]
+       "prefixes": ["g2020", "rdfs", "foaf", "owl", "rdf"]
       },
       { "name": "Properties of Users",
         "query": "SELECT distinct ?p ?label\n" +
@@ -41,7 +41,7 @@ define( [], function() {
                  "    ?p [] .\n" +
                  " 	?p rdfs:label ?label\n" +
                  "}",
-       "prefixes": ["g2020", "rdfs", "foaf"]
+       "prefixes": ["g2020", "rdfs", "foaf", "owl", "rdf"]
       }
     ]
   };
