@@ -120,7 +120,11 @@ public class MissingTwitterUserSource implements ModelSource {
 	        ResultSet results = qexec.execSelect() ;
 	        while  (results.hasNext())
 	        {
-	        	userIds.add( results.next().get("userId").asLiteral().getString());
+	        	String id = results.next().get("userId").asLiteral().getString();
+	        	if (StringUtils.isNotBlank( id))
+	        	{
+	        		userIds.add( id );
+	        	}
 	        }
 	    }
 	    LOG.info( userIds.size()+" users to process");
