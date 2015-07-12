@@ -1,0 +1,23 @@
+PREFIX dc11: <http://purl.org/dc/elements/1.1/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix g2020: <http://data.galway2020.ie/ns/twitter#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+
+SELECT *
+WHERE {
+ ?tweet a g2020:Tweet ;
+    g2020:text ?text ;
+    dc11:subject ?hashtagId ;
+    dc11:date ?date .
+    optional{ ?tweet g2020:replyTo ?replyTo .}
+    ?hashtagId rdfs:label ?hashtag .
+    ?user foaf:publications ?tweet ;
+    optional { ?user foaf:name ?name } .
+    optional{ ?user g2020:followerCount ?followers } .
+  optional{ ?user g2020:retweetCount ?retweets }.
+  optional{ ?tweet g2020:geoLocation ?geo .
+    ?geo geo:lat ?latitude;
+      geo:long ?longitude .}
+}

@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.xenei.galway2020</groupId>
+    <artifactId>main</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>reasoner-enhancer</artifactId>
+  <name>Galway 2020 - Reasoner Based Model Enhancement</name>
+  <description>Enhances the model with triples from a reasoner.</description>
+ <dependencies>
+  
+   	<dependency>
+  		<groupId>org.slf4j</groupId>
+  		<artifactId>slf4j-api</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.jena</groupId>
+  		<artifactId>apache-jena-libs</artifactId>
+  		<type>pom</type>
+  	</dependency>
+  	<dependency>
+    <groupId>org.xenei.galway2020</groupId>
+    <artifactId>common</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </dependency>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.xenei</groupId>
+  		<artifactId>classpath-utils</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+ </dependencies>
+</project>
