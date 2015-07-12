@@ -1,6 +1,6 @@
 # Galway 2020 Capital Of Culture Bid Data System - Data Import
 
-The data import system is a java application based on the <a href="https://jena.apache.org>Apache Jena</a> rdf graph store.
+The data import system is a java application based on the <a href="https://jena.apache.org">Apache Jena</a> rdf graph store.
 The base application is called the _processor_ and comprises 3 basic components:
 
 * A _source_ that creates an RDF graph (Called a Model).
