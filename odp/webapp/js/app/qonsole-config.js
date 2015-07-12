@@ -18,7 +18,8 @@ define( [], function() {
                  "WHERE {\n" +
                  "  ?hashtagId rdf:type g2020:Hashtag;\n" +
                  "    rdfs:label ?hashTag .\n" +
-                 "}\n"
+                 "}\n",
+        "prefixes": ["g2020", "rdfs", "rdf"]
       },
       { "name": "Selection of triples",
         "query": "SELECT ?subject ?predicate ?object\nWHERE {\n" +

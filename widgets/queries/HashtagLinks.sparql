@@ -1,0 +1,25 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX g2020: <http://data.galway2020.ie/ns/twitter#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX dc11: <http://purl.org/dc/elements/1.1/>
+
+
+SELECT  ?source ?target (count(?tweet) as ?value)
+WHERE {
+	?tweet a g2020:Tweet ;
+    	dc11:subject ?hashtagId1 ;
+    	dc11:subject ?hashtagId2 .
+    
+	?hashtagId1 rdfs:label ?hashTagTxt1.
+  	bind( LCASE( ?hashTagTxt1 ) as ?source ).
+  
+  	?hashtagId2 rdfs:label ?hashTagTxt2.
+  	bind( LCASE( ?hashTagTxt2 ) as ?target ).
+
+  	filter( ?source <  ?target )
+}
+group by ?source ?target
+order by desc(?value) ?source
+
+   

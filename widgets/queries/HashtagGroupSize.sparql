@@ -1,0 +1,79 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX g2020: <http://data.galway2020.ie/ns/twitter#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX dc11: <http://purl.org/dc/elements/1.1/>
+
+SELECT ?source (count(?source) as ?size) ?group
+WHERE {
+	{
+		SELECT  ?source  (1 as ?group)
+		WHERE {
+  			?tweet a g2020:Tweet ;
+     			dc11:subject ?hashtagId1 .
+
+     		?hashtagId1 rdfs:label ?hashTagTxt1.
+  			filter( LCASE( ?hashTagTxt1 ) in ( 'galway2020', 'ibackgalway' ) ).
+  
+  			bind( LCASE( ?hashTagTxt1 ) as ?source ).
+		}
+  	}
+	UNION
+	{
+		SELECT  ?source (2 as ?group)
+		WHERE {
+  			?tweet a g2020:Tweet ;
+     			dc11:subject ?hashtagId1 ;
+    			dc11:subject ?hashtagId2 .
+
+     		?hashtagId1 rdfs:label ?hashTagTxt1.
+  			bind( LCASE( ?hashTagTxt1 ) as ?source ).
+    		filter( ?source not in ( 'galway2020', 'ibackgalway' ) ).
+    
+  			?hashtagId2 rdfs:label ?hashTagTxt2.
+  			bind( LCASE( ?hashTagTxt2 ) as ?target ).
+  			filter( ?target in ( 'galway2020', 'ibackgalway' ) ).
+		}
+	}
+	UNION
+	{
+		SELECT ?source (3 as ?group)
+		where {
+			?tweet a g2020:Tweet ;
+     			dc11:subject ?hashtagId1 ;
+    			dc11:subject ?hashtagId2 .
+    			
+			?hashtagId1 rdfs:label ?hashTagTxt1.
+  			bind( LCASE( ?hashTagTxt1 ) as ?source ).
+    		filter( ?source not in ( 'galway2020', 'ibackgalway' ) ).
+    
+  			?hashtagId2 rdfs:label ?hashTagTxt2.
+  			bind( LCASE( ?hashTagTxt2 ) as ?target ).
+			minus {
+				SELECT distinct ?source 
+				WHERE {
+					{
+  						?tweet a g2020:Tweet ;
+     						dc11:subject ?hashtagId1 ;
+    						dc11:subject ?hashtagId2 .
+
+     					?hashtagId1 rdfs:label ?hashTagTxt1.
+  						bind( LCASE( ?hashTagTxt1 ) as ?source ).
+    					filter( ?source not in ( 'galway2020', 'ibackgalway' ) ).
+    
+  						?hashtagId2 rdfs:label ?hashTagTxt2.
+  						bind( LCASE( ?hashTagTxt2 ) as ?target ).
+  						filter( ?target in ( 'galway2020', 'ibackgalway' ) ).
+					} 
+					union {
+		 				bind( 'ibackgalway' as ?source)
+		 			}
+		 			union {
+		 				bind( 'galway2020' as ?source )
+  					}
+				}
+  			}
+		}
+	}
+} group by ?source ?group
+order by ?group ?source
