@@ -4,7 +4,7 @@ PREFIX g2020: <http://data.galway2020.ie/ns/twitter#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX dc11: <http://purl.org/dc/elements/1.1/>
 
-SELECT ?source (count(?source) as ?size) ?group
+SELECT (?source as ?name) (count(?source) as ?size) ?group
 WHERE {
 	{
 		SELECT  ?source  (1 as ?group)
@@ -76,4 +76,4 @@ WHERE {
 		}
 	}
 } group by ?source ?group
-order by ?group ?source
+order by ?group 
