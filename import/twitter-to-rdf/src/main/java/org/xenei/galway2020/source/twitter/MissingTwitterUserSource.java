@@ -3,11 +3,13 @@ package org.xenei.galway2020.source.twitter;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
+import org.apache.jena.query.ARQ;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
@@ -15,8 +17,6 @@ import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.lang.sparql_11.ParseException;
 import org.apache.jena.sparql.vocabulary.FOAF;
@@ -44,12 +44,8 @@ import twitter4j.TwitterFactory;
  *
  */
 public class MissingTwitterUserSource implements ModelSource {
-	public final static String LAST_ID = "lastTweet";
-	
-	public final static Resource TWITTER_URL = ResourceFactory
-			.createResource("https://twitter.com/");
 
-	
+
 	private final static Logger LOG = LoggerFactory
 			.getLogger(MissingTwitterUserSource.class);
 
@@ -63,11 +59,7 @@ public class MissingTwitterUserSource implements ModelSource {
 	 * <ul>
 	 * <li>consumer.key - OAuth key</li>
 	 * <li>consumer.secret - OAuth secret</li>
-	 * <li>hashtag - a hashtag (without the #) to follow. There may be multiple
-	 * hashtag entries.</li>
-	 * <li>user - a user (without the at-sign) to follow. There may be multiple
-	 * user entries.</li>
-	 * <li>tracking - a file that is used to track the last tweet read.
+	 * <li>url - the URL of the ODP endpoint.  Will make galway2020 related user query to this endpoint</li>
 	 * </ul>
 	 * 
 	 * @param cfg
@@ -107,7 +99,7 @@ public class MissingTwitterUserSource implements ModelSource {
 	    .addVar( userId )
 	    .addWhere( user, RDF.type, Galway2020.User )
 	    .addWhere( user, FOAF_Extra.foafAccount, account )
-	    .addWhere( account, FOAF.accountServiceHomepage, TWITTER_URL)
+	    .addWhere( account, FOAF.accountServiceHomepage, TwitterInfo.TWITTER_URL)
 	    .addWhere( account, RDFS.label, userId )
 	    .addFilter( "not exists {?user <"+FOAF.img+"> []}");
 	   
@@ -115,6 +107,10 @@ public class MissingTwitterUserSource implements ModelSource {
 	    String queryString = String.format( "SELECT ?userId WHERE { SERVICE <%s> { %s }}",
 	    		serviceURL, selectBuilder );
 	    Query query = QueryFactory.create(queryString) ;
+	    // set the timeout
+	    long connectTime = TimeUnit.MILLISECONDS.convert(10L, TimeUnit.SECONDS);
+	    long responseTime = TimeUnit.MILLISECONDS.convert(10L, TimeUnit.MINUTES);
+	    ARQ.getContext().set( ARQ.queryTimeout , String.format( "%s,%s", connectTime, responseTime) );
 	    try (QueryExecution qexec = QueryExecutionFactory.create(query, ModelFactory.createDefaultModel())) {
 	    
 	        ResultSet results = qexec.execSelect() ;

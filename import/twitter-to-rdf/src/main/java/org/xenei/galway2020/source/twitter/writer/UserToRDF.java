@@ -7,12 +7,12 @@ import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
-import org.xenei.galway2020.source.twitter.TwitterSource;
 import org.xenei.galway2020.utils.DateToRDF;
 import org.xenei.galway2020.utils.NSTools;
 import org.xenei.galway2020.vocab.FOAF_Extra;
 import org.xenei.galway2020.vocab.Galway2020;
 
+import org.xenei.galway2020.source.twitter.TwitterInfo;
 import twitter4j.MediaEntity.Size;
 import twitter4j.URLEntity;
 import twitter4j.User;
@@ -165,7 +165,7 @@ public class UserToRDF {
 					"http://galway2020.xenei.net/twitter/twiterAccount#%s",
 					screenName), FOAF.OnlineAccount);
 			model.add(user, FOAF_Extra.foafAccount, acct);
-			acct.addProperty(FOAF.accountServiceHomepage, TwitterSource.TWITTER_URL);
+			acct.addProperty(FOAF.accountServiceHomepage, TwitterInfo.TWITTER_URL);
 			acct.addProperty( RDFS.label, screenName );
 		}
 	}

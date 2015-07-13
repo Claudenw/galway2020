@@ -12,8 +12,6 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.util.iterator.ExtendedIterator;
 import org.apache.jena.util.iterator.LazyIterator;
 import org.apache.jena.util.iterator.NiceIterator;
@@ -37,10 +35,6 @@ import twitter4j.TwitterFactory;
  */
 public class TwitterSource implements ModelSource {
 	public final static String LAST_ID = "lastTweet";
-	
-	public final static Resource TWITTER_URL = ResourceFactory
-			.createResource("https://twitter.com/");
-
 	
 	final static Logger LOG = LoggerFactory
 			.getLogger(TwitterSource.class);

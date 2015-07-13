@@ -1,7 +1,6 @@
 package org.xenei.galway2020.source.twitter;
 
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Function;
 
@@ -184,21 +183,6 @@ public class TweetModelIterator implements Iterator<Model> {
 		private void newWrapped(Query query) throws TwitterException {	
 			queryResult = twitter.search(query);
 			wrapped = queryResult.getTweets().iterator();
-		}
-		
-	}
-	
-	/**
-	 * A comparator for statuses in the collection.
-	 * 
-	 * Compares based on id.
-	 *
-	 */
-	private static class StatusComparator implements Comparator<Status> {
-
-		@Override
-		public int compare(Status o1, Status o2) {
-			return Long.compare( o1.getId(), o2.getId());
 		}
 		
 	}
