@@ -4,10 +4,10 @@ PREFIX g2020: <http://data.galway2020.ie/ns/twitter#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX dc11: <http://purl.org/dc/elements/1.1/>
 
-SELECT (?source as ?name) (count(?source) as ?size) ?group
-WHERE {
+SELECT ?source ?group 
+where {
 	{
-		SELECT  ?source  (1 as ?group)
+		SELECT distinct ?source  (1 as ?group) 
 		WHERE {
   			?tweet a g2020:Tweet ;
      			dc11:subject ?hashtagId1 .
@@ -20,7 +20,7 @@ WHERE {
   	}
 	UNION
 	{
-		SELECT  ?source (2 as ?group)
+		SELECT distinct ?source (2 as ?group) 
 		WHERE {
   			?tweet a g2020:Tweet ;
      			dc11:subject ?hashtagId1 ;
@@ -37,43 +37,46 @@ WHERE {
 	}
 	UNION
 	{
-		SELECT ?source (3 as ?group)
+		SELECT distinct ?source (3 as ?group) 
 		where {
 			?tweet a g2020:Tweet ;
      			dc11:subject ?hashtagId1 ;
     			dc11:subject ?hashtagId2 .
     			
-			?hashtagId1 rdfs:label ?hashTagTxt1.
+    		?hashtagId1 rdfs:label ?hashTagTxt1.
   			bind( LCASE( ?hashTagTxt1 ) as ?source ).
     		filter( ?source not in ( 'galway2020', 'ibackgalway' ) ).
-    
-  			?hashtagId2 rdfs:label ?hashTagTxt2.
+    		
+    		?hashtagId2 rdfs:label ?hashTagTxt2.
   			bind( LCASE( ?hashTagTxt2 ) as ?target ).
+  			filter( (?target != ?source) && (?target not in ( 'galway2020', 'ibackgalway' ))).
+    		
+    		?tweet2 a g2020:Tweet ;
+    			dc11:subject ?hashtagId2 ;
+    			dc11:subject ?hashtagId3 .
+    		
+    		?hashtagId3 rdfs:label ?hashTagTxt3.
+    		bind( LCASE( ?hashTagTxt3 ) as ?target2 ).	
+    		filter( ?target2 in ( 'galway2020', 'ibackgalway' ) ).
+    						
 			minus {
-				SELECT distinct ?source 
+				SELECT distinct ?source (2 as ?group) 
 				WHERE {
-					{
-  						?tweet a g2020:Tweet ;
-     						dc11:subject ?hashtagId1 ;
-    						dc11:subject ?hashtagId2 .
-
-     					?hashtagId1 rdfs:label ?hashTagTxt1.
-  						bind( LCASE( ?hashTagTxt1 ) as ?source ).
-    					filter( ?source not in ( 'galway2020', 'ibackgalway' ) ).
-    
-  						?hashtagId2 rdfs:label ?hashTagTxt2.
-  						bind( LCASE( ?hashTagTxt2 ) as ?target ).
-  						filter( ?target in ( 'galway2020', 'ibackgalway' ) ).
-					} 
-					union {
-		 				bind( 'ibackgalway' as ?source)
-		 			}
-		 			union {
-		 				bind( 'galway2020' as ?source )
-  					}
+		  			?tweet a g2020:Tweet ;
+		     			dc11:subject ?hashtagId1 ;
+		    			dc11:subject ?hashtagId2 .
+		
+		     		?hashtagId1 rdfs:label ?hashTagTxt1.
+		  			bind( LCASE( ?hashTagTxt1 ) as ?source ).
+		    		filter( ?source not in ( 'galway2020', 'ibackgalway' ) ).
+		    
+		  			?hashtagId2 rdfs:label ?hashTagTxt2.
+		  			bind( LCASE( ?hashTagTxt2 ) as ?target ).
+		  			filter( ?target in ( 'galway2020', 'ibackgalway' ) ).				
 				}
-  			}
+			}
 		}
 	}
-} group by ?source ?group
+} 
+group by ?source ?group
 order by ?group 

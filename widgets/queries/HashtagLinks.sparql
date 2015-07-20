@@ -10,16 +10,26 @@ WHERE {
 	?tweet a g2020:Tweet ;
     	dc11:subject ?hashtagId1 ;
     	dc11:subject ?hashtagId2 .
-    
+			
 	?hashtagId1 rdfs:label ?hashTagTxt1.
   	bind( LCASE( ?hashTagTxt1 ) as ?source ).
   
   	?hashtagId2 rdfs:label ?hashTagTxt2.
   	bind( LCASE( ?hashTagTxt2 ) as ?target ).
+    
+    filter( ?source <  ?target )
+  
+  	 optional { ?tweet2 a g2020:Tweet ;
+    			dc11:subject ?hashtagId2 ;
+    			dc11:subject ?hashtagId3 . 
+    	?hashtagId3 rdfs:label ?hashTagTxt3.
+  		bind( LCASE( ?hashTagTxt3 ) as ?target2 ). }
 
-  	filter( ?source <  ?target )
+    filter( ?tweet2 != ?tweet ).
+	filter( (?source in ( 'galway2020', 'ibackgalway' )) 
+		|| (?target in ( 'galway2020', 'ibackgalway' ))
+		|| (?target2 in ( 'galway2020', 'ibackgalway' )))
+  
 }
 group by ?source ?target
 order by desc(?value) ?source
-
-   
