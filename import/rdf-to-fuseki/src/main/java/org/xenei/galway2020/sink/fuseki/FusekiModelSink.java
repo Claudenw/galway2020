@@ -20,13 +20,15 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.jena.rdf.model.Model;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xenei.galway2020.ModelSink;
 
 /**
  * A sink that writes to a fuseki or other SPARQL server.
  */
 public class FusekiModelSink implements ModelSink {
-
+	private static final Logger LOG = LoggerFactory.getLogger(FusekiModelSink.class);
 	private static final String HOST = "host";
 	private static final String USER = "user";
 	private static final String PWD = "pwd";
@@ -88,10 +90,11 @@ public class FusekiModelSink implements ModelSink {
 	}
 
 	private boolean execute(AbstractEntity entity) throws IOException {
-
+		LOG.debug( "Executing Fuseki Model Sink");
 		HttpPost post = new HttpPost(entity.modUrl(cfg.getString(HOST)));
 		post.setEntity(entity);
 		CloseableHttpResponse response = httpclient.execute(target, post, ctxt);
+		LOG.debug( "Sink returned {}", response.getStatusLine().toString());
 		return response.getStatusLine().getStatusCode() >= HttpStatus.SC_OK
 				&& response.getStatusLine().getStatusCode() < HttpStatus.SC_MULTIPLE_CHOICES;
 	}

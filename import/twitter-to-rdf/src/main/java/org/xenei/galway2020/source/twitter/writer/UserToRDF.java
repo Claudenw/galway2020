@@ -7,18 +7,23 @@ import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xenei.galway2020.utils.DateToRDF;
 import org.xenei.galway2020.utils.NSTools;
 import org.xenei.galway2020.vocab.FOAF_Extra;
 import org.xenei.galway2020.vocab.Galway2020;
-
 import org.xenei.galway2020.source.twitter.TwitterInfo;
+
 import twitter4j.MediaEntity.Size;
 import twitter4j.URLEntity;
 import twitter4j.User;
 import twitter4j.UserMentionEntity;
 
 public class UserToRDF {
+	
+	private final static Logger LOG = LoggerFactory
+			.getLogger(UserToRDF.class);
 
 	private final Model model;
 	private final UrlEntityToRDF urlWriter;
@@ -64,6 +69,7 @@ public class UserToRDF {
 	 * @return The user Resource in the graph.
 	 */
 	public Resource write(User userObj) {
+		LOG.debug( "Writing user {}",userObj.getId());
 		Resource user = getId(userObj.getId());
 		if (StringUtils.isNotBlank(userObj.getBiggerProfileImageURL())) {
 			user.addProperty(FOAF.img, mediaWriter.writeURL(
@@ -130,6 +136,7 @@ public class UserToRDF {
 					urlWriter.write(userObj.getURLEntity()));
 		}
 		user.addLiteral(Galway2020.timeZoneOffset, userObj.getUtcOffset());
+		LOG.debug( "Finsihed writing user {}",userObj.getId());
 		return user;
 	}
 

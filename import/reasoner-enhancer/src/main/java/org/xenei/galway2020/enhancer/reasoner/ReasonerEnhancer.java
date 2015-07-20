@@ -110,9 +110,11 @@ public class ReasonerEnhancer implements Enhancer {
 
 	@Override
 	public Model apply(Model model) {
+		LOG.debug( "Applying Reasoner enhancement");
 		InfModel infModel = ModelFactory.createInfModel(reasoner, tbox, model);
 		Model retval = infModel.difference( tbox );	
 		infModel.close();
+		LOG.debug( "Returning reasoner enhanced model");
 		return retval;
 	}
 

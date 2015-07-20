@@ -44,12 +44,14 @@ public class UserModelIterator implements Iterator<Model> {
 		Model model = ModelFactory.createDefaultModel();
 		UserToRDF userWriter = new UserToRDF(model);
 		String user = users.next();
-		LOG.info( "Processing user: {}", user );
+		LOG.debug( "Processing user: {}", user );
 		try {
+			LOG.debug( "calling twitter to get user {}", user );
 			userWriter.write(twitter.showUser( user));
 		} catch (TwitterException e) {
 			LOG.error( "Error retrieving user: "+user);		
 		}
+		LOG.debug( "Returning model for {}", user );
 		return model;
 	}
 

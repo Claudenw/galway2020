@@ -224,6 +224,7 @@ public class Processor implements Runnable {
 	@Override
 	public void run() {
 		workChain.run();
+		LOG.info( "Run complete");
 	}
 
 }

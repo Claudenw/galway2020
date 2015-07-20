@@ -93,6 +93,7 @@ public class TweetModelIterator implements Iterator<Model> {
 		{
 			tracker.setProperty(TwitterSource.LAST_ID, Long.valueOf(status.getId()));
 		}
+		LOG.debug( "Returning model for {}", status.getId());
 		return model;
 		
 	}

@@ -11,7 +11,8 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFLanguages;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xenei.galway2020.ModelSink;
 
 public class FileModelSink implements ModelSink {
@@ -21,7 +22,7 @@ public class FileModelSink implements ModelSink {
 	private final File dir;
 	private final Lang lang = RDFLanguages.TURTLE;
 	private final String prefix = "fms";
-	private final Logger LOG = Logger.getLogger(FileModelSink.class);
+	private static final Logger LOG = LoggerFactory.getLogger(FileModelSink.class);
 
 	public FileModelSink(Configuration cfg) {
 		dir = new File(cfg.getString(FILE_DIR));
@@ -49,6 +50,7 @@ public class FileModelSink implements ModelSink {
 	}
 
 	public boolean insert(Model model, String graphName) throws IOException {
+		LOG.debug( "Insert into '{}'", graphName );
 		if (StringUtils.isBlank( graphName))
 		{
 			return insertUnnamed( model );
@@ -69,6 +71,7 @@ public class FileModelSink implements ModelSink {
 	}
 
 	public boolean delete(Model model, String graphName) throws IOException {
+		LOG.debug( "Deleting from '{}'", graphName );
 		if (StringUtils.isBlank( graphName ))
 		{
 			throw new IOException(
@@ -86,6 +89,7 @@ public class FileModelSink implements ModelSink {
 				m.write(new FileOutputStream(outFile), lang.getName());
 			}
 		}
+		LOG.debug( "Model deleted from "+outFile);
 		return true;
 	}
 

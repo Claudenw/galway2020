@@ -38,6 +38,7 @@ public class InsertWorkChain extends AbstractWorkChain {
 	@Override
 	protected boolean performSink(String graphName, ModelSink sink, Model model)
 			throws IOException {
+		LOG.debug( "Performing sink on: "+graphName);
 		return sink.insert(model, graphName);
 	}
 }

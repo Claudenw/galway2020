@@ -119,33 +119,33 @@ public class TwitterSource implements ModelSource {
 
 	}
 
-	/**
-	 * A lazily constructed iterator that returns models.
-	 *
-	 */
-	public abstract class LazyModelIterator extends LazyIterator<Model> {
-
-		@Override
-		public Model removeNext() {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public <X extends Model> ExtendedIterator<Model> andThen(
-				Iterator<X> other) {
-			return NiceIterator.andThen(this, other);
-		}
-
-		@Override
-		public List<Model> toList() {
-			return NiceIterator.asList(this);
-		}
-
-		@Override
-		public Set<Model> toSet() {
-			return NiceIterator.asSet(this);
-		}
-
-	}
+//	/**
+//	 * A lazily constructed iterator that returns models.
+//	 *
+//	 */
+//	public abstract class LazyModelIterator extends LazyIterator<Model> {
+//
+//		@Override
+//		public Model removeNext() {
+//			throw new UnsupportedOperationException();
+//		}
+//
+//		@Override
+//		public <X extends Model> ExtendedIterator<Model> andThen(
+//				Iterator<X> other) {
+//			return NiceIterator.andThen(this, other);
+//		}
+//
+//		@Override
+//		public List<Model> toList() {
+//			return NiceIterator.asList(this);
+//		}
+//
+//		@Override
+//		public Set<Model> toSet() {
+//			return NiceIterator.asSet(this);
+//		}
+//
+//	}
 
 }

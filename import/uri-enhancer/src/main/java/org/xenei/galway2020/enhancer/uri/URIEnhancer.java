@@ -287,6 +287,7 @@ public class URIEnhancer implements Enhancer {
 		} catch (RuntimeException e) {
 			LOG.error(e.getMessage(), e);
 		}
+		LOG.debug( "adding model from URI enhancement");
 		return model.add(updates);
 
 	}
