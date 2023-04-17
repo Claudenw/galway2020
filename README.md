@@ -1,3 +1,4 @@
+# THIS PROJECT IS ARCHIVED #
 # Galway 2020 Capital Of Culture Bid Data System
 
 This project comprises the systems that create the Galway 2020 data collection and presentation systems.
